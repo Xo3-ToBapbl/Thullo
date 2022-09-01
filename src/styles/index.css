@@ -1,0 +1,15 @@
+@import "reset.css";
+
+@font-face {
+  font-family: poppins;
+  src: url(../resources/fonts/poppins_regular.woff2);
+}
+
+@font-face {
+  font-family: notosans;
+  src: url(../resources/fonts/notosans_regular.woff2);
+}
+
+html {
+  font-family: poppins, sans-serif;
+}
