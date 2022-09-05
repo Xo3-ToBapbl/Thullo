@@ -5,9 +5,20 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true
+    "**/Thumbs.db": true,
+    ".gitignore": true,
+    "package-lock.json": true,
+    "package.json": true,
+    ".vscode": true,
+    "node_modules": true
   },
-  "hide-files.files": [],
+  "hide-files.files": [
+    ".gitignore",
+    "package-lock.json",
+    "package.json",
+    ".vscode",
+    "node_modules"
+  ],
   "cSpell.words": [
     "notosans"
   ]

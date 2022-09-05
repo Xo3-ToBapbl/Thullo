@@ -1,11 +1,14 @@
-import "./Application.css";
+import NavigationBar from "../features/initial/navigation_bar/NavigationBar";
+import styled from 'styled-components';
 
-function Application() {
+const ApplicationStyled = styled.div`
+  background-color: var(--primary);
+`;
+
+export default function Application() {
   return (
-    <div className="Application">
-      Thullo App!
-    </div>
+    <ApplicationStyled>
+      <NavigationBar/>
+    </ApplicationStyled>
   );
 }
-
-export default Application;
