@@ -1,4 +1,4 @@
-import NavigationBar from "../features/initial/navigation_bar/NavigationBar";
+import NavigationBar from "../features/home/navigation_bar/NavigationBar";
 import styled from 'styled-components';
 
 const ApplicationStyled = styled.div`

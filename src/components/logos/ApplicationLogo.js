@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const ApplicationLogoStyled = styled.svg`
-  transform: scale(1.15);
-  margin-left: 6px;
+  transform: scale(1.2);
+  margin-left: 7px;
 `;
 
 export default function ApplicationLogo(props) {
