@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useClickOutside } from "../../hooks/UseClickOutside";
 import styled from "styled-components";
 import BaseButtonStyled from "./BaseButton";
 
@@ -42,12 +43,11 @@ const DropdownContentStyled = styled.section`
 `;
 
 export default function DropdownButton(props) {
+  const ref = useRef();
   const [isOpen, setIsOpen] = useState(false);
   const tickAngle = isOpen ? 180 : 0;
-  const dropdownContent = isOpen ? (
-    <DropdownContentStyled>
-      {props.dropdownContent}
-    </DropdownContentStyled>) : null;
+
+  useClickOutside(ref, clicked);
 
   return (
     <DropdownButtonContainerStyled>
@@ -58,11 +58,20 @@ export default function DropdownButton(props) {
         </TickStyled>
       </DropdownButtonStyled>
 
-      {dropdownContent}
+      {isOpen ? <DropdownContent content={props.dropdownContent} reference={ref} /> : null}
     </DropdownButtonContainerStyled>
   );
 
   function clicked(e) {
+    e?.stopPropagation();
     setIsOpen(!isOpen);
   }
+}
+
+function DropdownContent(props) {
+  return (
+    <DropdownContentStyled ref={props.reference}>
+      {props.content}
+    </DropdownContentStyled>
+  );
 }
