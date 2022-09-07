@@ -1,5 +1,6 @@
 import NavigationBar from "../features/home/navigation_bar/NavigationBar";
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { themeService } from "../services/user-interface/ThemeService";
 
 const ApplicationStyled = styled.div`
   background-color: var(--primary);
@@ -7,8 +8,10 @@ const ApplicationStyled = styled.div`
 
 export default function Application() {
   return (
-    <ApplicationStyled>
-      <NavigationBar/>
-    </ApplicationStyled>
+    <ThemeProvider theme={themeService.theme}>
+      <ApplicationStyled>
+        <NavigationBar/>
+      </ApplicationStyled>
+    </ThemeProvider>
   );
 }

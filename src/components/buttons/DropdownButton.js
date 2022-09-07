@@ -34,6 +34,7 @@ const DropdownContentStyled = styled.section`
   gap: 1rem;
   left: 0px;
   top: 7rem;
+  min-width: 18rem;
   padding: 1.5rem;
   border-radius: 0.8rem;
   background-color: var(--primary);

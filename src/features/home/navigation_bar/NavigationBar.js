@@ -12,7 +12,7 @@ const NavStyled = styled.nav`
   gap: var(--content-offset);
   height: 8rem;
   padding: 2rem;
-  background-color: var(--primary);
+  background-color: ${props => props.theme.primary};
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 `;
 
@@ -30,7 +30,7 @@ const DropdownsContainerStyled = styled.div`
   gap: var(--content-offset);
 `;
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
   return (
     <NavStyled>
       <ApplicationLogo/>
