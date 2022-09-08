@@ -1,14 +1,15 @@
-import NavigationBar from "../features/home/navigation_bar/NavigationBar";
 import styled, { ThemeProvider } from 'styled-components';
-import { themeService } from "../services/user-interface/ThemeService";
+import { useSelector } from "react-redux";
+import NavigationBar from "../features/home/navigation/NavigationBar";
 
 const ApplicationStyled = styled.div`
   background-color: var(--primary);
 `;
 
 export default function Application() {
+  const theme = useSelector((state) => state.theme.value);
   return (
-    <ThemeProvider theme={themeService.theme}>
+    <ThemeProvider theme={theme}>
       <ApplicationStyled>
         <NavigationBar/>
       </ApplicationStyled>
