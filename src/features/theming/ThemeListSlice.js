@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { reducersNames } from "../../resources/constants/ReducersNames"
-import { themeNames } from '../../resources/constants/ThemeNames';
 import { themeService } from '../../services/user-interface/ThemeService';
 
 export const themeListSlice = createSlice({
   name: reducersNames.theme,
   initialState: {
-    name: themeNames.light,
+    name: themeService.theme.name,
     value: themeService.theme,
   },
   reducers: {

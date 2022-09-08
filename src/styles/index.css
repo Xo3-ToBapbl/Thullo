@@ -1,6 +1,4 @@
-@import "colors.css";
 @import "reset.css";
-@import "constants.css";
 
 @font-face {
   font-family: poppins;
@@ -15,4 +13,13 @@
 html {
   font-size: 62.5%;
   font-family: poppins, sans-serif;
+  height:100%;
+}
+
+body {
+  height:100%;
+}
+
+#root {
+  height:100%;
 }

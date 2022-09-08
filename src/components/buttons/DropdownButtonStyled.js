@@ -11,11 +11,11 @@ export const DropdownButtonStyled = styled(BaseButtonStyled)`
   font-weight: bold;
   padding: 0;
   border-radius: 0rem;
-  color: ${(props) => (props.isOpen ? "#2F80ED" : "#333333")};
+  color: ${(props) => (props.isOpen ? props.theme.accent : props.theme.onSecondary)};
   background-color: transparent;
 
   &:hover {
-    color: var(--accent);
+    color: ${(props) => props.theme.accent};
     filter: none;
   }
 `;
@@ -32,10 +32,10 @@ export const DropdownContentStyled = styled.section`
   flex-direction: column;
   gap: 1rem;
   left: 0px;
-  top: 7rem;
-  min-width: 18rem;
+  top: 8rem;
+  min-width: ${(props) => props.width ? props.width : 18}rem;
   padding: 1.5rem;
   border-radius: 0.8rem;
-  background-color: var(--primary);
-  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.05);
+  background-color: ${props => props.theme.secondary};
+  box-shadow: 0px 2px 4px 2px ${props => props.theme.onPrimaryShadow};
 `;

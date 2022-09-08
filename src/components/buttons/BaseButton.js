@@ -9,11 +9,11 @@ const BaseButtonStyled = styled.button`
   cursor: pointer;
 
   &:hover {
-    filter: brightness(85%);
+    filter: brightness(105%);
   }
 
   &:active {
-    filter: brightness(70%);
+    filter: brightness(95%);
   }
 `;
 

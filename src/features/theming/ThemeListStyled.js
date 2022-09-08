@@ -4,7 +4,7 @@ export const LabelStyled = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--onPrimary);
+  color: ${props => props.theme.onSecondary};
   font-family: notosans;
   font-size: 1.6rem;
   gap: 1rem;
@@ -16,12 +16,12 @@ export const InputStyled = styled.input`
   appearance:none;
   width:${inputSize}rem;
   height:${inputSize}rem;
-  border: 2px solid var(--onPrimary);
+  border: 2px solid ${props => props.theme.onSecondary};
   border-radius:50%;
   outline:none;
 
   &:checked {
-    border: 2px solid var(--accent);
+    border: 2px solid ${props => props.theme.accent};
   }
 
   &:before {
@@ -34,7 +34,7 @@ export const InputStyled = styled.input`
 }
 
   &:checked:before {
-    background-color:var(--accent);
+    background-color: ${props => props.theme.accent};
   }
 `;
 

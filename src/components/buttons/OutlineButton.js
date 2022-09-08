@@ -3,8 +3,18 @@ import styled from 'styled-components';
 
 const OutlineButtonStyled = styled(BaseButtonStyled)`
   color: var(--neutral);
-  background-color: var(--primary);
-  border: 1px solid var(--neutral);
+  background-color: transparent;
+  color: ${props => props.theme.neutral};
+  border: 2px solid ${props => props.theme.neutral};
+
+  &:hover {
+    color: ${props => props.theme.accent};
+    border: 2px solid ${props => props.theme.accent};
+  }
+
+  &:active {
+    filter: brightness(95%);
+  }
 `;
 
 export default function OutlineButton(props) {
