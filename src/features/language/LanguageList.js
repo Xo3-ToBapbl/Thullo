@@ -21,7 +21,7 @@ function LanguageListItem(props) {
   );
 }
 
-export default function ThemeList() {
+export default function LanguageList() {
   const [ t, i18n ] = useTranslation();
   const language = i18n.language;
   const changeLanguage = (language) => i18n.changeLanguage(language);
