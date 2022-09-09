@@ -1,0 +1,20 @@
+{
+  "logIn": "Zaloguj sie",
+  "signIn": "Zarejestruj się",
+
+  "language": "Język",
+  "english": "Angielski",
+  "polish": "Polska",
+
+  "theme": "Schemat",
+  "lightTheme": "Jasny⠀schemat",
+  "darkTheme": "Ciemny⠀schemat",
+
+  "about": "O aplikacji",
+  "aboutPartOne": "Thullo to aplikacja internetowa do zarządzania pracą zespołów. Jest rozwijany w ramach wyzwania programistycznego, które zapewnia zasób <tag>{{link}}</tag>. Jest inspirowany oryginalną aplikacją internetową do zarządzania zespołem Trello.",
+  "aboutPartTwo": "Sprawdź cały opis na <tag>{{link}}</tag>.",
+  "aboutPartThree": "Sprawdź również oryginalną aplikację internetową <tag>{{link}}</tag>.",
+
+  "devChallengesLink": "devChallenges.io",
+  "trello": "Trello"
+}

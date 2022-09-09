@@ -8,7 +8,7 @@ const FillButtonStyled = styled(BaseButtonStyled)`
 
 export default function FillButton(props) {
   return (
-    <FillButtonStyled>
+    <FillButtonStyled onClick={props.onClick}>
       {props.children}
     </FillButtonStyled>
   );

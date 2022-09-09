@@ -1,40 +1,49 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import { useSelector, useDispatch } from 'react-redux'
 import { themeNames } from '../../resources/constants/ThemeNames';
 import { setTheme } from "./ThemeListSlice"
+import { ListLabelStyled } from "../../components/labels/ListLabel";
+import { ListInputStyled } from "../../components/inputs/ListInputs";
+import { useTranslation } from 'react-i18next';
 
-import { LabelStyled, InputStyled, IconStyled } from './ThemeListStyled';
+const IconStyled = styled.p`
+  font-size: 1.6rem;
+  margin-top: 5px;
+`;
 
 function ThemeListItem(props) { 
   return (
-    <LabelStyled>
-      <InputStyled 
+    <ListLabelStyled>
+      <ListInputStyled
         type="radio" 
-        name="theme" 
+        name="theme"
         defaultChecked={props.isChecked} 
         onClick={props.onChange} />
 
       {props.text}
-      
+
       <IconStyled className="material-icons">{props.icon}</IconStyled>
-    </LabelStyled>
+    </ListLabelStyled>
   );
 }
 
 export default function ThemeList() {
+  const [ t ] = useTranslation();
   const themeName = useSelector((state) => state.theme.name);
   const dispatch = useDispatch();
 
   return (
     <React.Fragment>
       <ThemeListItem 
-        text="Light theme"
+        text={t("lightTheme")}
         icon="light_mode"
         onChange={changed.bind(null, themeNames.light)} 
         isChecked={themeName === themeNames.light} />
 
       <ThemeListItem 
-        text="Dark theme"
+        text={t("darkTheme")}
         icon="dark_mode"
         onChange={changed.bind(null, themeNames.dark)}
         isChecked={themeName === themeNames.dark} />

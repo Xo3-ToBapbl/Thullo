@@ -1,4 +1,5 @@
 import { themeNames } from "../../resources/constants/ThemeNames";
+import { storageKeys } from "../../resources/constants/StorageKeys";
 
 const themes = {
   light: {
@@ -33,7 +34,7 @@ const themes = {
 }
 
 export const themeService = (() => {
-  const initialThemeName = localStorage.getItem("themeName") ?? themeNames.light;
+  const initialThemeName = localStorage.getItem(storageKeys.themeName) ?? themeNames.light;
   const initialTheme = themes[initialThemeName];
 
   return {
@@ -45,7 +46,7 @@ export const themeService = (() => {
       }
 
       this.theme = themes[themeName] ?? this.theme;
-      localStorage.setItem("themeName", this.theme.name);
+      localStorage.setItem(storageKeys.themeName, this.theme.name);
     }
   };
 

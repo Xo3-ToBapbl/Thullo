@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 
 const TextStyled = styled.p`
   font-family: notosans;
@@ -14,20 +15,28 @@ const LinkStyled = styled.a`
 `;
 
 export default function About(props) {
+  const [ t ] = useTranslation();
   return (
     <React.Fragment>
       <TextStyled>
-        Thullo web application for managing teams workflow. 
-        It is developed in scope of programming challenge which is provided by <LinkStyled href="https://devchallenges.io/" target="_blank">devChallenges.io</LinkStyled> resource.
-        It is inspired by original Trello team management web application.
+        <Trans 
+          i18nKey="aboutPartOne"
+          values={{link: t("devChallengesLink")}}
+          components={{tag: <LinkStyled href="https://devchallenges.io/" target="_blank"/>}}/>
       </TextStyled>
 
       <TextStyled>
-       Check the whole description on <LinkStyled href="https://devchallenges.io/challenges/wP0LbGgEeKhpFHUpPpDh" target="_blank">devChallenges.io</LinkStyled>.
+        <Trans 
+          i18nKey="aboutPartTwo"
+          values={{link: t("devChallengesLink")}}
+          components={{tag: <LinkStyled href="https://devchallenges.io/challenges/wP0LbGgEeKhpFHUpPpDh" target="_blank"/>}}/>
       </TextStyled>
 
       <TextStyled>
-        Check original <LinkStyled href="https://trello.com/" target="_blank">Trello</LinkStyled> web application as well.
+        <Trans 
+          i18nKey="aboutPartThree"
+          values={{link: t("trello")}}
+          components={{tag: <LinkStyled href="https://trello.com/" target="_blank"/>}}/>
       </TextStyled>
     </React.Fragment>
   );

@@ -1,18 +1,7 @@
-import styled from 'styled-components';
-
-export const LabelStyled = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: ${props => props.theme.onSecondary};
-  font-family: notosans;
-  font-size: 1.6rem;
-  gap: 1rem;
-  cursor: pointer;
-`;
+import styled from "styled-components";
 
 const inputSize = 1.8;
-export const InputStyled = styled.input`
+export const ListInputStyled = styled.input`
   appearance:none;
   width:${inputSize}rem;
   height:${inputSize}rem;
@@ -25,7 +14,7 @@ export const InputStyled = styled.input`
   }
 
   &:before {
-    content:'';
+    content:"";
     display:block;
     width:60%;
     height:60%;
@@ -36,8 +25,4 @@ export const InputStyled = styled.input`
   &:checked:before {
     background-color: ${props => props.theme.accent};
   }
-`;
-
-export const IconStyled = styled.p`
-  font-size: 1.6rem;
 `;

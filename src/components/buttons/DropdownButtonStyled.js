@@ -33,7 +33,7 @@ export const DropdownContentStyled = styled.section`
   gap: 1rem;
   left: 0px;
   top: 8rem;
-  min-width: ${(props) => props.width ? props.width : 18}rem;
+  min-width: ${(props) => props.width ? props.width : 0}rem;
   padding: 1.5rem;
   border-radius: 0.8rem;
   background-color: ${props => props.theme.secondary};
