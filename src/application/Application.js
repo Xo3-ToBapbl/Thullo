@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { useSelector } from "react-redux";
 import NavigationBar from "../features/home/navigation/NavigationBar";
-import Content from '../features/home/content/Content';
+import MainContent from '../features/home/content/MainContent';
 
 const ApplicationStyled = styled.div`
   background-color: ${props => props.theme.primary};
@@ -14,7 +14,7 @@ export default function Application() {
     <ThemeProvider theme={theme}>
       <ApplicationStyled>
         <NavigationBar/>
-        <Content/>
+        <MainContent/>
       </ApplicationStyled>
     </ThemeProvider>
   );

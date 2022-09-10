@@ -7,7 +7,7 @@ export const media = {
   },
 
   Tablet: ({ children }) => {
-    const isTablet = useMediaQuery({ minWidth: 428, maxWidth: 991 });
+    const isTablet = useMediaQuery({ minWidth: 451, maxWidth: 991 });
     return isTablet ? children : null
   },
 
@@ -17,7 +17,7 @@ export const media = {
   },
 
   Mobile: ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 427 });
+    const isMobile = useMediaQuery({ maxWidth: 450 });
     return isMobile ? children : null
   },
 }

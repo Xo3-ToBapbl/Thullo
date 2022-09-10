@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { sizes } from '../../../resources/constants/Sizes';
 
 export const NavStyled = styled.nav`
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: ${sizes.contentOffset}rem;;
-  height: 8rem;
+  gap: ${sizes.contentOffset}rem;
+  height: ${sizes.navBarHeight}rem;
+  width: 100%;
   padding: 2rem;
   background-color: ${props => props.theme.secondary};
   box-shadow: 0px 2px 4px ${props => props.theme.onPrimaryShadow};
