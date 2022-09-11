@@ -16,5 +16,10 @@
   "aboutPartThree": "Sprawdź również oryginalną aplikację internetową <tag>{{link}}</tag>.",
 
   "devChallengesLink": "devChallenges.io",
-  "trello": "Trello"
+  "trello": "Trello",
+
+  "thulloTitleText": "Thullo pomaga zespołom rozwijać pracę.",
+  "thulloDescriptionText": "Współpracuj, zarządzaj projektami i osiągaj nowe szczyty produktywności. Od wieżowców po domowe biuro, sposób pracy Twojego zespołu jest wyjątkowy — osiągnij to wszystko dzięki Thullo.",
+  "email": "Email",
+  "emailButtonText": "Dołącz - to jest wolny"
 }

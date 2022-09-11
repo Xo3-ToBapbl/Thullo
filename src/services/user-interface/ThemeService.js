@@ -6,6 +6,7 @@ const themes = {
     name: themeNames.light,
   
     primary: "#ffffff",
+    onPrimary: "#000000",
     onPrimaryShadow: "#f0f0f0",
     
     secondary: "#F8F9FD",
@@ -21,6 +22,7 @@ const themes = {
     name: themeNames.dark,
   
     primary: "#1A1C20",
+    onPrimary: "#D0CCC6",
     onPrimaryShadow: "#151419",
   
     secondary: "#151419",

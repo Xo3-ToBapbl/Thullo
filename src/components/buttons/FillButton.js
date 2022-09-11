@@ -1,7 +1,7 @@
 import BaseButtonStyled from "./BaseButton.js";
 import styled from 'styled-components';
 
-const FillButtonStyled = styled(BaseButtonStyled)`
+export const FillButtonStyled = styled(BaseButtonStyled)`
   color: ${props => props.theme.onAccent};
   background-color: ${props => props.theme.accent};
 `;

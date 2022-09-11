@@ -16,5 +16,10 @@
   "aboutPartThree": "Check original <tag>{{link}}</tag> web application as well.",
 
   "devChallengesLink": "devChallenges.io",
-  "trello": "Trello"
+  "trello": "Trello",
+
+  "thulloTitleText": "Thullo helps teams move work forward.",
+  "thulloDescriptionText": "Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Thullo.",
+  "email": "Email",
+  "emailButtonText": "Join Thullo - it’s free"
 }
