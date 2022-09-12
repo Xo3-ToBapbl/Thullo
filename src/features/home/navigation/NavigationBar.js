@@ -7,31 +7,43 @@ import LanguageList from "../../language/LanguageList";
 import About from "../../about/About";
 import IconButton from "../../../components/buttons/IconButton";
 import { media } from "../../../components/media/MediaQueries";
-import { NavStyled, DropdownsContainerStyled, ButtonsContainerStyled } from "./NavigationBarStyled";
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsMenuVisible } from "./NavigationBarSlice";
+import * as styled from "./NavigationBarStyled";
 
 export default function NavigationBar(props) {
   const [ t ] = useTranslation();
+  const dispatch = useDispatch();
+  const isMenuVisible = useSelector(state => state.navigationBar.isMenuVisible);
+  const makeVisible = !isMenuVisible;
+
   return (
-    <NavStyled>
+    <styled.NavigationBar>
       <ApplicationLogo title="Thullo"/>
 
       <media.Desktop>
-        <DropdownsContainerStyled>
+        <styled.DropdownsContainer>
           <DropdownButton text={t("theme")} dropdownContent={(<ThemeList/>)}/>
           <DropdownButton text={t("about")} dropdownContent={(<About/>)} width={45}/>
           <DropdownButton text={t("language")} dropdownContent={(<LanguageList/>)}/>
-        </DropdownsContainerStyled>
+        </styled.DropdownsContainer>
 
-        <ButtonsContainerStyled>
+        <styled.ButtonsContainer>
           <OutlineButton children={t("logIn")} />
           <FillButton children={t("signIn")} />
-        </ButtonsContainerStyled>
+        </styled.ButtonsContainer>
       </media.Desktop>
 
       <media.TabletAndBellow>
-        <IconButton icon="menu" />
+        <IconButton 
+          icon={isMenuVisible ? "close" : "menu"}
+          onClick={menuButtonClicked.bind(null, makeVisible)}/>
       </media.TabletAndBellow>
-    </NavStyled>
+    </styled.NavigationBar>
   );
+
+  function menuButtonClicked(makeVisible) {
+    dispatch(setIsMenuVisible(makeVisible));
+  }
 }

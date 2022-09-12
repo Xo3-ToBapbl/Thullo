@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { sizes } from '../../../resources/constants/Sizes';
 
-export const NavStyled = styled.nav`
+export const NavigationBar = styled.nav`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -10,17 +10,18 @@ export const NavStyled = styled.nav`
   height: ${sizes.navBarHeight}rem;
   width: 100%;
   padding: 2rem;
+  z-index: 999;
   background-color: ${props => props.theme.secondary};
   box-shadow: 0px 2px 4px ${props => props.theme.onPrimaryShadow};
 `;
 
-export const ButtonsContainerStyled = styled.div`
+export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: ${sizes.contentOffset}rem;
 `;
 
-export const DropdownsContainerStyled = styled.div`
+export const DropdownsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-grow:1;
