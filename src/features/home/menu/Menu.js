@@ -10,6 +10,7 @@ import ExpandableButton from "../../../components/buttons/expandable/ExpandableB
 import { CSSTransition } from "react-transition-group";
 import { sizes } from "../../../resources/constants/Sizes";
 import { useTranslation } from 'react-i18next';
+import { media } from "../../../components/media/MediaQueries";
 
 const MenuStyled = styled.div`
   position: fixed;
@@ -31,7 +32,8 @@ export const ButtonsContainer = styled.div`
 `;
 
 export default function Menu(props) {
-  const isVisible = props.isMenuVisible;
+  const isTabletAndBelow = media.IsTabletAndBelow();
+  const isVisible = isTabletAndBelow && props.isMenuVisible;
 
   return (
     <React.Fragment>
