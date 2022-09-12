@@ -18,7 +18,7 @@ const OutlineButtonStyled = styled(BaseButtonStyled)`
 
 export default function OutlineButton(props) {
   return (
-    <OutlineButtonStyled onClick={props.onClick}>
+    <OutlineButtonStyled style={props.style} onClick={props.onClick}>
       {props.children}
     </OutlineButtonStyled>
   );

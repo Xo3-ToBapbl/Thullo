@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import BaseButtonStyled from "./BaseButton";
+import BaseButtonStyled from "../BaseButton";
 
-export const DropdownButtonContainerStyled = styled.div`
+export const DropdownButtonContainer = styled.div`
   position: relative;
 `;
 
-export const DropdownButtonStyled = styled(BaseButtonStyled)`
+export const DropdownButton = styled(BaseButtonStyled)`
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -20,13 +20,13 @@ export const DropdownButtonStyled = styled(BaseButtonStyled)`
   }
 `;
 
-export const TickStyled = styled.p`
+export const Tick = styled.p`
   font-size: 2.5rem;
   transform: rotate(${(props) => props.angle}deg);
   transition: transform 250ms ease;
 `;
 
-export const DropdownContentStyled = styled.section`
+export const DropdownContentContainer = styled.section`
   position: absolute;
   display: flex;
   flex-direction: column;

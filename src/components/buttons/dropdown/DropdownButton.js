@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { useClickOutside } from "../../hooks/UseClickOutside";
-import { DropdownButtonContainerStyled, DropdownButtonStyled, TickStyled, DropdownContentStyled } from "./DropdownButtonStyled";
+import { useClickOutside } from "../../../hooks/UseClickOutside";
+import * as styled from "./DropdownButtonStyled";
 
 export default function DropdownButton(props) {
   const contentRef = useRef();
@@ -11,19 +11,19 @@ export default function DropdownButton(props) {
   useClickOutside(buttonRef, contentRef, clicked);
 
   return (
-    <DropdownButtonContainerStyled>
-      <DropdownButtonStyled ref={buttonRef} isOpen={isOpen} onClick={clicked}>
+    <styled.DropdownButtonContainer>
+      <styled.DropdownButton ref={buttonRef} isOpen={isOpen} onClick={clicked}>
         {props.text}
-        <TickStyled angle={tickAngle} className="material-icons">
+        <styled.Tick angle={tickAngle} className="material-icons">
           expand_more
-        </TickStyled>
-      </DropdownButtonStyled>
+        </styled.Tick>
+      </styled.DropdownButton>
 
       {isOpen ? <DropdownContent 
         content={props.dropdownContent} 
         reference={contentRef}
         width={props.width} /> : null}
-    </DropdownButtonContainerStyled>
+    </styled.DropdownButtonContainer>
   );
 
   function clicked() {
@@ -33,8 +33,8 @@ export default function DropdownButton(props) {
 
 function DropdownContent(props) {
   return (
-    <DropdownContentStyled ref={props.reference} width={props.width}>
+    <styled.DropdownContentContainer ref={props.reference} width={props.width}>
       {props.content}
-    </DropdownContentStyled>
+    </styled.DropdownContentContainer>
   );
 }

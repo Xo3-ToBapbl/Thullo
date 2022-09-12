@@ -16,6 +16,7 @@ const themes = {
     onAccent: "#f6f6f6",
   
     neutral: "#82848D",
+    divider: "#dfe1e6",
   },
 
   dark: {
@@ -32,6 +33,7 @@ const themes = {
     onAccent: "#f6f6f6",
   
     neutral: "#82848D",
+    divider: "#383d3f",
   }
 }
 

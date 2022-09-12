@@ -11,7 +11,7 @@ function LanguageListItem(props) {
     <ListLabelStyled>
       <ListInputStyled
         type="radio" 
-        name="theme" 
+        name="language" 
         defaultChecked={props.isChecked} 
         onClick={props.onChange} />
 
