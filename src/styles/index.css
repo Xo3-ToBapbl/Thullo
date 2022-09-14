@@ -14,11 +14,3 @@ html {
   font-size: 62.5%;
   font-family: poppins, sans-serif;
 }
-
-body {
-  height:100%;
-}
-
-#root {
-  height:100%;
-}

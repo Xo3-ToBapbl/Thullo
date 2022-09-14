@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from "../features/theming/ThemeListSlice";
-import navigationBarReducer from "../features/navigation/NavigationBarSlice";
+import menuReducer from "../features/menu/MenuSlice";
 
 export default configureStore({
   reducer: {
     theme: themeReducer,
-    navigationBar: navigationBarReducer,
+    menu: menuReducer,
   },
 })

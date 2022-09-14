@@ -46,7 +46,7 @@ export default function HomePage() {
 
 function HomeContent(props) {
   return (
-    <styled.MainContainer>
+    <styled.MainContainer sizes={props.sizes}>
       <styled.SectionContainer sizes={props.sizes}>
 
         <styled.Introduction sizes={props.sizes} >
@@ -61,6 +61,7 @@ function HomeContent(props) {
           height="602.5" />
 
       </styled.SectionContainer>
+      <styled.Divider sizes={props.sizes}/>
     </styled.MainContainer>
   );
 

@@ -1,4 +1,4 @@
 export const reducersNames = {
   theme: "theme",
-  navigationBar: "navigationBar",
+  menu: "menu",
 };

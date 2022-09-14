@@ -3,8 +3,12 @@ import { FillButtonStyled } from "../../components/buttons/FillButton";
 import { sizes } from "../../resources/constants/Sizes";
 
 export const MainContainer = styled.main`
-  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 100%);
+  gap: ${props => props.sizes.contentOffset}rem;
   padding-top: ${sizes.navBarHeight}rem;
+  padding-left: ${props => props.sizes.contentOffset}rem;
+  padding-right: ${props => props.sizes.contentOffset}rem;
 `;
 
 export const SectionContainer = styled.section`
@@ -16,7 +20,6 @@ export const SectionContainer = styled.section`
   height: auto;
   max-width: ${props => props.sizes.maxWidthPx}px;
   margin: auto;
-  padding: ${props => props.sizes.contentOffset}rem;
 `;
 
 export const Introduction = styled.div`
@@ -74,4 +77,12 @@ export const EmailInput = styled.input`
 export const EmailButton = styled(FillButtonStyled)`
   flex: 1 0 0rem;
   min-width: 20rem;
+`;
+
+export const Divider = styled.div`
+  height: 1px;
+  margin: auto;
+  width: 100%;
+  max-width: ${props => props.sizes.maxWidthPx}px;
+  background-color: ${props => props.theme.divider};
 `;

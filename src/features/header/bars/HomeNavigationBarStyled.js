@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { sizes } from '../../resources/constants/Sizes';
+import { sizes } from '../../../resources/constants/Sizes';
 
 export const NavigationBar = styled.nav`
   position: fixed;

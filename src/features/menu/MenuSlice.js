@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { reducersNames } from "../../resources/constants/ReducersNames"
 
-export const navigationBarSlice = createSlice({
-  name: reducersNames.navigationBar,
+export const menuSlice = createSlice({
+  name: reducersNames.menu,
   initialState: {
     isMenuVisible: false,
   },
@@ -15,5 +15,5 @@ export const navigationBarSlice = createSlice({
   }
 });
 
-export const { setIsMenuVisible } = navigationBarSlice.actions;
-export default navigationBarSlice.reducer;
+export const { setIsMenuVisible } = menuSlice.actions;
+export default menuSlice.reducer;
