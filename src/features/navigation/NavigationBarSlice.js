@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { reducersNames } from "../../../resources/constants/ReducersNames"
+import { reducersNames } from "../../resources/constants/ReducersNames"
 
 export const navigationBarSlice = createSlice({
   name: reducersNames.navigationBar,

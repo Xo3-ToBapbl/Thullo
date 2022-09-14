@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { FillButtonStyled } from "../../../components/buttons/FillButton";
-import { sizes } from "../../../resources/constants/Sizes";
+import { FillButtonStyled } from "../../components/buttons/FillButton";
+import { sizes } from "../../resources/constants/Sizes";
 
 export const MainContainer = styled.main`
   height: 100%;

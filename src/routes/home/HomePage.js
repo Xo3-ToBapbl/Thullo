@@ -1,15 +1,15 @@
 import React from "react";
-import { media } from "../../../components/media/MediaQueries";
-import home from "../../../resources/images/home.webp";
+import home from "../../resources/images/home.webp";
+import * as styled from "./HomePageStyled";
+import { media } from "../../components/media/MediaQueries";
 import { useTranslation } from 'react-i18next';
-import * as styled from "./MainContentStyled";
-import { sizes } from "../../../resources/constants/Sizes";
+import { sizes } from "../../resources/constants/Sizes";
 
-export default function MainContent() {
+export default function HomePage() {
   return (
     <React.Fragment>
       <media.Desktop>
-        <MainContentInner
+        <HomeContent
           sizes={{
             maxWidthPx: 1050,
             imgHeightPx: 450,
@@ -20,7 +20,7 @@ export default function MainContent() {
       </media.Desktop>
 
       <media.Tablet>
-        <MainContentInner
+        <HomeContent
           sizes={{
             maxWidthPx: 950,
             imgHeightPx: 373,
@@ -31,7 +31,7 @@ export default function MainContent() {
       </media.Tablet>
 
       <media.Mobile>
-        <MainContentInner
+        <HomeContent
           sizes={{
             maxWidthPx: 450,
             imgHeightPx: 270,
@@ -44,7 +44,7 @@ export default function MainContent() {
   );
 }
 
-function MainContentInner(props) {
+function HomeContent(props) {
   return (
     <styled.MainContainer>
       <styled.SectionContainer sizes={props.sizes}>
@@ -66,7 +66,7 @@ function MainContentInner(props) {
 
   function DescriptionInner(props) {
     const [ t ] = useTranslation();
-  return (
+    return (
       <styled.Description>
         <styled.Title sizes={props.sizes}>{t("thulloTitleText")}</styled.Title>
         <styled.Information sizes={props.sizes}>{t("thulloDescriptionText")}</styled.Information>

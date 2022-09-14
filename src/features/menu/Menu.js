@@ -1,16 +1,16 @@
 import "./Animation.css";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ThemeList from "../../theming/ThemeList";
-import LanguageList from "../../language/LanguageList";
-import FillButton from "../../../components/buttons/FillButton";
-import OutlineButton from "../../../components/buttons/OutlineButton";
-import About from "../../about/About";
-import ExpandableButton from "../../../components/buttons/expandable/ExpandableButton";
+import ThemeList from "../theming/ThemeList";
+import LanguageList from "../language/LanguageList";
+import FillButton from "../../components/buttons/FillButton";
+import OutlineButton from "../../components/buttons/OutlineButton";
+import About from "../about/About";
+import ExpandableButton from "../../components/buttons/expandable/ExpandableButton";
 import { CSSTransition } from "react-transition-group";
-import { sizes } from "../../../resources/constants/Sizes";
+import { sizes } from "../../resources/constants/Sizes";
 import { useTranslation } from 'react-i18next';
-import { media } from "../../../components/media/MediaQueries";
+import { media } from "../../components/media/MediaQueries";
 
 const MenuStyled = styled.div`
   position: fixed;
@@ -46,7 +46,7 @@ export default function Menu(props) {
 
 function MenuContainer() {
   const [ t ] = useTranslation();
-  useEffect(setBodyOverflow, []);
+  useEffect(preventMainContentScrolling, []);
 
   return (
     <MenuStyled>
@@ -58,7 +58,7 @@ function MenuContainer() {
     </MenuStyled>
   );
 
-  function setBodyOverflow() {
+  function preventMainContentScrolling() {
     document.body.style.overflow = "hidden";
     return () => document.body.style.overflow = "auto";
   }

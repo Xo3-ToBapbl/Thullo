@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { sizes } from "../../resources/constants/Sizes";
+import { Link } from 'react-router-dom';
+import { routeNames } from "../../resources/constants/RouteNames";
 
 const ContainerStyled = styled.div`
   display: flex;
@@ -7,16 +9,21 @@ const ContainerStyled = styled.div`
   gap: ${sizes.contentOffset}rem;
 `;
 
-const TitleStyled = styled.h2`
+const TitleStyled = styled(Link)`
   font-size: 2rem;
   font-weight: bold;
+  text-decoration: none;
   margin-bottom: 2px;
   color: ${props => props.theme.onSecondary};
   filter: brightness(80%);
 `;
 
 export default function ApplicationLogo(props) {
-  const title = props.title ? (<TitleStyled>{props.title}</TitleStyled>) : null;
+  const title = props.title ? (
+    <TitleStyled to={routeNames.root}>
+      {props.title}
+    </TitleStyled>) : null;
+    
   return (
     <ContainerStyled>
       <svg 
