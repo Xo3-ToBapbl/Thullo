@@ -1,9 +1,9 @@
 import { useMediaQuery } from "react-responsive";
 
-const desktopMaxWidth = 992;
-const tabletMaxWidth = 991;
-const tabletMinWidth = 451;
-const mobileMaxWidth = 450;
+export const desktopMaxWidth = 992;
+export const tabletMaxWidth = 991;
+export const tabletMinWidth = 451;
+export const mobileMaxWidth = 450;
 
 export const media = {
   IsDesktop: () => useMediaQuery({ minWidth: desktopMaxWidth }),

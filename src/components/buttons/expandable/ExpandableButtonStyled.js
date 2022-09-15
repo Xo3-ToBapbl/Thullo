@@ -16,7 +16,7 @@ export const ExpandableButtonContainer = styled.div`
 export const ExpandableButton = styled(BaseButtonStyled)`
   display: flex;
   justify-content: space-between;
-  height: ${sizes.navBarHeight}rem;
+  height: ${sizes.navBarHeightRem}rem;
   padding: 0;
   align-items: center;
   font-size: 1.8rem;
@@ -40,5 +40,5 @@ export const ExpandableContentContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-bottom: ${sizes.halfOffset}rem;
+  padding-bottom: ${sizes.halfOffsetRem}rem;
 `;

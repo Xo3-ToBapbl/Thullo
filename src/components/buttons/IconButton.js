@@ -6,6 +6,7 @@ const PlainButtonStyled = styled.button`
   border: none;
   font-size: 4rem;
   padding: 0;
+  cursor: pointer;
 
   &:hover {
     color: ${props => props.theme.accent};

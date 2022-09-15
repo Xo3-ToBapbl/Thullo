@@ -1,23 +1,18 @@
 import styled from "styled-components";
 import { FillButtonStyled } from "../../components/buttons/FillButton";
+import { TextInput } from "../../components/inputs/TextInput";
 import { sizes } from "../../resources/constants/Sizes";
 
 export const MainContainer = styled.main`
-  display: grid;
-  grid-template-rows: auto minmax(0, 100%);
-  gap: ${props => props.sizes.contentOffset}rem;
-  padding-top: ${sizes.navBarHeight}rem;
-  padding-left: ${props => props.sizes.contentOffset}rem;
-  padding-right: ${props => props.sizes.contentOffset}rem;
+  padding-bottom: ${sizes.contentOffsetRem}rem;
 `;
 
 export const SectionContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: ${sizes.doubleOffset}rem;
+  gap: ${sizes.doubleOffsetRem}rem;
   flex-wrap: wrap-reverse;
-  height: auto;
   max-width: ${props => props.sizes.maxWidthPx}px;
   margin: auto;
 `;
@@ -26,7 +21,7 @@ export const Introduction = styled.div`
   flex: 1 1 0px;
   display: grid;
   grid-template-rows: auto auto;
-  gap: ${props => props.sizes.contentOffset}rem;
+  gap: ${sizes.doubleOffsetRem}rem;
   height: auto;
 `;
 
@@ -40,7 +35,7 @@ export const Image = styled.img`
 export const Description = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${sizes.contentOffset}rem;
+  gap: ${sizes.contentOffsetRem}rem;
 `;
 
 export const Title = styled.h1`
@@ -59,30 +54,18 @@ export const Form = styled.form`
   flex-wrap: wrap;
   width: 100%;
   padding: 0.5rem;
-  border-radius: ${sizes.cornerRadius}rem;
+  border-radius: ${sizes.cornerRadiusRem}rem;
   background-color: ${props => props.theme.secondary};
   box-shadow: 0px 2px 4px ${props => props.theme.onPrimaryShadow};
 `;
 
-export const EmailInput = styled.input`
-  all: unset;
-  height: ${sizes.componentHeight}rem;
+export const EmailInput = styled(TextInput)`
   flex: 2 1 0px;
   min-width: 28rem;
-  font-size: 1.6rem;
   color: ${props => props.theme.onSecondary};
-  padding: 0 ${sizes.halfOffset}rem;
 `;
 
 export const EmailButton = styled(FillButtonStyled)`
   flex: 1 0 0rem;
   min-width: 20rem;
-`;
-
-export const Divider = styled.div`
-  height: 1px;
-  margin: auto;
-  width: 100%;
-  max-width: ${props => props.sizes.maxWidthPx}px;
-  background-color: ${props => props.theme.divider};
 `;

@@ -6,7 +6,7 @@ import { routeNames } from "../../resources/constants/RouteNames";
 const ContainerStyled = styled.div`
   display: flex;
   align-items: center;
-  gap: ${sizes.contentOffset}rem;
+  gap: ${sizes.contentOffsetRem}rem;
 `;
 
 const TitleStyled = styled(Link)`
@@ -25,7 +25,7 @@ export default function ApplicationLogo(props) {
     </TitleStyled>) : null;
     
   return (
-    <ContainerStyled>
+    <ContainerStyled style={props.style}>
       <svg 
         width="45"
         height="40"

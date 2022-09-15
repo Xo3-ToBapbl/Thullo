@@ -4,10 +4,11 @@ import { sizes } from "../../resources/constants/Sizes";
 
 export const MenuStyled = styled.div`
   position: fixed;
-  top: ${sizes.navBarHeight}rem;
+  top: ${sizes.navBarHeightRem}rem;
+  left: 0;
   bottom: 0;
   width: 100%;
-  padding: ${sizes.contentOffset}rem;
+  padding: ${sizes.contentOffsetRem}rem;
   padding-top: 1px;
   background-color: ${(props) => props.theme.secondary};
   border-top: 1px solid ${props => props.theme.divider};
@@ -17,6 +18,6 @@ export const MenuStyled = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: ${sizes.contentOffset}rem;
-  padding-top: ${sizes.contentOffset}rem;
+  gap: ${sizes.contentOffsetRem}rem;
+  padding-top: ${sizes.contentOffsetRem}rem;
 `;

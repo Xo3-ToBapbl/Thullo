@@ -1,16 +1,12 @@
 import styled from 'styled-components'; 
+import { sizes } from '../resources/constants/Sizes';
 
 export const ApplicationContainer = styled.div`
-  background-color: ${props => props.theme.primary};
-  height: 100%;
-`;
-
-export const Background = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: inherit;
+  padding: 0 ${props => props.contentOffset}rem;
+  padding-top: ${props => sizes.navBarHeightRem + props.contentOffset}rem;
   background-color: ${props => props.theme.primary};
 `;

@@ -11,12 +11,15 @@ const themes = {
     
     secondary: "#F8F9FD",
     onSecondary: "#333333",
+    onSecondaryShadow: "#f0f0f0",
   
     accent: "#2F80ED",
     onAccent: "#f6f6f6",
   
     neutral: "#82848D",
     divider: "#dfe1e6",
+
+    success: "#219653",
   },
 
   dark: {
@@ -28,12 +31,15 @@ const themes = {
   
     secondary: "#151419",
     onSecondary: "#82848D",
+    onSecondaryShadow: "#101010",
   
     accent: "#2F80ED",
     onAccent: "#f6f6f6",
   
     neutral: "#82848D",
     divider: "#383d3f",
+
+    success: "#187841",
   }
 }
 

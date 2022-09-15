@@ -22,6 +22,12 @@
   "thulloTitleText": "Thullo pomaga zespołom rozwijać pracę.",
   "thulloDescriptionText": "Współpracuj, zarządzaj projektami i osiągaj nowe szczyty produktywności. Od wieżowców po domowe biuro, sposób pracy Twojego zespołu jest wyjątkowy — osiągnij to wszystko dzięki Thullo.",
   "email": "Email",
+  "password": "Hasło",
+  "confirmPassword": "Potwierdź hasło",
   "emailButtonText": "Dołącz - to jest wolny",
-  "footerText": "Wersja aplikacji {{appVersion}} dla devChallenges.io autorstwa Xo3.ToBapbl"
+  "footerText": "Wersja aplikacji {{appVersion}} dla devChallenges.io autorstwa Xo3.ToBapbl",
+
+  "loginFormHeader": "Załóż swoje konto",
+  "firstName": "Imię",
+  "lastName": "Nazwisko"
 }

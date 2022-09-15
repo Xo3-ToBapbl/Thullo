@@ -9,36 +9,27 @@ export default function HomePage() {
   return (
     <React.Fragment>
       <media.Desktop>
-        <HomeContent
-          sizes={{
-            maxWidthPx: 1050,
-            imgHeightPx: 450,
-            imgWidthPx: 347,
-            introductionFontSizeRatio: 1,
-            contentOffset: sizes.doubleOffset,
-          }} />
+        <HomeContent sizes={{
+          maxWidthPx: sizes.desktop.homeContentMaxWidthPx,
+          imgHeightPx: 450,
+          imgWidthPx: 347,
+          introductionFontSizeRatio: 1 }} />
       </media.Desktop>
 
       <media.Tablet>
-        <HomeContent
-          sizes={{
-            maxWidthPx: 950,
-            imgHeightPx: 373,
-            imgWidthPx: 288,
-            introductionFontSizeRatio: 0.9,
-            contentOffset: sizes.doubleOffset,
-          }} />
+        <HomeContent sizes={{
+          maxWidthPx: sizes.tablet.homeContentMaxWidthPx,
+          imgHeightPx: 373,
+          imgWidthPx: 288,
+          introductionFontSizeRatio: 0.9 }} />
       </media.Tablet>
 
       <media.Mobile>
-        <HomeContent
-          sizes={{
-            maxWidthPx: 450,
-            imgHeightPx: 270,
-            imgWidthPx: 208,
-            introductionFontSizeRatio: 0.8,
-            contentOffset: sizes.contentOffset,
-          }} />
+        <HomeContent sizes={{
+          maxWidthPx: sizes.mobile.homeContentMaxWidthPx,
+          imgHeightPx: 270,
+          imgWidthPx: 208,
+          introductionFontSizeRatio: 0.8 }} />
       </media.Mobile>
     </React.Fragment>
   );
@@ -61,7 +52,6 @@ function HomeContent(props) {
           height="602.5" />
 
       </styled.SectionContainer>
-      <styled.Divider sizes={props.sizes}/>
     </styled.MainContainer>
   );
 
