@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { useSelector, useDispatch } from 'react-redux'
 import { themeNames } from '../../resources/constants/ThemeNames';
 import { setTheme } from "./ThemeListSlice"

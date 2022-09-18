@@ -2,7 +2,6 @@ import React from 'react';
 import { languageCodes } from '../../resources/constants/LanguageCodes';
 import { useTranslation } from 'react-i18next';
 import { storageKeys } from "../../resources/constants/StorageKeys";
-
 import { ListLabelStyled } from '../../components/labels/ListLabel';
 import { ListInputStyled } from "../../components/inputs/ListInputs";
 

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { routeNames } from "../../resources/constants/RouteNames";
 import FillButton from "../../components/buttons/FillButton";
 
-
 export default function SignupButton(props) {
   const [ t ] = useTranslation();
   const navigate = useNavigate();
