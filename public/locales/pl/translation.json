@@ -31,5 +31,7 @@
   "signupFormHeader": "Załóż swoje konto",
   "firstName": "Imię",
   "lastName": "Nazwisko",
-  "continue": "Kontynuuj"
+  "continue": "Kontynuuj",
+
+  "errorPasswordDoNotMatch": "Hasła nie pasują do siebie"
 }

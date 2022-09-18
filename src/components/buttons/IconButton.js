@@ -4,7 +4,7 @@ const PlainButtonStyled = styled.button`
   background-color: transparent;
   color: ${props => props.theme.onSecondary};
   border: none;
-  font-size: 4rem;
+  font-size: ${props => props.iconSize ? props.iconSize : 4}rem;
   padding: 0;
   cursor: pointer;
 
@@ -19,7 +19,12 @@ const PlainButtonStyled = styled.button`
 
 export default function IconButton(props) {
   return (
-    <PlainButtonStyled className="material-icons" onClick={props.onClick}>
+    <PlainButtonStyled 
+      type="button"
+      iconSize={props.iconSize} 
+      className="material-icons" 
+      onClick={props.onClick}>
+
       {props.icon}
     </PlainButtonStyled>
   );

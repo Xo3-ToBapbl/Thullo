@@ -20,6 +20,7 @@ const themes = {
     divider: "#dfe1e6",
 
     success: "#219653",
+    invalid: "#EB5757"
   },
 
   dark: {
@@ -40,6 +41,7 @@ const themes = {
     divider: "#383d3f",
 
     success: "#187841",
+    invalid: "#EB5757"
   }
 }
 

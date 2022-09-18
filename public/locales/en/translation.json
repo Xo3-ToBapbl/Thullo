@@ -31,5 +31,7 @@
   "signupFormHeader": "Sign up for your account",
   "firstName": "First name",
   "lastName": "Last name",
-  "continue": "Continue"
+  "continue": "Continue",
+
+  "errorPasswordDoNotMatch": "Passwords do not match"
 }

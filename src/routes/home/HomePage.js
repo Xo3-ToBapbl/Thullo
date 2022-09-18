@@ -1,9 +1,11 @@
-import React from "react";
 import home from "../../resources/images/home.webp";
 import * as styled from "./HomePageStyled";
-import { useTranslation } from 'react-i18next';
-import { sizes } from "../../resources/constants/Sizes";
 import useDeviceProps, { PropsPerDevice } from "../../hooks/UseDeviceProps";
+import React, { useState } from "react";
+import { sizes } from "../../resources/constants/Sizes";
+import { useTranslation } from 'react-i18next';
+import { routeNames } from "../../resources/constants/RouteNames";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const propsPerDevice = new PropsPerDevice(
   { maxWidthPx: sizes.desktop.homeContentMaxWidthPx, imgHeightPx: 450, imgWidthPx: 347, fontSizeRation: 1 },
@@ -39,10 +41,34 @@ function DescriptionInner(props) {
 
 function FormInner(props) {
   const [ t ] = useTranslation();
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
   return (
-    <styled.Form>
-      <styled.EmailInput type="email" placeholder={t("email")} />
-      <styled.EmailButton children={t("emailButtonText")}/>
+    <styled.Form onSubmit={(e) => navigateToLoginPage.call(null, e, email)}>
+      <styled.EmailInput 
+        value={email} 
+        type="email"
+        placeholder={t("email")} 
+        onChange={emailChanged} />
+
+      <styled.EmailButton 
+        type="submit" 
+        children={t("emailButtonText")}/>
     </styled.Form>
   );
+
+  function emailChanged(e) {
+    setEmail(e.target.value);
+  }
+  
+  function navigateToLoginPage(e, email) {
+    e.preventDefault();
+
+    const searchParams = email ? createSearchParams({email: email}).toString() : "";
+    navigate({
+      pathname: routeNames.signup,
+      search: searchParams,
+    });
+  }
 }

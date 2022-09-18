@@ -6,7 +6,7 @@ import ApplicationLogo from "../../components/logos/ApplicationLogo";
 export default function AuthForm(props) {
   const [t] = useTranslation();
   return (
-    <styled.Form sizes={props.sizes}>
+    <styled.Form sizes={props.sizes} onSubmit={props.submit}>
       <media.Mobile>
         <ApplicationLogo style={styled.applicationLogoStyle} title={t("thullo")} />
       </media.Mobile>
@@ -15,7 +15,7 @@ export default function AuthForm(props) {
 
       {props.children}
       
-      <styled.ContinueButton>{t("continue")}</styled.ContinueButton>
+      <styled.ContinueButton type="submit">{t("continue")}</styled.ContinueButton>
     </styled.Form>
   );
 }
