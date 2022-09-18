@@ -29,5 +29,6 @@
 
   "loginFormHeader": "Sign up for your account",
   "firstName": "First name",
-  "lastName": "Last name"
+  "lastName": "Last name",
+  "continue": "Continue"
 }

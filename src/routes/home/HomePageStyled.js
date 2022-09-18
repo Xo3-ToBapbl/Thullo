@@ -39,13 +39,13 @@ export const Description = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: ${props => props.sizes.introductionFontSizeRatio * 4.4}rem;
+  font-size: ${props => props.sizes.fontSizeRation * 4.4}rem;
   line-height: 1.2;
   color: ${props => props.theme.onPrimary};
 `;
 
 export const Information = styled.p`
-  font-size: ${props => props.sizes.introductionFontSizeRatio * 2.2}rem;
+  font-size: ${props => props.sizes.fontSizeRation * 2.2}rem;
   color: ${props => props.theme.onPrimary};
 `;
 

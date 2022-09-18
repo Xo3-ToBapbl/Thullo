@@ -29,5 +29,6 @@
 
   "loginFormHeader": "Załóż swoje konto",
   "firstName": "Imię",
-  "lastName": "Nazwisko"
+  "lastName": "Nazwisko",
+  "continue": "Kontynuuj"
 }

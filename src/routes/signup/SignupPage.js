@@ -1,30 +1,64 @@
-import { useTranslation } from 'react-i18next';
-import { Divider } from '../../components/dividers/Divider';
-import { mobileMaxWidth } from '../../components/media/MediaQueries';
-import { sizes } from '../../resources/constants/Sizes';
-import * as styled from './SignupPageStyled';
+import React from "react";
+import ApplicationLogo from "../../components/logos/ApplicationLogo";
+import * as styled from "./SignupPageStyled";
+import useDeviceProps, { PropsPerDevice } from "../../hooks/UseDeviceProps";
+import { useTranslation } from "react-i18next";
+import { mobileMaxWidth } from "../../components/media/MediaQueries";
+import { sizes } from "../../resources/constants/Sizes";
+import { media } from "../../components/media/MediaQueries";
 
 const sizesLocal = {
   maxWidthPx: mobileMaxWidth,
   imgHeightPx: 450,
   imgWidthPx: 347,
-  introductionFontSizeRatio: 1,
+  fontSizeRation: 1,
   contentOffset: sizes.doubleOffsetRem,
+  containerTopOffset: 0,
 };
 
-export default function SignupPage(props) {
-  return (
-    <styled.MainContainer sizes={sizesLocal}>
+const applicationLogoStyle = {
+  alignSelf: "center",
+  transform: "scale(1.2)",
+  marginTop: "1rem",
+  marginBottom: `${sizes.contentOffsetRem}rem`,
+};
 
-      <AuthenticationForm sizes={sizesLocal}/>
+const propsPerDevice = new PropsPerDevice(
+  sizesLocal,
+  {...sizesLocal, containerTopOffset: 0,},
+  {...sizesLocal, containerTopOffset: -sizes.navBarHeightRem,},
+);
+
+export default function SignupPage(props) {
+  const sizes = useDeviceProps(propsPerDevice);
+  return (
+    <styled.MainContainer sizes={sizes}>
+      <media.Mobile>
+        <styled.Background />
+      </media.Mobile>
+
+      <FormSection sizes={sizes} />
     </styled.MainContainer>
   );
 }
 
-function AuthenticationForm(props) {
-  const [ t ] = useTranslation();
-  return(
+function FormSection(props) {
+  const isMobile = media.IsMobile();
+  const content = isMobile ? 
+    <Form sizes={props.sizes}/> :
+    <styled.FormSection sizes={props.sizes} children={<Form sizes={props.sizes}/>}/>
+
+  return content;
+}
+
+function Form(props) {
+  const [t] = useTranslation();
+  return (
     <styled.Form sizes={props.sizes}>
+      <media.Mobile>
+        <ApplicationLogo style={applicationLogoStyle} title={t("thullo")} />
+      </media.Mobile>
+
       <styled.FormHeader>{t("loginFormHeader")}</styled.FormHeader>
 
       <styled.FormInput type="text" placeholder={t("firstName")} />
@@ -33,7 +67,7 @@ function AuthenticationForm(props) {
       <styled.FormInput type="password" placeholder={t("password")} />
       <styled.FormInput type="password" placeholder={t("confirmPassword")} />
 
-      <styled.ContinueButton>Continue</styled.ContinueButton>
+      <styled.ContinueButton>{t("continue")}</styled.ContinueButton>
     </styled.Form>
   );
 }

@@ -2,8 +2,10 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import AppLogoNavigationBar from "./bars/AppLogoNavigationBar";
 import HomeNavigationBar from "./bars/HomeNavigationBar";
+import SignupNavigationBar from "./bars/SignupNavigationBar";
 
 const HeaderContainer = styled.header`
+  z-index: 999;
   position: fixed;
   left: 0;
   top: 0;
@@ -13,7 +15,7 @@ const HeaderContainer = styled.header`
 const headers = {
   home: (<HomeNavigationBar />),
   login: (<AppLogoNavigationBar />),
-  signup: (<AppLogoNavigationBar />),
+  signup: (<SignupNavigationBar />),
 }
 
 export default function Header() {

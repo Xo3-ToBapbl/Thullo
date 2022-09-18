@@ -5,7 +5,7 @@ import SignupPage from '../routes/signup/SignupPage';
 import Header from "../features/header/Header";
 import Footer from '../features/footer/Footer';
 import * as styled from "./ApplicationStyled"
-import { media } from "../components/media/MediaQueries";
+import useDeviceProps, { PropsPerDevice } from '../hooks/UseDeviceProps';
 import { ThemeProvider } from 'styled-components'; 
 import { useEffect } from 'react';
 import { useSelector } from "react-redux";
@@ -31,12 +31,16 @@ export default function Application() {
   );
 }
 
+const propsPerDevice = new PropsPerDevice(
+  sizes.doubleOffsetRem, 
+  sizes.doubleOffsetRem, 
+  sizes.contentOffsetRem);
+
 function ApplicationRoot() {
   const isMenuVisible = useSelector(state => state.menu.isMenuVisible);
+  const contentOffset = useDeviceProps(propsPerDevice);
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = media.IsMobile();
-  const contentOffset = isMobile ? sizes.contentOffsetRem : sizes.doubleOffsetRem;
 
   useEffect(() => {
     if (location.pathname === routeNames.root) {
