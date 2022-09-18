@@ -4,6 +4,7 @@ import { sizes } from "../../resources/constants/Sizes";
 
 export const MenuStyled = styled.div`
   position: fixed;
+  z-index: 998;
   top: ${sizes.navBarHeightRem}rem;
   left: 0;
   bottom: 0;

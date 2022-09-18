@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import AppLogoNavigationBar from "./bars/AppLogoNavigationBar";
 import HomeNavigationBar from "./bars/HomeNavigationBar";
+import LoginNavigationBar from "./bars/LoginNavigationBar";
 import SignupNavigationBar from "./bars/SignupNavigationBar";
 
 const HeaderContainer = styled.header`
@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
 
 const headers = {
   home: (<HomeNavigationBar />),
-  login: (<AppLogoNavigationBar />),
+  login: (<LoginNavigationBar />),
   signup: (<SignupNavigationBar />),
 }
 

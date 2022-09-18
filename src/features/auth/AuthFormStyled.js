@@ -3,31 +3,12 @@ import { FillButtonStyled } from "../../components/buttons/FillButton";
 import { TextInput } from "../../components/inputs/TextInput";
 import { sizes } from "../../resources/constants/Sizes";
 
-export const Background = styled.div`
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: ${(props) => props.theme.secondary};
-`;
-
-export const MainContainer = styled.main`
-  z-index: 0;
-  margin-top: ${(props) => props.sizes.containerTopOffset}rem;
-`;
-
-export const FormSection = styled.section`
-  width: 100%;
-  max-width: ${(props) => props.sizes.maxWidthPx}px;
-  margin: auto;
-  padding: ${sizes.doubleOffsetRem}rem;
-  background-color: ${(props) => props.theme.secondary};
-  border-radius: ${sizes.cornerRadiusRem}rem;
-  box-shadow: 0px 2px 4px 2px ${(props) => props.theme.onPrimaryShadow};
-`;
+export const applicationLogoStyle = {
+  alignSelf: "center",
+  transform: "scale(1.2)",
+  marginTop: "1rem",
+  marginBottom: `${sizes.contentOffsetRem}rem`,
+};
 
 export const Form = styled.form`
   display: flex;

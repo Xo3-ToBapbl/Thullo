@@ -1,20 +1,8 @@
-import styled from 'styled-components';
-import { useSelector } from "react-redux";
-import { sizes } from '../../resources/constants/Sizes';
+import React from "react";
+import LoginForm from "../../features/login/LoginForm";
+import AuthMainContainer from "../../features/auth/AuthMainContainer";
 
-const Content = styled.div`
-  height: 300px;
-  width: 100%;
-  padding-top: ${sizes.navBarLargeHeight}rem;
-`;
-
-export default function LoginPage() {
-  const theme = useSelector(state => state.theme.value);
-  const isMenuVisible = useSelector(state => state.menu.isMenuVisible);
-  
-  return (
-    <Content>
-      Content
-    </Content>
-  );
+export default function LoginPage(props) {
+  const formFactory = (sizes) => <LoginForm sizes={sizes}/>
+  return <AuthMainContainer formFactory={formFactory}/>;
 }

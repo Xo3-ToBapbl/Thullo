@@ -27,7 +27,8 @@
   "emailButtonText": "Dołącz - to jest wolny",
   "footerText": "Wersja aplikacji {{appVersion}} dla devChallenges.io autorstwa Xo3.ToBapbl",
 
-  "loginFormHeader": "Załóż swoje konto",
+  "loginFormHeader": "Zaloguj się do Thullo",
+  "signupFormHeader": "Załóż swoje konto",
   "firstName": "Imię",
   "lastName": "Nazwisko",
   "continue": "Kontynuuj"

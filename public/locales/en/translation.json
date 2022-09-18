@@ -27,7 +27,8 @@
   "emailButtonText": "Join Thullo - it’s free",
   "footerText": "AppVersion {{appVersion}} for devChallenges.io by Xo3.ToBapbl",
 
-  "loginFormHeader": "Sign up for your account",
+  "loginFormHeader": "Login to Thullo",
+  "signupFormHeader": "Sign up for your account",
   "firstName": "First name",
   "lastName": "Last name",
   "continue": "Continue"
