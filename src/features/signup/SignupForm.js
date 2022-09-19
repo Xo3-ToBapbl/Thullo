@@ -3,6 +3,8 @@ import AuthForm from "../auth/AuthForm";
 import PasswordInput from "../../components/inputs/PasswordInput";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { createNewUser } from "../auth/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -13,6 +15,8 @@ function InitialFormState(email) {
 }
 
 export default function SignupForm(props) {
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
   const [t] = useTranslation();
   const passwordsDoNotMatchError = t("errorPasswordDoNotMatch");
   const [formState, setFormState] = useState(new InitialFormState(props.email));
@@ -54,7 +58,7 @@ export default function SignupForm(props) {
         name="password"
         onChange={formInputChanged} />
 
-      <PasswordInput 
+      <PasswordInput
         required={true}
         value={formState.confirmPassword}
         placeholder={t("confirmPassword")}
@@ -85,5 +89,6 @@ export default function SignupForm(props) {
 
   function submit(e) {
     e.preventDefault();
+    dispatch(createNewUser());
   }
 }
