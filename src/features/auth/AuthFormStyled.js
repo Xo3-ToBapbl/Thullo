@@ -33,6 +33,9 @@ export const FormInput = styled(TextInput)`
 `;
 
 export const ContinueButton = styled(FillButtonStyled)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: ${sizes.contentOffsetRem}rem;
   background-color: ${(props) => props.theme.success};
 `;

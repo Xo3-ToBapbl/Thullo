@@ -20,6 +20,7 @@ const themes = {
     divider: "#dfe1e6",
 
     success: "#219653",
+    onSuccess: "#F8F9FD",
     invalid: "#EB5757"
   },
 
@@ -41,6 +42,7 @@ const themes = {
     divider: "#383d3f",
 
     success: "#187841",
+    onSuccess: "#F8F9FD",
     invalid: "#EB5757"
   }
 }

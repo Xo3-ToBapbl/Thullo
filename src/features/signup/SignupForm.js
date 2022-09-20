@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createNewUser } from "../auth/AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { thunkStatuses } from "../../resources/constants/ThunkStatuses";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -15,12 +16,13 @@ function InitialFormState(email) {
 }
 
 export default function SignupForm(props) {
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  const [t] = useTranslation();
-  const passwordsDoNotMatchError = t("errorPasswordDoNotMatch");
-  const [formState, setFormState] = useState(new InitialFormState(props.email));
+  const isLoading = authState.status === thunkStatuses.loading;
   const confirmPasswordRef = useRef();
+  const [formState, setFormState] = useState(new InitialFormState(props.email));
+  const passwordsDoNotMatchError = t("errorPasswordDoNotMatch");
 
   const inputsFragment = (
     <React.Fragment>
@@ -31,6 +33,7 @@ export default function SignupForm(props) {
         onChange={formInputChanged}
         name="firstName"
         autoComplete="off"
+        disabled={isLoading}
         placeholder={t("firstName")} />
 
       <styled.FormInput 
@@ -40,6 +43,7 @@ export default function SignupForm(props) {
         name="lastName"
         autoComplete="off"
         onChange={formInputChanged}
+        disabled={isLoading}
         placeholder={t("lastName")} />
 
       <styled.FormInput 
@@ -49,6 +53,7 @@ export default function SignupForm(props) {
         placeholder={t("email")}
         name="email"
         autoComplete="off"
+        disabled={isLoading}
         onChange={formInputChanged} />
 
       <PasswordInput 
@@ -56,6 +61,7 @@ export default function SignupForm(props) {
         value={formState.password}
         placeholder={t("password")}
         name="password"
+        disabled={isLoading}
         onChange={formInputChanged} />
 
       <PasswordInput
@@ -63,6 +69,7 @@ export default function SignupForm(props) {
         value={formState.confirmPassword}
         placeholder={t("confirmPassword")}
         name="confirmPassword"
+        disabled={isLoading}
         passwordRef={confirmPasswordRef}
         onBlur={confirmPasswordBlurred}
         onChange={formInputChanged} />
@@ -73,6 +80,7 @@ export default function SignupForm(props) {
     submit={submit}
     sizes={props.sizes} 
     children={inputsFragment}
+    status={authState.status}
     headerText={t("signupFormHeader")}/>;
 
   function confirmPasswordBlurred() {

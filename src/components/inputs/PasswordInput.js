@@ -31,6 +31,7 @@ export default function PasswordInput(props) {
         onChange={props.onChange}
         name={props.name}
         minLength={5} 
+        disabled={props.disabled}
         type={state.type}
         ref={props.passwordRef}
         autoComplete="off"

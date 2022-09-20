@@ -1,4 +1,4 @@
-export const actionStatuses = {
+export const thunkStatuses = {
   idle: "idle",
   loading: "loading",
   success: "success",
