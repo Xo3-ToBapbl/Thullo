@@ -2,32 +2,51 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { thunkStatuses } from "../../resources/constants/ThunkStatuses";
 import { reducersNames } from "../../resources/constants/ReducersNames";
 import { authApi } from "../../services/api/AuthApi";
+import { storageKeys } from "../../resources/constants/StorageKeys";
 
-export const createNewUser = createAsyncThunk(`${reducersNames.auth}/createNewUser`, 
+const initialState = {
+  currentUser: localStorage.getItem(storageKeys.currentUser),
+  status: thunkStatuses.idle,
+  error: null,
+}
+
+export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, 
   async () => {
     const response = await authApi.signup();
     return response;
   });
 
-const initialState = {
-  currentUser: null,
-  status: thunkStatuses.idle,
-  error: null,
-}
+  export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, 
+  async () => {
+    const response = await authApi.login();
+    return response;
+  });
 
 const authSlice = createSlice({
   name: reducersNames.auth,
   initialState,
   extraReducers(builder) {
     builder
-      .addCase(createNewUser.pending, (state) => {
+      .addCase(signupUser.pending, (state) => {
         state.status = thunkStatuses.loading;
       })
-      .addCase(createNewUser.fulfilled, (state, action) => {
+      .addCase(signupUser.fulfilled, (state, action) => {
         state.status = thunkStatuses.success;
         state.currentUser = action.payload;
       })
-      .addCase(createNewUser.rejected, (state, action) => {
+      .addCase(signupUser.rejected, (state, action) => {
+        state.status = thunkStatuses.failed;
+        state.error = action.error;
+      })
+
+      .addCase(loginUser.pending, (state) => {
+        state.status = thunkStatuses.loading;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.status = thunkStatuses.success;
+        state.currentUser = action.payload;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         state.status = thunkStatuses.failed;
         state.error = action.error;
       })

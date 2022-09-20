@@ -3,7 +3,7 @@ import AuthForm from "../auth/AuthForm";
 import PasswordInput from "../../components/inputs/PasswordInput";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { createNewUser } from "../auth/AuthSlice";
+import { signupUser } from "../auth/AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkStatuses } from "../../resources/constants/ThunkStatuses";
 
@@ -97,6 +97,6 @@ export default function SignupForm(props) {
 
   function submit(e) {
     e.preventDefault();
-    dispatch(createNewUser());
+    dispatch(signupUser());
   }
 }

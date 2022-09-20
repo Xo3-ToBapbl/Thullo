@@ -4,6 +4,9 @@ import PasswordInput from "../../components/inputs/PasswordInput";
 import * as styled from "../auth/AuthFormStyled";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkStatuses } from "../../resources/constants/ThunkStatuses";
+import { loginUser } from "../auth/AuthSlice";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -12,6 +15,9 @@ function InitialFormState(email) {
 
 export default function LoginForm(props) {
   const [t] = useTranslation();
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
+  const isLoading = authState.status === thunkStatuses.loading;
   const [formState, setFormState] = useState(new InitialFormState(props.email));
 
   const inputsFragment = (
@@ -23,6 +29,7 @@ export default function LoginForm(props) {
         placeholder={t("email")}
         name="email"
         autoComplete="off"
+        disabled={isLoading}
         onChange={formInputChanged} />
 
       <PasswordInput 
@@ -30,6 +37,7 @@ export default function LoginForm(props) {
         value={formState.password}
         placeholder={t("password")}
         name="password"
+        disabled={isLoading}
         onChange={formInputChanged} />
     </React.Fragment>
   );
@@ -38,6 +46,7 @@ export default function LoginForm(props) {
     submit={submit}
     sizes={props.sizes} 
     children={inputsFragment}
+    status={authState.status}
     headerText={t("loginFormHeader")}/>;
 
   function formInputChanged(e) {
@@ -47,5 +56,6 @@ export default function LoginForm(props) {
   
   function submit(e) {
     e.preventDefault();
+    dispatch(loginUser());
   }
 }
