@@ -12,6 +12,10 @@ import { useSelector } from "react-redux";
 import { routeNames } from '../resources/constants/RouteNames';
 import { BrowserRouter, Outlet, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { sizes } from '../resources/constants/Sizes';
+import { requestExecutorEventTarget } from '../services/api/RequestExecutor';
+import { refreshCurrentUser } from '../features/auth/AuthSlice';
+
+requestExecutorEventTarget.addEventListener((e) => refreshCurrentUser(e.detail));
 
 export default function Application() {
   const theme = useSelector(state => state.theme.value);

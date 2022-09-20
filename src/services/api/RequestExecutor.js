@@ -1,17 +1,21 @@
 import store from "../../application/ApplicationStore";
+import { apiMethods } from "../../resources/constants/ApiMethod";
+import { apiPaths } from "../../resources/constants/ApiPaths";
+import { eventNames } from "../../resources/constants/EventNames";
 
 const host = process.env.REACT_APP_HOST;
 const bearer = "Bearer";
 const mockResponseCode = { "x-mock-response-code": 200 };
 const contentType = { "Content-Type": "application/json;charset=utf-8" };
 
+export const requestExecutorEventTarget = new EventTarget();
 export const requestExecutor = {
   
   async execute({method, path, model, authorize, retry}) {
 
     const url = `${host}/${path}`;
     const retryCount = retry ?? 1;
-    const requestMethod = method ?? "GET";
+    const requestMethod = method ?? apiMethods.get;
     const needAuthorization = authorize ?? true;
     const request = () => fetch(url, getRequestParams(requestMethod, needAuthorization, model));
 
@@ -68,12 +72,22 @@ async function tryRetry(response, request, retryCount) {
 
 async function refreshToken() {
   const refreshToken = store.auth.state.currentUser.refreshToken;
-  const url = `${host}/auth/refresh`;
+  const url = `${host}${apiPaths.auth.refresh}`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify({ refreshToken: refreshToken }),
-    headers: getHeaders(),
-  });
-  const updatedUser = await response.json();
+  console.log(`Refresh access token...`);
+
+  try {
+    const response = await fetch(url, {
+      method: apiMethods.post,
+      body: JSON.stringify({ refreshToken: refreshToken }),
+      headers: getHeaders(),
+    });
+
+    const refreshedUser = await response.json();  
+    const eventToDispatch = new CustomEvent(eventNames.userRefreshed, {detail: refreshedUser});
+    requestExecutorEventTarget.dispatchEvent(eventToDispatch);
+
+  } catch (error) {
+    console.log(error);
+  }
 }

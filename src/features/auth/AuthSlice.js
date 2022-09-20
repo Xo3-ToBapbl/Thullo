@@ -11,20 +11,23 @@ const initialState = {
 }
 
 export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, 
-  async () => {
-    const response = await authApi.signup();
+  async (newUser) => {
+    const response = await authApi.signup(newUser);
     return response;
   });
 
   export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, 
-  async () => {
-    const response = await authApi.login();
+  async (userCredentials) => {
+    const response = await authApi.login(userCredentials);
     return response;
   });
 
 const authSlice = createSlice({
   name: reducersNames.auth,
   initialState,
+  reducers: {
+    refreshCurrentUser: (state, action) => state.currentUser = action.payload,
+  },
   extraReducers(builder) {
     builder
       .addCase(signupUser.pending, (state) => {
@@ -53,4 +56,5 @@ const authSlice = createSlice({
   }
 });
 
+export const { refreshCurrentUser } = authSlice.actions;
 export default authSlice.reducer;

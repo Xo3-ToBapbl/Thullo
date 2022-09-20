@@ -56,6 +56,6 @@ export default function LoginForm(props) {
   
   function submit(e) {
     e.preventDefault();
-    dispatch(loginUser());
+    dispatch(loginUser(formState));
   }
 }

@@ -97,6 +97,6 @@ export default function SignupForm(props) {
 
   function submit(e) {
     e.preventDefault();
-    dispatch(signupUser());
+    dispatch(signupUser(formState));
   }
 }
