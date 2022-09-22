@@ -1,4 +1,3 @@
-import "./Animation.css";
 import styled from "styled-components";
 import { sizes } from "../../resources/constants/Sizes";
 

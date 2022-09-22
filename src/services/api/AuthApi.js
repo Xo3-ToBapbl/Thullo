@@ -8,6 +8,7 @@ export const authApi = {
       method: apiMethods.post,
       path: apiPaths.auth.signup,
       model: newUser,
+      authorize: false,
     });
   },
 
@@ -16,6 +17,7 @@ export const authApi = {
       method: apiMethods.post,
       path: apiPaths.auth.login,
       model: userCredentials,
+      authorize: false,
     });
   },
 }

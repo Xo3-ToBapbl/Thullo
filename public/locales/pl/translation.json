@@ -33,5 +33,8 @@
   "lastName": "Nazwisko",
   "continue": "Kontynuuj",
 
-  "errorPasswordDoNotMatch": "Hasła nie pasują do siebie"
+  "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
+  "errorPasswordDontMatch": "Hasła, które wpisałeś nie pasują do siebie. Sprawdź swoje hasła i spróbuj ponownie.",
+  "errorInvalidPassword": "Wprowadziłeś nieprawidłowe hasło. Sprawdź hasło i spróbuj ponownie.",
+  "errorCantRefreshToken": "Wystąpił błąd podczas odświeżania tokena dostępu. Spróbuj ponownie."
 }

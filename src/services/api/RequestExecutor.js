@@ -1,11 +1,11 @@
-import store from "../../application/ApplicationStore";
 import { apiMethods } from "../../resources/constants/ApiMethod";
 import { apiPaths } from "../../resources/constants/ApiPaths";
 import { eventNames } from "../../resources/constants/EventNames";
+import { currentUser } from "../../features/auth/AuthSlice";
 
-const host = process.env.REACT_APP_HOST;
 const bearer = "Bearer";
-const mockResponseCode = { "x-mock-response-code": 200 };
+const host = process.env.REACT_APP_HOST;
+const mockResponseCode = { "x-mock-response-code": 400 };
 const contentType = { "Content-Type": "application/json;charset=utf-8" };
 
 export const requestExecutorEventTarget = new EventTarget();
@@ -17,21 +17,23 @@ export const requestExecutor = {
     const retryCount = retry ?? 1;
     const requestMethod = method ?? apiMethods.get;
     const needAuthorization = authorize ?? true;
-    const request = () => fetch(url, getRequestParams(requestMethod, needAuthorization, model));
+    const requestParams = getRequestParams(requestMethod, needAuthorization, model);
 
     try {
 
-      const response = await request();
-
+      const response = await fetch(url, requestParams);
+      
       if (response.ok) return await response.json();
-      if (response.status === 401) await refreshToken();
-
-      return await tryRetry(response, request, retryCount);
+      if (response.status === 401) await refreshToken();  
+      if (retryCount !== 0) return this.execute({...arguments[0], retry: 0});
+      
+      const errorResponse = await response.json();
+      return new Promise((_, reject) => reject(errorResponse.errors))
 
     } catch (error) {
 
       console.log(error);
-      return getErrorResponse(error);
+      throw error;
     }
   },
 }
@@ -47,34 +49,15 @@ function getRequestParams(method, authorize, model) {
 function getHeaders(authorize) {
   let headers = { ...contentType, ...mockResponseCode };
   if (authorize) {
-    headers[bearer] = store.auth.state.currentUser.accessToken;
+    headers[bearer] = currentUser.accessToken;
   }
 
   return headers;
 }
 
-function getErrorResponse(error) {
-  return {
-    success: false,
-    data: null,
-    errors: error,
-  };
-}
-
-async function tryRetry(response, request, retryCount) {
-  if (retryCount === 0) {
-    return getErrorResponse(response);
-  }
-
-  console.log(`Retry api request...`);
-  return await request();
-}
-
 async function refreshToken() {
-  const refreshToken = store.auth.state.currentUser.refreshToken;
+  const refreshToken = currentUser.refreshToken;
   const url = `${host}${apiPaths.auth.refresh}`;
-
-  console.log(`Refresh access token...`);
 
   try {
     const response = await fetch(url, {
@@ -83,9 +66,14 @@ async function refreshToken() {
       headers: getHeaders(),
     });
 
-    const refreshedUser = await response.json();  
-    const eventToDispatch = new CustomEvent(eventNames.userRefreshed, {detail: refreshedUser});
-    requestExecutorEventTarget.dispatchEvent(eventToDispatch);
+    if (response.ok) {
+      const successResponse = await response.json();  
+      const eventToDispatch = new CustomEvent(eventNames.userRefreshed, {detail: successResponse.data});
+      requestExecutorEventTarget.dispatchEvent(eventToDispatch);
+    } else {
+      const errorResponse = await response.json();
+      console.log(errorResponse.errors.message)
+    }
 
   } catch (error) {
     console.log(error);

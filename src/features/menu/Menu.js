@@ -1,4 +1,4 @@
-import "./Animation.css";
+import "./MenuAnimation.css";
 import About from "../about/About";
 import ThemeList from "../theming/ThemeList";
 import LoginButton from "../login/LoginButton";
@@ -19,7 +19,12 @@ export default function Menu(props) {
 
   return (
     <React.Fragment>
-      <CSSTransition in={isVisible} unmountOnExit={true} timeout={300} classNames="menu">
+      <CSSTransition 
+        in={isVisible} 
+        unmountOnExit={true} 
+        timeout={300} 
+        classNames="menu">
+        
         <MenuContainer />
       </CSSTransition>
     </React.Fragment>
@@ -41,8 +46,8 @@ function MenuContainer() {
   );
 
   function preventMainContentScrolling() {
-    document.body.style.overflow = "hidden";
-    return () => document.body.style.overflow = "auto";
+    document.body.style.overflowY = "hidden";
+    return () => document.body.style.overflowY = "auto";
   }
 }
 

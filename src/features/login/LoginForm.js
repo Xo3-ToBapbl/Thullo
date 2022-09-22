@@ -46,7 +46,7 @@ export default function LoginForm(props) {
     submit={submit}
     sizes={props.sizes} 
     children={inputsFragment}
-    status={authState.status}
+    authState={authState}
     headerText={t("loginFormHeader")}/>;
 
   function formInputChanged(e) {

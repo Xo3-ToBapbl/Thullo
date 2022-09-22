@@ -14,8 +14,9 @@ import { BrowserRouter, Outlet, Route, Routes, useNavigate, useLocation } from '
 import { sizes } from '../resources/constants/Sizes';
 import { requestExecutorEventTarget } from '../services/api/RequestExecutor';
 import { refreshCurrentUser } from '../features/auth/AuthSlice';
+import { eventNames } from '../resources/constants/EventNames';
 
-requestExecutorEventTarget.addEventListener((e) => refreshCurrentUser(e.detail));
+requestExecutorEventTarget.addEventListener(eventNames.userRefreshed, (e) => refreshCurrentUser(e.detail));
 
 export default function Application() {
   const theme = useSelector(state => state.theme.value);
@@ -53,7 +54,7 @@ function ApplicationRoot() {
   }, [navigate, location.pathname]);
   
   return(
-    <styled.ApplicationContainer contentOffset={contentOffset}>
+    <styled.ApplicationContainer id="application" contentOffset={contentOffset}>
       <Header/>
       <Outlet/>
       <Footer/>

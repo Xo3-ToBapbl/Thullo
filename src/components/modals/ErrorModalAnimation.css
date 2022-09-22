@@ -1,0 +1,14 @@
+.errorModal-enter {
+  transform: translateX(120%);
+}
+.errorModal-enter-active {
+  transform: translateX(0px);
+  transition: transform 300ms;
+}
+.errorModal-exit {
+  transform: translateX(0px);
+}
+.errorModal-exit-active {
+  transform: translateX(120%);
+  transition: transform 300ms;
+}

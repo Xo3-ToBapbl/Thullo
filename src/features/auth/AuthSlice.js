@@ -4,10 +4,24 @@ import { reducersNames } from "../../resources/constants/ReducersNames";
 import { authApi } from "../../services/api/AuthApi";
 import { storageKeys } from "../../resources/constants/StorageKeys";
 
+export let currentUser = null;
+
 const initialState = {
-  currentUser: localStorage.getItem(storageKeys.currentUser),
+  currentUser: getCurrentUser(),
   status: thunkStatuses.idle,
-  error: null,
+  errorCode: null,
+};
+
+function getCurrentUser() {
+  const currentUserString = localStorage.getItem(storageKeys.currentUser);
+  currentUser = currentUserString || JSON.parse(currentUserString);
+  return currentUser;
+}
+
+function setCurrentUser(state, user) {
+  currentUser = user;
+  state.currentUser = user;
+  localStorage.setItem(storageKeys.currentUser, JSON.stringify(currentUser));
 }
 
 export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, 
@@ -16,7 +30,7 @@ export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`,
     return response;
   });
 
-  export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, 
+export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, 
   async (userCredentials) => {
     const response = await authApi.login(userCredentials);
     return response;
@@ -26,7 +40,12 @@ const authSlice = createSlice({
   name: reducersNames.auth,
   initialState,
   reducers: {
-    refreshCurrentUser: (state, action) => state.currentUser = action.payload,
+    resetSliceStatus: (state, _) => {
+      state.status = thunkStatuses.idle;
+    },
+    refreshCurrentUser: (state, action) => {
+      setCurrentUser(state, action.payload);
+    },
   },
   extraReducers(builder) {
     builder
@@ -35,11 +54,11 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = thunkStatuses.success;
-        state.currentUser = action.payload;
+        setCurrentUser(state, action.payload.data);
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.status = thunkStatuses.failed;
-        state.error = action.error;
+        state.errorCode = action.error.code;
       })
 
       .addCase(loginUser.pending, (state) => {
@@ -47,14 +66,14 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = thunkStatuses.success;
-        state.currentUser = action.payload;
+        setCurrentUser(state, action.payload.data);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = thunkStatuses.failed;
-        state.error = action.error;
+        state.errorCode = action.error.code;
       })
-  }
+    }
 });
 
-export const { refreshCurrentUser } = authSlice.actions;
+export const { resetSliceStatus, refreshCurrentUser } = authSlice.actions;
 export default authSlice.reducer;

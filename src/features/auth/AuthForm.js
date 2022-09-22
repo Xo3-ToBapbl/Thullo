@@ -1,13 +1,20 @@
-import { useTranslation } from "react-i18next";
-import * as styled from "./AuthFormStyled";
-import { media } from "../../components/media/MediaQueries";
 import ApplicationLogo from "../../components/logos/ApplicationLogo";
-import SmallLoadingSpinner from "../../components/loaders/SmallLoadingSpinner";
+import LoadingSpinner from "../../components/loaders/LoadingSpinner";
+import ErrorModal from "../../components/modals/ErrorModal";
+import * as styled from "./AuthFormStyled";
+import { useTranslation } from "react-i18next";
+import { media } from "../../components/media/MediaQueries";
 import { thunkStatuses } from "../../resources/constants/ThunkStatuses";
+import { useDispatch } from "react-redux";
+import { resetSliceStatus } from "./AuthSlice";
 
 export default function AuthForm(props) {
   const [t] = useTranslation();
-  const isLoading = props.status === thunkStatuses.loading;
+  const dispatch = useDispatch();
+  const authState = props.authState;
+  const isLoading = authState.status === thunkStatuses.loading;
+  const isFailed = authState.status === thunkStatuses.failed;
+  const errorMessage = authState.errorCode ? t(authState.errorCode) : t("errorGeneric");
 
   return (
     <styled.Form sizes={props.sizes} onSubmit={props.submit}>
@@ -20,9 +27,17 @@ export default function AuthForm(props) {
       {props.children}
       
       <styled.ContinueButton disabled={isLoading} type="submit">
-        { isLoading ? <SmallLoadingSpinner /> : t("continue")}
+        { isLoading ? <LoadingSpinner /> : t("continue")}
       </styled.ContinueButton>
+      
+      <ErrorModal 
+        isVisible={isFailed} 
+        message={errorMessage}
+        onCloseClicked={closeErrorClicked}/>
     </styled.Form>
   );
+  
+  function closeErrorClicked() {
+    dispatch(resetSliceStatus());
+  }
 }
-

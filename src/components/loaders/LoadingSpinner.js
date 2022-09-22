@@ -1,7 +1,7 @@
-import "./SmallLoadingSpinner.css";
+import "./LoadingSpinner.css";
 import styled from "styled-components";
 
-const LoadingSpinner = styled.div`
+const LoadingSpinnerStyled = styled.div`
   display: inline-block;
   width: ${(props) => props.size ?? 3}rem;
   height: ${(props) => props.size ?? 3}rem;
@@ -11,6 +11,6 @@ const LoadingSpinner = styled.div`
   animation: spin 1s ease-in-out infinite;
 `;
 
-export default function SmallLoadingSpinner(props) {
-  return <LoadingSpinner size={props.size}/>;
+export default function LoadingSpinner(props) {
+  return <LoadingSpinnerStyled size={props.size}/>;
 }

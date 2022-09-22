@@ -33,5 +33,8 @@
   "lastName": "Last name",
   "continue": "Continue",
 
-  "errorPasswordDoNotMatch": "Passwords do not match"
+  "errorGeneric": "Something went wrong. Please, try again.",
+  "errorPasswordDontMatch": "Passwords that you have entered don't match. Please, check your passwords and try again.",
+  "errorInvalidPassword": "You have entered invalid password. Please, check your password and try again.",
+  "errorCantRefreshToken": "Error appeared during refreshing access token. Please, try again."
 }

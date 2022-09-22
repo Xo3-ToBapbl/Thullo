@@ -22,7 +22,7 @@ export default function SignupForm(props) {
   const isLoading = authState.status === thunkStatuses.loading;
   const confirmPasswordRef = useRef();
   const [formState, setFormState] = useState(new InitialFormState(props.email));
-  const passwordsDoNotMatchError = t("errorPasswordDoNotMatch");
+  const passwordsDoNotMatchError = t("errorPasswordDontMatch");
 
   const inputsFragment = (
     <React.Fragment>
@@ -80,7 +80,7 @@ export default function SignupForm(props) {
     submit={submit}
     sizes={props.sizes} 
     children={inputsFragment}
-    status={authState.status}
+    authState={authState}
     headerText={t("signupFormHeader")}/>;
 
   function confirmPasswordBlurred() {

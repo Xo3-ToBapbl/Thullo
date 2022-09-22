@@ -1,7 +1,7 @@
 import BaseButtonStyled from "./BaseButton.js";
 import styled from 'styled-components';
 
-const OutlineButtonStyled = styled(BaseButtonStyled)`
+export const OutlineButtonStyled = styled(BaseButtonStyled)`
   background-color: transparent;
   color: ${props => props.theme.neutral};
   border: 2px solid ${props => props.theme.neutral};

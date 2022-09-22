@@ -21,7 +21,9 @@ const themes = {
 
     success: "#219653",
     onSuccess: "#F8F9FD",
-    invalid: "#EB5757"
+
+    invalid: "#C91A06",
+    invalidBackground: "#FDE8E7"
   },
 
   dark: {
@@ -43,7 +45,9 @@ const themes = {
 
     success: "#187841",
     onSuccess: "#F8F9FD",
-    invalid: "#EB5757"
+
+    invalid: "#C91A06",
+    invalidBackground: "#efcbca"
   }
 }
 
