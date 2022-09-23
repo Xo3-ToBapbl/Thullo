@@ -1,8 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { sizes } from "../../../resources/constants/sizes";
-import { FormInput } from "../../general/auth/authFormStyled";
 import IconButton from "../buttons/IconButton";
+import styled from "styled-components";
+import { useState } from "react";
+import { sizes } from "../../../resources/constants/sizes";
+import { FormInput } from "./formInputStyled";
 
 export const PasswordInputContainer = styled.div`
   display: flex;
@@ -22,6 +22,15 @@ const passwordVisibleState = {
 
 export default function PasswordInput(props) {
   const [state, setType] = useState(passwordInvisibleState);
+  
+  function visibilityIconClicked(currentState) {
+    const newState = currentState.type === "password" ?
+      passwordVisibleState : 
+      passwordInvisibleState;
+
+    setType(newState);
+  }
+
   return (
     <PasswordInputContainer>
       <FormInput
@@ -44,12 +53,4 @@ export default function PasswordInput(props) {
         onClick={visibilityIconClicked.bind(null, state)}/>
     </PasswordInputContainer>
   );
-
-  function visibilityIconClicked(currentState, e) {
-    const newState = currentState.type === "password" ?
-      passwordVisibleState : 
-      passwordInvisibleState;
-
-    setType(newState);
-  }
 }

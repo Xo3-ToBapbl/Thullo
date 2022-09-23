@@ -25,6 +25,11 @@ export default function LanguageList() {
   const language = i18n.language;
   const changeLanguage = (language) => i18n.changeLanguage(language);
 
+  function changed(language) {
+    changeLanguage(language);
+    localStorage.setItem(storageKeys.language, language);
+  }
+
   return (
     <React.Fragment>
       <LanguageListItem 
@@ -38,9 +43,4 @@ export default function LanguageList() {
         isChecked={language === languageCodes.pl} />
     </React.Fragment>
   );
-
-  function changed(language) {
-    changeLanguage(language);
-    localStorage.setItem(storageKeys.language, language);
-  }
 }

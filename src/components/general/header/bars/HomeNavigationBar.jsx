@@ -39,14 +39,10 @@ export default function HomeNavigationBar(props) {
       <media.TabletAndBellow>
         <IconButton 
           icon={isMenuVisible ? "close" : "menu"}
-          onClick={menuButtonClicked.bind(null, makeVisible)}/>
+          onClick={() => dispatch(setIsMenuVisible(makeVisible))}/>
       </media.TabletAndBellow>
     </styled.NavigationBar>
   );
-
-  function menuButtonClicked(makeVisible) {
-    dispatch(setIsMenuVisible(makeVisible));
-  }
 }
 
 function ButtonsContainer(props) {

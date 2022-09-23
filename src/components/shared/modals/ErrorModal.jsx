@@ -6,19 +6,12 @@ import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
 import { sizes } from "../../../resources/constants/sizes";
 import { CSSTransition } from "react-transition-group";
 
+const root = document.getElementById("root");
+
 const propsPerDevice = new PropsPerDevice(
   {offset: sizes.doubleOffsetRem, left: "none", width: "100%"},
   {offset: sizes.doubleOffsetRem, left: "none", width: "100%"}, 
   {offset: sizes.contentOffsetRem, left: `${sizes.contentOffsetRem}rem`, width: "none" });
-
-const root = document.getElementById("root");
-
-function ModalPortal(props) {
-  return ReactDOM.createPortal(
-    props.children,
-    root,
-  );
-}
 
 export default function ErrorModal(props) {
   const sizes = useDeviceProps(propsPerDevice);
@@ -42,5 +35,12 @@ export default function ErrorModal(props) {
         </styled.ErrorContainer>
       </CSSTransition>
     </ModalPortal>
+  );
+}
+
+function ModalPortal(props) {
+  return ReactDOM.createPortal(
+    props.children,
+    root,
   );
 }

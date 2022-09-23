@@ -3,10 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { routeNames } from "../../../resources/constants/routeNames";
 
-
 export default function LoginButton(props) {
   const [ t ] = useTranslation();
   const navigate = useNavigate();
+
+  function buttonClicked(externalCallback) {
+    externalCallback?.call();
+    navigate(routeNames.login);
+  }
 
   return(
     <OutlineButton 
@@ -14,9 +18,4 @@ export default function LoginButton(props) {
       children={t("logIn")} 
       onClick={buttonClicked.bind(null, props.clickCallback)} />
   );
-
-  function buttonClicked(externalCallback) {
-    externalCallback?.call();
-    navigate(routeNames.login);
-  }
 }

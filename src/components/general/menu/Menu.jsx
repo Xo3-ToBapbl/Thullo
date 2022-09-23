@@ -34,6 +34,11 @@ export default function Menu(props) {
 function MenuContainer() {
   const [ t ] = useTranslation();
   useEffect(preventMainContentScrolling, []);
+  
+  function preventMainContentScrolling() {
+    document.body.style.overflowY = "hidden";
+    return () => document.body.style.overflowY = "auto";
+  }
 
   return (
     <styled.MenuStyled>
@@ -45,15 +50,15 @@ function MenuContainer() {
     </styled.MenuStyled>
   );
 
-  function preventMainContentScrolling() {
-    document.body.style.overflowY = "hidden";
-    return () => document.body.style.overflowY = "auto";
-  }
 }
 
 function ButtonContainer() {
   const dispatch = useDispatch();
   const style = {flex: "1 1 0rem", height: "5rem"};
+
+  function hideMenu() {
+    dispatch(setIsMenuVisible(false));
+  }
 
   return(
     <styled.ButtonsContainer>
@@ -61,8 +66,4 @@ function ButtonContainer() {
       <SignupButton style={style} clickCallback={hideMenu}/>
     </styled.ButtonsContainer>
   );
-
-  function hideMenu() {
-    dispatch(setIsMenuVisible(false));
-  }
 }

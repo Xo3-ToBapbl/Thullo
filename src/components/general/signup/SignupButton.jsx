@@ -6,6 +6,11 @@ import FillButton from "../../shared/buttons/FillButton";
 export default function SignupButton(props) {
   const [ t ] = useTranslation();
   const navigate = useNavigate();
+  
+  function buttonClicked(externalCallback) {
+    externalCallback?.call();
+    navigate(routeNames.signup);
+  }
 
   return(
     <FillButton 
@@ -13,9 +18,4 @@ export default function SignupButton(props) {
       children={t("signup")} 
       onClick={buttonClicked.bind(null, props.clickCallback)} />
   );
-
-  function buttonClicked(externalCallback) {
-    externalCallback?.call();
-    navigate(routeNames.signup);
-  }
 }

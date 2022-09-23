@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
 import { FillButtonStyled } from "../../shared/buttons/FillButton";
-import { TextInput } from "../../shared/inputs/textInputStyled";
 
 export const applicationLogoStyle = {
   alignSelf: "center",
@@ -22,14 +21,6 @@ export const FormHeader = styled.h2`
   font-size: 1.8rem;
   margin-bottom: ${sizes.contentOffsetRem}rem;
   color: ${(props) => props.theme.onSecondary};
-`;
-
-export const FormInput = styled(TextInput)`
-  font-size: 1.5rem;
-  color: ${(props) => props.theme.onPrimary};
-  background-color: ${(props) => props.theme.primary};
-  box-shadow: 0px 2px 4px 2px ${(props) => props.theme.onSecondaryShadow};
-  border-radius: ${sizes.cornerRadiusRem}rem;
 `;
 
 export const ContinueButton = styled(FillButtonStyled)`

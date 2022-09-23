@@ -33,11 +33,7 @@ export default function AuthForm(props) {
       <ErrorModal 
         isVisible={isFailed} 
         message={errorMessage}
-        onCloseClicked={closeErrorClicked}/>
+        onCloseClicked={() => dispatch(resetSliceStatus())}/>
     </styled.Form>
   );
-  
-  function closeErrorClicked() {
-    dispatch(resetSliceStatus());
-  }
 }

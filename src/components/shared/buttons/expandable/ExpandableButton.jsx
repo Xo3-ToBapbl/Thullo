@@ -7,7 +7,7 @@ export default function ExpandableButton(props) {
 
   return (
     <styled.ExpandableButtonContainer>
-      <styled.ExpandableButton isOpen={isOpen} onClick={clicked}>
+      <styled.ExpandableButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
         {props.text}
         <styled.Tick angle={tickAngle} className="material-icons">
           expand_more
@@ -19,10 +19,6 @@ export default function ExpandableButton(props) {
         width={props.width} /> : null}
     </styled.ExpandableButtonContainer>
   );
-
-  function clicked() {
-    setIsOpen(!isOpen);
-  }
 }
 
 function ExpandableContent(props) {

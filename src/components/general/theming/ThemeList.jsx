@@ -38,18 +38,14 @@ export default function ThemeList() {
       <ThemeListItem 
         text={t("lightTheme")}
         icon="light_mode"
-        onChange={changed.bind(null, themeNames.light)} 
+        onChange={() => dispatch(setTheme(themeNames.light))}
         isChecked={themeName === themeNames.light} />
 
       <ThemeListItem 
         text={t("darkTheme")}
         icon="dark_mode"
-        onChange={changed.bind(null, themeNames.dark)}
+        onChange={() => dispatch(setTheme(themeNames.dark))}
         isChecked={themeName === themeNames.dark} />
     </React.Fragment>
   );
-
-  function changed(theme) {
-    dispatch(setTheme(theme));
-  }
 }

@@ -10,6 +10,10 @@ export default function DropdownButton(props) {
 
   useClickOutside(buttonRef, contentRef, clicked);
 
+  function clicked() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <styled.DropdownButtonContainer>
       <styled.DropdownButton ref={buttonRef} isOpen={isOpen} onClick={clicked}>
@@ -25,10 +29,6 @@ export default function DropdownButton(props) {
         width={props.width} /> : null}
     </styled.DropdownButtonContainer>
   );
-
-  function clicked() {
-    setIsOpen(!isOpen);
-  }
 }
 
 function DropdownContent(props) {
