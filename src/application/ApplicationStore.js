@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import themeReducer from "../features/theming/ThemeListSlice";
-import menuReducer from "../features/menu/MenuSlice";
-import authReducer from "../features/auth/AuthSlice";
+import themeReducer from "../slices/themeListSlice";
+import menuReducer from "../slices/menuSlice";
+import authReducer from "../slices/authSlice";
 
 export default configureStore({
   reducer: {

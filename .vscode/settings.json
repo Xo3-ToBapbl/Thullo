@@ -6,18 +6,18 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    ".gitignore": true,
     "package-lock.json": true,
     "package.json": true,
-    ".vscode": true,
-    "node_modules": true
+    "node_modules": true,
+    ".gitignore": true,
+    ".vscode": true
   },
   "hide-files.files": [
-    ".gitignore",
     "package-lock.json",
     "package.json",
-    ".vscode",
-    "node_modules"
+    "node_modules",
+    ".gitignore",
+    ".vscode"
   ],
   "cSpell.words": [
     "notosans",

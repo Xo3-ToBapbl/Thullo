@@ -1,4 +1,4 @@
-import { media } from "../components/media/MediaQueries";
+import { media } from "../components/shared/media/MediaQueries";
 
 export const desktop = "desktop";
 export const tablet = "tablet";

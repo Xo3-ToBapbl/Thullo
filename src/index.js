@@ -1,9 +1,9 @@
-import "./localization/Internationalization";
+import "./localization/internationalization";
 import "./styles/index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Application from "./application/Application";
-import store from "./application/ApplicationStore";
+import store from "./application/applicationStore";
 import { Provider } from "react-redux";
 
 const isStrictMode = true;

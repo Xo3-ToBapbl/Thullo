@@ -1,7 +1,7 @@
-import { apiMethods } from "../../resources/constants/ApiMethod";
-import { apiPaths } from "../../resources/constants/ApiPaths";
-import { eventNames } from "../../resources/constants/EventNames";
-import { currentUser } from "../../features/auth/AuthSlice";
+import { apiMethods } from "../../resources/constants/apiMethod";
+import { apiPaths } from "../../resources/constants/apiPaths";
+import { eventNames } from "../../resources/constants/eventNames";
+import { currentUser } from "../../slices/authSlice";
 
 const bearer = "Bearer";
 const host = process.env.REACT_APP_HOST;

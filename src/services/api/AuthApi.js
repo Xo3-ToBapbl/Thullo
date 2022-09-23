@@ -1,6 +1,6 @@
-import { apiMethods } from "../../resources/constants/ApiMethod";
-import { apiPaths } from "../../resources/constants/ApiPaths";
-import { requestExecutor } from "./RequestExecutor"
+import { apiMethods } from "../../resources/constants/apiMethod";
+import { apiPaths } from "../../resources/constants/apiPaths";
+import { requestExecutor } from "./requestExecutor"
 
 export const authApi = {
   signup(newUser) {

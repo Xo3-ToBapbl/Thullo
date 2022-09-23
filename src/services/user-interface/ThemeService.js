@@ -1,5 +1,5 @@
-import { themeNames } from "../../resources/constants/ThemeNames";
-import { storageKeys } from "../../resources/constants/StorageKeys";
+import { themeNames } from "../../resources/constants/themeNames";
+import { storageKeys } from "../../resources/constants/storageKeys";
 
 const themes = {
   light: {
