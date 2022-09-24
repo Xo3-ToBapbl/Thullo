@@ -5,7 +5,7 @@ import { currentUser } from "../../slices/authSlice";
 
 const bearer = "Bearer";
 const host = process.env.REACT_APP_HOST;
-const mockResponseCode = { "x-mock-response-code": 400 };
+const mockResponseCode = { "x-mock-response-code": 200 };
 const contentType = { "Content-Type": "application/json;charset=utf-8" };
 
 export const requestExecutorEventTarget = new EventTarget();

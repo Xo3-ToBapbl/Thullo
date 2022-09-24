@@ -2,5 +2,6 @@ export const routeNames = {
   root: "/",
   home: "/home",
   login: "/login",
-  signup: "/signup"
+  signup: "/signup",
+  projects: "/projects"
 };

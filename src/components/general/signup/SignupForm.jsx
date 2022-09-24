@@ -2,10 +2,12 @@ import AuthForm from "../auth/AuthForm";
 import PasswordInput from "../../shared/inputs/PasswordInput";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { signupUser } from "../../../slices/authSlice";
+import { resetAuthStatus, signupUser } from "../../../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { FormInput } from "../../shared/inputs/formInputStyled";
+import { useNavigate } from "react-router-dom";
+import { routeNames } from "../../../resources/constants/routeNames";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -18,9 +20,15 @@ function InitialFormState(email) {
 export default function SignupForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
   const isLoading = authState.status === thunkStatuses.loading;
   const formState = useState(new InitialFormState(props.email))[0];
+
+  if (authState.status === thunkStatuses.success) {
+    navigate(routeNames.projects);
+    dispatch(resetAuthStatus());
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -41,6 +49,8 @@ function FormInputs(props) {
   const confirmPasswordRef = useRef();
   const passwordsDoNotMatchError = t("errorPasswordDontMatch");
   const [formState, setFormState] = useState(new InitialFormState(props.initialEmail));
+
+
 
   function confirmPasswordBlurred() {
     const customMessage = formState.password !== formState.confirmPassword ?

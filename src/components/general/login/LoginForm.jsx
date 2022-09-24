@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { loginUser } from "../../../slices/authSlice";
 import { FormInput } from "../../shared/inputs/formInputStyled";
+import { useNavigate } from "react-router-dom";
+import { routeNames } from "../../../resources/constants/routeNames";
+import { resetAuthStatus } from "../../../slices/authSlice";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -16,9 +19,15 @@ function InitialFormState(email) {
 export default function LoginForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
   const isLoading = authState.status === thunkStatuses.loading;
   const formState = useState(new InitialFormState(props.email))[0];
+
+  if (authState.status === thunkStatuses.success) {
+    navigate(routeNames.projects);
+    dispatch(resetAuthStatus());
+  }
 
   function submit(e) {
     e.preventDefault();

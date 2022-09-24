@@ -20,4 +20,13 @@ export const authApi = {
       authorize: false,
     });
   },
+
+  refresh(refreshToken) {
+    return requestExecutor.execute({
+      method: apiMethods.post,
+      path: apiPaths.auth.refresh,
+      model: refreshToken,
+      authorize: false,
+    });
+  },
 }

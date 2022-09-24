@@ -1,20 +1,27 @@
-import Root from "../pages/root/Root";
-import HomePage from "../pages/home/HomePage";
-import LoginPage from "../pages/login/LoginPage";
-import SignupPage from "../pages/signup/SignupPage";
+import PageLoader from "../components/shared/loaders/PageLoader";
 import { routeNames } from "../resources/constants/routeNames";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
+const Root = lazy(() => import("../pages/root/Root"));
+const Home = lazy(() => import("../pages/home/HomePage"));
+const Login = lazy(() => import("../pages/login/LoginPage"));
+const Signup = lazy(() => import("../pages/signup/SignupPage"));
+const Projects = lazy(() => import("../pages/projects/ProjectsPage"));
 
 export default function ApplicationRoutes() {
   return(
     <BrowserRouter>
-    <Routes>
-      <Route path={routeNames.root} element={<Root/>}>
-        <Route path={routeNames.home} element={<HomePage/>}/>
-        <Route path={routeNames.signup} element={<SignupPage/>}/>
-        <Route path={routeNames.login} element={<LoginPage/>}/>
-      </Route>
-    </Routes>
+      <Suspense fallback={<PageLoader/>}>
+        <Routes>
+          <Route path={routeNames.root} element={<Root />}>
+            <Route path={routeNames.home} element={<Home />}/>
+            <Route path={routeNames.login} element={<Login />}/>
+            <Route path={routeNames.signup} element={<Signup />}/>
+            <Route path={routeNames.projects} element={<Projects />}/>
+          </Route>
+        </Routes>
+      </Suspense>
   </BrowserRouter>
   );
 }

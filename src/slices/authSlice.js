@@ -40,7 +40,7 @@ const authSlice = createSlice({
   name: reducersNames.auth,
   initialState,
   reducers: {
-    resetSliceStatus: (state, _) => {
+    resetAuthStatus: (state, _) => {
       state.status = thunkStatuses.idle;
     },
     refreshCurrentUser: (state, action) => {
@@ -75,5 +75,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { resetSliceStatus, refreshCurrentUser } = authSlice.actions;
+export const { resetAuthStatus, refreshCurrentUser } = authSlice.actions;
 export default authSlice.reducer;
