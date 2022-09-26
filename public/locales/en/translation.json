@@ -34,6 +34,7 @@
   "continue": "Continue",
 
   "errorGeneric": "Something went wrong. Please, try again.",
+  "errorThatNeverHappens": "Application execution error appeared. This should never happens.",
   "errorPasswordDontMatch": "Passwords that you have entered don't match. Please, check your passwords and try again.",
   "errorInvalidPassword": "You have entered invalid password. Please, check your password and try again.",
   "errorCantRefreshToken": "Error appeared during refreshing access token. Please, try again."

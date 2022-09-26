@@ -4,4 +4,7 @@ export const apiPaths = {
     login: "/auth/login",
     refresh: "/auth/refresh",
   },
+  projects:{
+    get: "/projects/get"
+  }
 };

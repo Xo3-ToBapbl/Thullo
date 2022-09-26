@@ -1,51 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { thunkStatuses } from "../resources/constants/thunkStatuses";
 import { reducersNames } from "../resources/constants/reducersNames";
-import { authApi } from "../services/api/authApi";
-import { storageKeys } from "../resources/constants/storageKeys";
-
-export let currentUser = null;
+import { authService } from "../services/authentication/authService";
 
 const initialState = {
-  currentUser: getCurrentUser(),
   status: thunkStatuses.idle,
   errorCode: null,
 };
 
-function getCurrentUser() {
-  const currentUserString = localStorage.getItem(storageKeys.currentUser);
-  currentUser = currentUserString || JSON.parse(currentUserString);
-  return currentUser;
-}
-
-function setCurrentUser(state, user) {
-  currentUser = user;
-  state.currentUser = user;
-  localStorage.setItem(storageKeys.currentUser, JSON.stringify(currentUser));
-}
-
-export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, 
-  async (newUser) => {
-    const response = await authApi.signup(newUser);
-    return response;
-  });
-
-export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, 
-  async (userCredentials) => {
-    const response = await authApi.login(userCredentials);
-    return response;
-  });
+export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, authService.signup.bind(authService));
+export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, authService.login.bind(authService));
 
 const authSlice = createSlice({
   name: reducersNames.auth,
   initialState,
   reducers: {
-    resetAuthStatus: (state, _) => {
-      state.status = thunkStatuses.idle;
-    },
-    refreshCurrentUser: (state, action) => {
-      setCurrentUser(state, action.payload);
-    },
+    resetAuthStatus: (state, _) => { state.status = thunkStatuses.idle; }
   },
   extraReducers(builder) {
     builder
@@ -54,7 +24,7 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = thunkStatuses.success;
-        setCurrentUser(state, action.payload.data);
+        state.currentUser = action.payload.data;
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.status = thunkStatuses.failed;
@@ -66,14 +36,14 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = thunkStatuses.success;
-        setCurrentUser(state, action.payload.data);
+        state.currentUser = action.payload.data;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = thunkStatuses.failed;
         state.errorCode = action.error.code;
-      })
-    }
+      });
+  },
 });
 
-export const { resetAuthStatus, refreshCurrentUser } = authSlice.actions;
+export const { resetAuthStatus } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,32 +1,27 @@
+import { apiRequestBuilder } from "../../builders/apiRequestBuilder";
 import { apiMethods } from "../../resources/constants/apiMethod";
 import { apiPaths } from "../../resources/constants/apiPaths";
-import { requestExecutor } from "./requestExecutor"
+import { requestExecutor } from "./request/requestExecutor";
 
 export const authApi = {
   signup(newUser) {
-    return requestExecutor.execute({
-      method: apiMethods.post,
-      path: apiPaths.auth.signup,
-      model: newUser,
-      authorize: false,
-    });
+    return requestExecutor.execute(apiRequestBuilder
+      .withMethod(apiMethods.post)
+      .withModel(newUser)
+      .build(apiPaths.auth.signup));
   },
 
   login(userCredentials) {
-    return requestExecutor.execute({
-      method: apiMethods.post,
-      path: apiPaths.auth.login,
-      model: userCredentials,
-      authorize: false,
-    });
+    return requestExecutor.execute(apiRequestBuilder
+      .withMethod(apiMethods.post)
+      .withModel(userCredentials)
+      .build(apiPaths.auth.login));
   },
 
-  refresh(refreshToken) {
-    return requestExecutor.execute({
-      method: apiMethods.post,
-      path: apiPaths.auth.refresh,
-      model: refreshToken,
-      authorize: false,
-    });
+  refresh(currentUser) {
+    return requestExecutor.execute(apiRequestBuilder
+      .withMethod(apiMethods.post)
+      .withModel(currentUser)
+      .build(apiPaths.auth.refresh));
   },
-}
+};
