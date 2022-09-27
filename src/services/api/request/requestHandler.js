@@ -1,6 +1,7 @@
-import { apiResultBuilder } from "../../../builders/apiResultBuilder";
-import { debug } from "../../../resources/constants/env";
+import ApiResultBuilder from "../../../builders/apiResultBuilder";
 import { errorCodes } from "../../../resources/constants/errorCodes";
+import { debug } from "../../../utils/debugUtils";
+import { printError, printInfo } from "../../../utils/printUtils";
 
 const apiInvalidStatus = 0;
 const unexpectedErrorStatus = -1;
@@ -31,9 +32,9 @@ function getUrl(requestInit) {
 async function getSuccessResponseResult(responseModel, requestInit) {
   const message = `${requestInit.method} "${requestInit.path}" request succeeded`;
   const wholeMessage = message + (` with response body:\n${JSON.stringify(responseModel, null, 2)}` || "");
-  console.info(wholeMessage);
+  printInfo(wholeMessage);
 
-  return apiResultBuilder.build(responseModel.data);
+  return new ApiResultBuilder().build(responseModel.data);
 }
 
 function getErrorResponseResult(errorResponseModel, status, requestInit) {
@@ -44,10 +45,10 @@ function getErrorResponseResult(errorResponseModel, status, requestInit) {
   debug(() => {
     const baseErrorMessage = `${requestInit.method} "${requestInit.path}" request failed with status code ${statusCode}\n  error code: "${errorCode}"`;
     const wholeErrorMessage = baseErrorMessage + (`\n  message: "${message}"` || "");
-    console.error(wholeErrorMessage);
+    printError(wholeErrorMessage);
   });
 
-  return apiResultBuilder
+  return new ApiResultBuilder()
     .withError(errorCode, message, statusCode)
     .build();
 }
@@ -55,10 +56,10 @@ function getErrorResponseResult(errorResponseModel, status, requestInit) {
 function getErrorResult(error, requestInit) {
   debug(() => {
     const wholeErrorMessage = `${requestInit.method} "${requestInit.path}" request failed with unexpected error: "${error.toString()}"`;
-    console.error(wholeErrorMessage);
+    printError(wholeErrorMessage);
   });
   
-  return apiResultBuilder
+  return new ApiResultBuilder()
     .withError(errorCodes.errorThatNeverHappens, error.toString(), unexpectedErrorStatus)
     .build();
 }
@@ -66,5 +67,5 @@ function getErrorResult(error, requestInit) {
 function logRequest(requestInit) {
   const message = `${requestInit.method} "${requestInit.path}" request executing`;
   const body = (requestInit.body && ` with body:\n${requestInit.body}`) || "...";
-  console.log(message + body);
+  printInfo(message + body);
 }

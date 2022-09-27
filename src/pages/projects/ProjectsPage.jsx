@@ -1,15 +1,15 @@
 import styled from "styled-components";
+import ProjectsGrid from "../../components/general/projects/ProjectsGrid";
 
 export const MainContainer = styled.main`
   height: 100vh;
   width: 100%;
-  background-color: red;
 `;
 
 export default function ProjectsPage(props) {
   return(
     <MainContainer>
-      
+      <ProjectsGrid />
     </MainContainer>
   );
 }

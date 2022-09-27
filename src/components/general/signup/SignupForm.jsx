@@ -3,7 +3,7 @@ import PasswordInput from "../../shared/inputs/PasswordInput";
 import React, { useRef, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { resetAuthStatus, signupUser } from "../../../slices/authSlice";
+import { resetAuthState, signupUser } from "../../../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { FormInput } from "../../shared/inputs/formInputStyled";
@@ -24,7 +24,7 @@ export default function SignupForm(props) {
   const isLoading = authState.status === thunkStatuses.loading;
   const [formState, setFormState] = useState(new InitialFormState(props.initialEmail));
 
-  useEffect(() => () => dispatch(resetAuthStatus()), [dispatch]);
+  useEffect(() => () => dispatch(resetAuthState()), [dispatch]);
 
   if (authState.status === thunkStatuses.success) {
     return <Navigate to={routeNames.projects}/>;

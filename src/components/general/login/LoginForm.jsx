@@ -9,7 +9,7 @@ import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { loginUser } from "../../../slices/authSlice";
 import { FormInput } from "../../shared/inputs/formInputStyled";
 import { routeNames } from "../../../resources/constants/routeNames";
-import { resetAuthStatus } from "../../../slices/authSlice";
+import { resetAuthState } from "../../../slices/authSlice";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -23,7 +23,7 @@ export default function LoginForm(props) {
   const isLoading = authState.status === thunkStatuses.loading;
   const [formState, setFormState] = useState(new InitialFormState(props.email));
 
-  useEffect(() => () => dispatch(resetAuthStatus()), [dispatch]);
+  useEffect(() => () =>  dispatch(resetAuthState()), [dispatch]);
 
   if (authState.status === thunkStatuses.success) {
     return <Navigate to={routeNames.projects}/>;

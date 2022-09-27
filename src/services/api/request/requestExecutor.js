@@ -1,6 +1,6 @@
+import ApiHeaderBuilder from "../../../builders/apiHeadersBuilder";
 import { requestHandler } from "./requestHandler";
 import { authService } from "../../authentication/authService";
-import { apiHeaderBuilder } from "../../../builders/apiHeadersBuilder";
 import { httpStatusCodes } from "../../../resources/constants/httpStatusCodes";
 
 export const requestExecutor = {
@@ -23,8 +23,8 @@ function getRequestInitFrom(request) {
     params: request.params,
     body: request.model && JSON.stringify(request.model, null, 2),
     headers: request.authorize ? 
-      apiHeaderBuilder.withToken(authService.currentUser?.accessToken).build() : 
-      apiHeaderBuilder.build(),
+      new ApiHeaderBuilder().withToken(authService.currentUser?.accessToken).build() : 
+      new ApiHeaderBuilder().build(),
   };
 };
 

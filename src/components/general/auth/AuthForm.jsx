@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { media } from "../../shared/media/MediaQueries";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { useDispatch } from "react-redux";
-import { resetAuthStatus } from "../../../slices/authSlice";
+import { resetAuthState } from "../../../slices/authSlice";
 
 export default function AuthForm(props) {
   const [t] = useTranslation();
@@ -33,7 +33,7 @@ export default function AuthForm(props) {
       <ErrorModal 
         isVisible={isFailed} 
         message={errorMessage}
-        onCloseClicked={() => dispatch(resetAuthStatus())}/>
+        onCloseClicked={() => dispatch(resetAuthState())}/>
     </styled.Form>
   );
 }
