@@ -21,12 +21,18 @@ export default function ApiRequestBuilder() {
       this.params = new URLSearchParams(params);
       return this;
     },
+
+    withHeaders: function(headers) {
+      this.headers = headers;
+      return this;
+    },
   
     build: function(path) {
       return {
         path: path,
         params: this.params,
         model: this.model,
+        headers: this.headers,
         authorize: this.authorize ?? false,
         method: this.method ?? apiMethods.get,
       };

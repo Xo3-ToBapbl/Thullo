@@ -11,7 +11,7 @@ const projectSlice = createSlice({
   initialState: new ReducerStateBuilder().initial().build(),
   extraReducers(builder) {
     reducerBuilderUtils.addCases(builder, [getProjects]);
-    }
+  }
 });
 
 export default projectSlice.reducer;

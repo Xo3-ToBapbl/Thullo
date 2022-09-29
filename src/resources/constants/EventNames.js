@@ -1,3 +1,3 @@
 export const eventNames = {
-  userRefreshed: "userRefreshed",
+  authIsRequired: "authIsRequired",
 };

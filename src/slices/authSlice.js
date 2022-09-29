@@ -3,6 +3,7 @@ import { reducersNames } from "../resources/constants/reducersNames";
 import { authService } from "../services/authentication/authService";
 import { reducerBuilderUtils } from "../utils/reducerBuilderUtils";
 import { ReducerStateBuilder } from "../builders/reducerStateBuilder";
+import { thunkStatuses } from "../resources/constants/thunkStatuses";
 
 export const signupUser = createAsyncThunk(`${reducersNames.auth}/signupUser`, authService.signup.bind(authService));
 export const loginUser = createAsyncThunk(`${reducersNames.auth}/loginUser`, authService.login.bind(authService));
@@ -12,7 +13,7 @@ const authSlice = createSlice({
   name: reducersNames.auth,
   initialState: initialState,
   reducers: {
-    resetAuthState: () => initialState,
+    resetAuthState: (state) => { state.status = thunkStatuses.idle; },
   },
   extraReducers(builder) {
     reducerBuilderUtils.addCases(builder, [signupUser, loginUser]);

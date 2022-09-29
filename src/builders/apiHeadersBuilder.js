@@ -2,25 +2,34 @@ import { isDevelopment } from "../resources/constants/env";
 
 export default function ApiHeaderBuilder(){
   return {
-    withToken: function (token) {
+    withAuthorization: function (token) {
       this.authorization = token && `Bearer ${token}`;
+      return this;
+    },
+
+    withContentType: function(value="application/json;charset=utf-8") {
+      this.contentType = value;
+      return this;
+    },
+
+    withMock: function(code=200) {
+      this.mockCode = code;
+      return this;
+    },
+
+    withCustom: function(headers) {
+      this.customHeaders = headers;
       return this;
     },
   
     build: function() {
-      let apiHeaders = {
-        "Content-Type": "application/json;charset=utf-8",
+      return {
+        ...(this.authorization && { "Authorization": this.authorization}),
+        ...(this.contentType && { "Content-Type": this.contentType}),
+        ...((isDevelopment && this.mockCode) && { "x-mock-response-code": this.mockCode}),
+
+        ...this.customHeaders,
       };
-  
-      if (this.authorization) {
-        apiHeaders["Authorization"] = this.authorization;
-      }
-  
-      if (isDevelopment) {
-        apiHeaders["x-mock-response-code"] = 200;
-      }
-  
-      return apiHeaders;
     }
   };
 } 
