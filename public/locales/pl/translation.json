@@ -7,8 +7,8 @@
   "polish": "Polska",
 
   "theme": "Schemat",
-  "lightTheme": "Jasny⠀schemat",
-  "darkTheme": "Ciemny⠀schemat",
+  "lightTheme": "Jasny schemat",
+  "darkTheme": "Ciemny schemat",
 
   "about": "O aplikacji",
   "aboutPartOne": "Thullo to aplikacja internetowa do zarządzania pracą zespołów. Jest rozwijany w ramach wyzwania programistycznego, które zapewnia zasób <tag>{{link}}</tag>. Jest inspirowany oryginalną aplikacją internetową do zarządzania zespołem Trello.",
@@ -32,6 +32,8 @@
   "firstName": "Imię",
   "lastName": "Nazwisko",
   "continue": "Kontynuuj",
+  "search": "Szukaj",
+  "keyword": "Słowo kluczowe",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
   "errorThatNeverHappens": "Pojawił się błąd wykonania aplikacji. To nigdy nie powinno się zdarzyć.",

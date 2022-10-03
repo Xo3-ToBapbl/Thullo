@@ -7,7 +7,6 @@ import { routeNames } from "../../resources/constants/routeNames";
 import { authService } from "../../services/authentication/authService";
 
 export const MainContainer = styled.main`
-  height: 100vh;
   width: 100%;
 `;
 
@@ -15,7 +14,7 @@ export default function ProjectsPage(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    function navigateToHome(e) {
+    function navigateToHome() {
       navigate(routeNames.home);
     }
     
@@ -25,7 +24,7 @@ export default function ProjectsPage(props) {
 
   return(
     <MainContainer>
-      <ProjectsGrid />
+      {/* <ProjectsGrid /> */}
     </MainContainer>
   );
 }

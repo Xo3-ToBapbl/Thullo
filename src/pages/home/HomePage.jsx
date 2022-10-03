@@ -5,9 +5,9 @@ import useDeviceProps, { PropsPerDevice } from "../../hooks/useDeviceProps";
 import { sizes } from "../../resources/constants/sizes";
 
 const propsPerDevice = new PropsPerDevice(
-  { maxWidthPx: sizes.desktop.homeContentMaxWidthPx, imgHeightPx: 450, imgWidthPx: 347, fontSizeRation: 1 },
-  { maxWidthPx: sizes.tablet.homeContentMaxWidthPx, imgHeightPx: 373, imgWidthPx: 288, fontSizeRation: 0.9 },
-  { maxWidthPx: sizes.mobile.homeContentMaxWidthPx, imgHeightPx: 270, imgWidthPx: 208, fontSizeRation: 0.8 }
+  { maxWidthPx: sizes.desktop.mainContentMaxWidthPx, imgHeightPx: 450, imgWidthPx: 347, fontSizeRation: 1 },
+  { maxWidthPx: sizes.tablet.mainContentMaxWidthPx, imgHeightPx: 373, imgWidthPx: 288, fontSizeRation: 0.9 },
+  { maxWidthPx: sizes.mobile.mainContentMaxWidthPx, imgHeightPx: 270, imgWidthPx: 208, fontSizeRation: 0.8 }
 );
 
 export const MainContainer = styled.main`

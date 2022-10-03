@@ -7,8 +7,8 @@
   "polish": "Polish",
 
   "theme": "Theme",
-  "lightTheme": "Light⠀theme",
-  "darkTheme": "Dark⠀theme",
+  "lightTheme": "Light theme",
+  "darkTheme": "Dark theme",
 
   "about": "About",
   "aboutPartOne": "Thullo is web application for managing teams workflow. It is developed in scope of programming challenge which is provided by <tag>{{link}}</tag> resource. It is inspired by original Trello team management web application.",
@@ -32,6 +32,8 @@
   "firstName": "First name",
   "lastName": "Last name",
   "continue": "Continue",
+  "search": "Search",
+  "keyword": "Keyword",
 
   "errorGeneric": "Something went wrong. Please, try again.",
   "errorThatNeverHappens": "Application execution error appeared. This should never happens.",

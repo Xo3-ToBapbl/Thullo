@@ -14,16 +14,9 @@ export const NavigationBar = styled.nav`
   box-shadow: 0px 2px 4px ${props => props.theme.onPrimaryShadow};
 `;
 
-export const ButtonsContainer = styled.div`
+export const UtilityContainer = styled.div`
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  gap: ${sizes.contentOffsetRem}rem;
-`;
-
-export const DropdownsContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-grow: 1;
-  margin-left: ${sizes.contentOffsetRem}rem;
   gap: ${sizes.contentOffsetRem}rem;
 `;

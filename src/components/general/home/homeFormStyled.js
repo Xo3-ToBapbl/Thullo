@@ -7,7 +7,7 @@ export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 0.5rem;
+  padding: ${sizes.quarterOffsetRem}rem;
   border-radius: ${sizes.cornerRadiusRem}rem;
   background-color: ${props => props.theme.secondary};
   box-shadow: 0px 2px 4px ${props => props.theme.onPrimaryShadow};
@@ -22,4 +22,5 @@ export const EmailInput = styled(TextInput)`
 export const EmailButton = styled(FillButtonStyled)`
   flex: 1 0 0rem;
   min-width: 20rem;
+  border-radius: ${0.7 * sizes.cornerRadiusRem}rem;
 `;

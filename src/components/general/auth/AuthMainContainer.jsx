@@ -1,8 +1,8 @@
 import React from "react";
 import * as styled from "./authMainContainerStyled";
-import { mobileMaxWidth, media } from "../../../components/shared/media/MediaQueries";
-import { sizes } from "../../../resources/constants/sizes";
 import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
+import { sizes } from "../../../resources/constants/sizes";
+import { mobileMaxWidth, media } from "../../../components/shared/media/MediaQueries";
 
 const sizesLocal = {
   maxWidthPx: mobileMaxWidth,

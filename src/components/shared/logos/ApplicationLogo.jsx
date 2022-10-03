@@ -27,8 +27,8 @@ export default function ApplicationLogo(props) {
   return (
     <ContainerStyled style={props.style}>
       <svg 
-        width="45"
-        height="40"
+        width="43"
+        height="35"
         viewBox="0 0 30 30" 
         fill="none" 
         xmlns="http://www.w3.org/2000/svg">

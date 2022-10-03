@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux'
-import { themeNames } from '../../../resources/constants/themeNames';
-import { setTheme } from "../../../slices/themeListSlice"
+import React from "react";
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { themeNames } from "../../../resources/constants/themeNames";
+import { setTheme } from "../../../slices/themeListSlice";
 import { ListLabelStyled } from "../../shared/labels/listLabelStyled";
 import { ListInputStyled } from "../../shared/inputs/listInputsStyled";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const IconStyled = styled.p`
   font-size: 1.6rem;

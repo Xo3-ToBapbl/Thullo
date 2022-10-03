@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import HomeNavigationBar from "./bars/HomeNavigationBar";
 import LoginNavigationBar from "./bars/LoginNavigationBar";
+import ProjectsNavigationBar from "./bars/ProjectsNavigationBar";
 import SignupNavigationBar from "./bars/SignupNavigationBar";
 
 const HeaderContainer = styled.header`
@@ -16,7 +17,8 @@ const headers = {
   home: (<HomeNavigationBar />),
   login: (<LoginNavigationBar />),
   signup: (<SignupNavigationBar />),
-}
+  projects: (<ProjectsNavigationBar />),
+};
 
 export default function Header() {
   const location = useLocation();
