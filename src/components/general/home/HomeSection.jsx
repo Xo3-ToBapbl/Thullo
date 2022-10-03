@@ -2,10 +2,19 @@ import home from "../../../resources/images/home.webp";
 import React from "react";
 import HomeForm from "./HomeForm";
 import * as styled from "./homeSectionStyled";
+import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
 import { useTranslation } from 'react-i18next';
+import { sizes } from "../../../resources/constants/sizes";
 
-export default function HomeSection(props) {
-  const sizes = props.sizes;
+const propsPerDevice = new PropsPerDevice(
+  { maxWidthPx: sizes.desktop.mainContentMaxWidthPx, imgHeightPx: 450, imgWidthPx: 347, fontSizeRation: 1 },
+  { maxWidthPx: sizes.tablet.mainContentMaxWidthPx, imgHeightPx: 373, imgWidthPx: 288, fontSizeRation: 0.9 },
+  { maxWidthPx: sizes.mobile.mainContentMaxWidthPx, imgHeightPx: 270, imgWidthPx: 208, fontSizeRation: 0.8 }
+);
+
+export default function HomeSection() {
+  const [ sizes ] = useDeviceProps(propsPerDevice);
+
   return (
     <styled.SectionContainer sizes={sizes}>
       <styled.Introduction sizes={sizes}>

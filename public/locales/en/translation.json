@@ -32,8 +32,11 @@
   "firstName": "First name",
   "lastName": "Last name",
   "continue": "Continue",
+
   "search": "Search",
   "keyword": "Keyword",
+  "add": "Add",
+  "allBoards": "All Boards",
 
   "errorGeneric": "Something went wrong. Please, try again.",
   "errorThatNeverHappens": "Application execution error appeared. This should never happens.",

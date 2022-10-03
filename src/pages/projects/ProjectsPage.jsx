@@ -1,17 +1,24 @@
 import styled from "styled-components";
 import ProjectsGrid from "../../components/general/projects/ProjectsGrid";
+import ProjectHeader from "../../components/general/projects/ProjectsHeader";
+import useDeviceProps from "../../hooks/useDeviceProps";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { eventNames } from "../../resources/constants/eventNames";
 import { routeNames } from "../../resources/constants/routeNames";
 import { authService } from "../../services/authentication/authService";
+import { sizes } from "../../resources/constants/sizes";
 
 export const MainContainer = styled.main`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: ${props => sizes[props.device].contentOffsetRem}rem;
 `;
 
-export default function ProjectsPage(props) {
+export default function ProjectsPage() {
   const navigate = useNavigate();
+  const [ _, device ] = useDeviceProps();
 
   useEffect(() => {
     function navigateToHome() {
@@ -23,8 +30,9 @@ export default function ProjectsPage(props) {
   }, [navigate]);
 
   return(
-    <MainContainer>
-      {/* <ProjectsGrid /> */}
+    <MainContainer device={device}>
+      <ProjectHeader device={device} />
+      <ProjectsGrid device={device} />
     </MainContainer>
   );
 }

@@ -14,7 +14,7 @@ const propsPerDevice = new PropsPerDevice(
   {offset: sizes.contentOffsetRem, left: `${sizes.contentOffsetRem}rem`, width: "none" });
 
 export default function ErrorModal(props) {
-  const sizes = useDeviceProps(propsPerDevice);
+  const [ sizes ] = useDeviceProps(propsPerDevice);
   return (
     <ModalPortal>
       <CSSTransition 

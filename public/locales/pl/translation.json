@@ -32,8 +32,11 @@
   "firstName": "Imię",
   "lastName": "Nazwisko",
   "continue": "Kontynuuj",
+
   "search": "Szukaj",
   "keyword": "Słowo kluczowe",
+  "add": "Dodać",
+  "allBoards": "Wszystkie tablice",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
   "errorThatNeverHappens": "Pojawił się błąd wykonania aplikacji. To nigdy nie powinno się zdarzyć.",

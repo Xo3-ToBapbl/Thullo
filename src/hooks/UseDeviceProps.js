@@ -20,10 +20,10 @@ export default function useDeviceProps(propsPerDevice) {
   device = device === defaultDevice ? previousDevice : device;
   previousDevice = device;
 
-  return propsPerDevice[device]; 
+  return [ propsPerDevice && propsPerDevice[device], device ]; 
 }
 
-function useDeviceName() {
+export function useDeviceName() {
   const isDesktop = media.IsDesktop();
   const isTablet = media.IsTablet();
   const isMobile = media.IsMobile();

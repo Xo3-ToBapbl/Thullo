@@ -24,8 +24,8 @@ const propsPerDevice = new PropsPerDevice(
   },
 );
 
-export default function ProjectsSearchForm(props) {
-  const propsLocal = useDeviceProps(propsPerDevice);
+export default function ProjectsSearchForm() {
+  const [ propsLocal ] = useDeviceProps(propsPerDevice);
   const [ t ] = useTranslation();
 
   return (

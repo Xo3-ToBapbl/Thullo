@@ -9,7 +9,7 @@ const propsPerDevice = new PropsPerDevice(
 );
 
 export default function MainFooterContent(props) {
-  const maxWidthPx = useDeviceProps(propsPerDevice);
+  const [ maxWidthPx ] = useDeviceProps(propsPerDevice);
   return (
     <BaseFooterContent maxWidthPx={maxWidthPx}/>
   );

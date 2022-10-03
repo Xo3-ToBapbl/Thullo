@@ -20,7 +20,7 @@ const propsPerDevice = new PropsPerDevice(
 );
 
 export default function AuthMainContainer(props) {
-  const sizes = useDeviceProps(propsPerDevice);
+  const [ sizes ] = useDeviceProps(propsPerDevice);
   return (
     <styled.MainContainer sizes={sizes}>
       <media.Mobile>
