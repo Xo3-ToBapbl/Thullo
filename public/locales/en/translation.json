@@ -39,8 +39,12 @@
   "allBoards": "All Boards",
 
   "errorGeneric": "Something went wrong. Please, try again.",
+  "errorGenericTitle": "Something went wrong.",
+  "errorGenericDescription": "Please, try again or refresh page.",
   "errorThatNeverHappens": "Application execution error appeared. This should never happens.",
   "errorPasswordDontMatch": "Passwords that you have entered don't match. Please, check your passwords and try again.",
   "errorInvalidPassword": "You have entered invalid password. Please, check your password and try again.",
-  "errorCantRefreshToken": "Error appeared during refreshing access token. Please, try again."
+  "errorCantRefreshToken": "Error appeared during refreshing access token. Please, try again.",
+  "errorDontHaveProjectsTitle": "You don't have any active projects.",
+  "errorDontHaveProjectsDescription": "Please, press 'Add' button to add new project or request to join for existent."
 }

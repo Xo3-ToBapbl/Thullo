@@ -26,6 +26,11 @@ export default function ApiRequestBuilder() {
       this.headers = headers;
       return this;
     },
+
+    withMockCode: function(code) {
+      this.mockCode = code;
+      return this;
+    },
   
     build: function(path) {
       return {
@@ -35,6 +40,7 @@ export default function ApiRequestBuilder() {
         headers: this.headers,
         authorize: this.authorize ?? false,
         method: this.method ?? apiMethods.get,
+        mockCode: this.mockCode,
       };
     }
   };

@@ -25,7 +25,7 @@ const RootContainer = styled.div`
 
 export default function Root() {
   const isMenuVisible = useSelector(state => state.menu.isMenuVisible);
-  const contentOffset = useDeviceProps(propsPerDevice);
+  const [ contentOffset ] = useDeviceProps(propsPerDevice);
   const location = useLocation();
 
   if (location.pathname === routeNames.root) {

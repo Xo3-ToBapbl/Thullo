@@ -1,6 +1,6 @@
 import ApplicationLogo from "../../shared/logos/ApplicationLogo";
 import LoadingSpinner from "../../shared/loaders/LoadingSpinner";
-import ErrorModal from "../../shared/modals/ErrorModal";
+import ErrorModal from "../../shared/errors/ErrorModal";
 import * as styled from "./authFormStyled";
 import { useTranslation } from "react-i18next";
 import { media } from "../../shared/media/MediaQueries";

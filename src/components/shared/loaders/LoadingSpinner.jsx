@@ -12,5 +12,7 @@ const LoadingSpinnerStyled = styled.div`
 `;
 
 export default function LoadingSpinner(props) {
-  return <LoadingSpinnerStyled size={props.size}/>;
+  return <LoadingSpinnerStyled 
+    style={props.style} 
+    size={props.size} />;
 }

@@ -41,7 +41,7 @@ function getHeaders(request) {
   const headerBuilder = new ApiHeaderBuilder();
   headerBuilder
     .withContentType()
-    .withMock();
+    .withMock(request.mockCode ?? 200);
 
   return request.authorize ? 
     headerBuilder.withAuthorization(authService.currentUser?.accessToken).build() :  

@@ -39,8 +39,12 @@
   "allBoards": "Wszystkie tablice",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
+  "errorGenericTitle": "Coś poszło nie tak.",
+  "errorGenericDescription": "Spróbuj ponownie lub odśwież stronę.",
   "errorThatNeverHappens": "Pojawił się błąd wykonania aplikacji. To nigdy nie powinno się zdarzyć.",
   "errorPasswordDontMatch": "Hasła, które wpisałeś nie pasują do siebie. Sprawdź swoje hasła i spróbuj ponownie.",
   "errorInvalidPassword": "Wprowadziłeś nieprawidłowe hasło. Sprawdź hasło i spróbuj ponownie.",
-  "errorCantRefreshToken": "Wystąpił błąd podczas odświeżania tokena dostępu. Spróbuj ponownie."
+  "errorCantRefreshToken": "Wystąpił błąd podczas odświeżania tokena dostępu. Spróbuj ponownie.",
+  "errorDontHaveProjectsTitle": "Nie masz żadnych aktywnych projektów",
+  "errorDontHaveProjectsDescription": "Proszę nacisnąć przycisk „Dodaj”, aby dodać nowy projekt lub poprosić o dołączenie do istniejącego"
 }
