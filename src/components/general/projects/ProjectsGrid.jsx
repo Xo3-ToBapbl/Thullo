@@ -11,7 +11,7 @@ import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 
 const ProjectsContainer = styled.section`
   display: grid;
-  grid-auto-rows: 230px;
+  grid-auto-rows: 250px;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: ${props => sizes[props.device].contentOffsetRem}rem;
   width: 100%;

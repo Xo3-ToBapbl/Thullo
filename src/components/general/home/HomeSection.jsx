@@ -1,4 +1,4 @@
-import home from "../../../resources/images/home.webp";
+import homeImage from "../../../resources/images/home.webp";
 import React from "react";
 import HomeForm from "./HomeForm";
 import * as styled from "./homeSectionStyled";
@@ -22,7 +22,11 @@ export default function HomeSection() {
         <HomeForm />
       </styled.Introduction>
 
-      <styled.Image sizes={sizes} src={home} width="465.5" height="602.5" />
+      <styled.Image 
+        sizes={sizes} 
+        src={homeImage} 
+        width="465.5" 
+        height="602.5" />
     </styled.SectionContainer>
   );
 }
