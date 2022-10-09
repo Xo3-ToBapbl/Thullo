@@ -6,16 +6,26 @@ export const reducerBuilderUtils = {
     actionCreators.forEach(actionCreator => {
       builder
         .addCase(actionCreator.pending, (state) => {
+          changeStatus(state, thunkStatuses.loading);
           state.status = thunkStatuses.loading;
         })
         .addCase(actionCreator.fulfilled, (state, action) => {
-          state.status = thunkStatuses.success;
+          changeStatus(state, thunkStatuses.success);
           state.data = action.payload.data;
         })
         .addCase(actionCreator.rejected, (state, action) => {
-          state.status = thunkStatuses.failed;
+          changeStatus(state, thunkStatuses.failed);
           state.errorCode = action.error.code;
         });
     });
   },
+
 };
+
+function changeStatus(state, status) {
+  state.status = status;
+  state.isSuccess = status === thunkStatuses.success;
+  state.isFailed = status === thunkStatuses.failed;
+  state.isLoading = status === thunkStatuses.loading;
+  state.isIdle = status === thunkStatuses.idle;
+}

@@ -2,6 +2,7 @@ import projectImage from "../../../resources/images/project.jpg";
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
 import Avatar from "../../shared/avatars/Avatar";
+import { isEmpty } from "../../../utils/generalUtils";
 
 const Card = styled.article`
   display: flex;
@@ -30,12 +31,13 @@ const Title = styled.h1`
   color: ${(props) => props.theme.onPrimary};
 `;
 
-export default function ProjectCard() {
+export default function ProjectCard(props) {
+  const data = props.data;
   return (
     <Card>
       <Image src={projectImage} />
-      <Title>Devchallenges Board</Title>
-      <UsersList/>
+      <Title>{data.title}</Title>
+      <UsersList data={data.users}/>
     </Card>
   );
 }
@@ -51,16 +53,20 @@ const Container = styled.div`
 const OthersLabel = styled.p`
   font-family: "notosans";
   color: ${(props) => props.theme.onSecondary};
+  cursor: pointer;
 `;
 
-function UsersList() {
-  return (
+function UsersList(props) {
+  const users = props.data ?? [];
+  const userAvatars = users.slice(0, 3).map((user) => <Avatar data={user}/>);
+  const remainingUsersCount = users.length - 3;
+  return(
     <Container>
-      <Avatar />
-      <Avatar />
-      <Avatar />
-
-      <OthersLabel>+ 5 others</OthersLabel>
+      {userAvatars}
+      { 
+        isEmpty(users) ? <OthersLabel>Add related users</OthersLabel> :
+        remainingUsersCount > 0 ? <OthersLabel>+ {remainingUsersCount} others</OthersLabel> : null 
+      }
     </Container>
   );
 }

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../../../slices/projectsSlice";
 import { sizes } from "../../../resources/constants/sizes";
 import { useTranslation } from "react-i18next";
-import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
+import { StateComponentFactory } from "../../../factories/stateComponentFactory";
 
 const ProjectsContainer = styled.section`
   display: grid;
@@ -24,44 +24,35 @@ export default function ProjectsGrid(props) {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const projectsState = useSelector((state) => state.projects);
-  const isLoading = projectsState.status === thunkStatuses.loading;
-  const isSuccess = projectsState.status === thunkStatuses.success;
-  const isFailed = projectsState.status === thunkStatuses.failed;
+  const componentFactory = new StateComponentFactory({
+    loading: () => <LoadingSpinner 
+      style={{alignSelf: "center"}} 
+      size={4} />,
+
+    success: () => <ProjectCardsContainer 
+      projectsData={projectsState.data} 
+      device={props.device}/>,
+      
+    successWhenEmpty: () => <Error 
+      noData={true} 
+      title={t("errorDontHaveProjectsTitle")} 
+      description={t("errorDontHaveProjectsDescription")} />,
+
+    failed: () => <Error 
+      title={t("errorGenericTitle")} 
+      description={t("errorGenericDescription")} />,
+  });
   
   useEffect(() => {
     dispatch(getProjects());
     return () => { };
   }, [dispatch]);
 
-  if (isLoading) {
-    return <LoadingSpinner 
-      style={{alignSelf: "center"}} 
-      size={4} />;
-  }
-
-  if (isSuccess){
-    return projectsState.data && projectsState.data.length !== 0 ? 
-      <ProjectCardsContainer
-        projects={projectsState.data} 
-        device={props.device}/> :
-        
-      <Error 
-        noData={true} 
-        title={t("errorDontHaveProjectsTitle")} 
-        description={t("errorDontHaveProjectsDescription")} />;
-  }
-
-  if (isFailed){
-    return <Error        
-      title={t("errorGenericTitle")} 
-      description={t("errorGenericDescription")} />;
-  }
-
-  return <></>;
+  return componentFactory.getFor(projectsState);
 }
 
 function ProjectCardsContainer(props) {
-  const projectCards = props.projects.map((project) => <ProjectCard key={project.id}/>);
+  const projectCards = props.projectsData.map((projectData) => <ProjectCard key={projectData.id} data={projectData} />);
   return (
     <ProjectsContainer device={props.device}>
       {projectCards}

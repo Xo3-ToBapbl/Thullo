@@ -14,6 +14,11 @@ export function ReducerStateBuilder(){
         status: this.status ?? thunkStatuses.idle,
         data: this.data,
         errorCode: this.errorCode,
+        
+        isSuccess: this.status === thunkStatuses.success,
+        isFailed: this.status === thunkStatuses.failed,
+        isLoading: this.status === thunkStatuses.loading,
+        isIdle: this.status === thunkStatuses.idle,
       };
     }
   };

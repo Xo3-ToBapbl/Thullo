@@ -20,7 +20,6 @@ export default function LoginForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  const isLoading = authState.status === thunkStatuses.loading;
   const [formState, setFormState] = useState(new InitialFormState(props.email));
 
   useEffect(() => () =>  dispatch(resetAuthState()), [dispatch]);
@@ -45,7 +44,7 @@ export default function LoginForm(props) {
     authState={authState}
     headerText={t("loginFormHeader")}
     children={<FormInputs 
-      isLoading={isLoading}
+      isLoading={authState.isLoading}
       formState={formState}
       formInputChanged={formInputChanged} />}
     />;
@@ -55,7 +54,7 @@ function FormInputs(props) {
   const [t] = useTranslation();
 
   return(
-    <React.Fragment>
+    <>
       <FormInput
         required={true}
         value={props.formState.email} 
@@ -73,6 +72,6 @@ function FormInputs(props) {
         name="password"
         disabled={props.isLoading}
         onChange={props.formInputChanged} />
-    </React.Fragment>
+    </>
   );
 }

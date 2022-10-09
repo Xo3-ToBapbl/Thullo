@@ -21,7 +21,6 @@ export default function SignupForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  const isLoading = authState.status === thunkStatuses.loading;
   const [formState, setFormState] = useState(new InitialFormState(props.initialEmail));
 
   useEffect(() => () => dispatch(resetAuthState()), [dispatch]);
@@ -47,7 +46,7 @@ export default function SignupForm(props) {
     headerText={t("signupFormHeader")}
     children={<FormInputs 
       initialEmail={props.email} 
-      isLoading={isLoading}
+      isLoading={authState.isLoading}
       formState={formState}
       formInputChanged={formInputChanged} />}
     />;

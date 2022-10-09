@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
+import { getAbbreviation } from "../../../utils/stringUtils";
 
 export default function Avatar(props) {
-  return props.data ? <AvatarImage/> : <DefaultAvatar />;
+  const data = props.data;
+  return data.img ? 
+    <AvatarImage imageSource={data.img}/> : 
+    <DefaultAvatar firstName={data.firstName} lastName={data.lastName} />;
 }
 
 function AvatarImage(props) {
+  const imageSource = props.imageSource;
   return <img alt="avatar"/>;
 }
 
@@ -17,6 +22,7 @@ const AbbreviationContainer = styled.div`
   align-items: center;
   border-radius: ${0.7 * sizes.cornerRadiusRem}rem;
   background-color: ${(props) => props.theme.accent};
+  cursor: pointer;
 `;
 
 const Abbreviation = styled.h2`
@@ -25,11 +31,12 @@ const Abbreviation = styled.h2`
   color: ${props => props.theme.onAccent};
 `;
 
-function DefaultAvatar() {
+function DefaultAvatar(props) {
+  const abbreviationText = getAbbreviation(`${props.firstName} ${props.lastName}`);
   return (
     <AbbreviationContainer>
       <Abbreviation>
-        XN
+        {abbreviationText}
       </Abbreviation>
     </AbbreviationContainer>
   );
