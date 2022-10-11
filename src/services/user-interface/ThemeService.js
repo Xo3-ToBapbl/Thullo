@@ -49,7 +49,7 @@ const themes = {
     invalid: "#C91A06",
     invalidBackground: "#efcbca"
   }
-}
+};
 
 export const themeService = (() => {
   const initialThemeName = localStorage.getItem(storageKeys.themeName) ?? themeNames.light;

@@ -18,7 +18,7 @@ export const MainContainer = styled.main`
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
-  const [ _, device ] = useDeviceProps();
+  const device = useDeviceProps()[1];
 
   useEffect(() => {
     function navigateToHome() {

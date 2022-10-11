@@ -2,6 +2,9 @@
   "logIn": "Zaloguj sie",
   "signup": "Zarejestruj się",
 
+  "loading": "Ładowanie...",
+  "error": "Błąd",
+
   "language": "Język",
   "english": "Angielski",
   "polish": "Polska",
@@ -37,6 +40,8 @@
   "keyword": "Słowo kluczowe",
   "add": "Dodać",
   "allBoards": "Wszystkie tablice",
+  "noOtherUsers": "Brak innych użytkowników",
+  "plusOthers": "+ {{count}} innych",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
   "errorGenericTitle": "Coś poszło nie tak.",

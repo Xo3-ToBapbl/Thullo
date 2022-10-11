@@ -1,43 +1,33 @@
-import styled from "styled-components";
-import { sizes } from "../../../resources/constants/sizes";
+import getRandomColor from "../../../utils/randomColorUtils";
+import * as styled from "./avatarStyled";
 import { getAbbreviation } from "../../../utils/stringUtils";
+import LoadingSpinner from "../loaders/LoadingSpinner";
+import { useTheme } from "styled-components";
 
 export default function Avatar(props) {
   const data = props.data;
-  return data.img ? 
-    <AvatarImage imageSource={data.img}/> : 
-    <DefaultAvatar firstName={data.firstName} lastName={data.lastName} />;
+  return <DefaultAvatar 
+    isError={props.isError}
+    isLoading={props.isLoading} 
+    firstName={data?.firstName} 
+    lastName={data?.lastName} />;
 }
-
-function AvatarImage(props) {
-  const imageSource = props.imageSource;
-  return <img alt="avatar"/>;
-}
-
-const AbbreviationContainer = styled.div`
-  aspect-ratio: 1/1;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: ${0.7 * sizes.cornerRadiusRem}rem;
-  background-color: ${(props) => props.theme.accent};
-  cursor: pointer;
-`;
-
-const Abbreviation = styled.h2`
-  font-size: 1.6rem;
-  font-family: notosans;
-  color: ${props => props.theme.onAccent};
-`;
 
 function DefaultAvatar(props) {
-  const abbreviationText = getAbbreviation(`${props.firstName} ${props.lastName}`);
+  const theme = useTheme();
+  const isLoading = props.isLoading ?? false;
+  const isError = props.isError ?? false;
+
+  const backgroundColor = isError ? theme.invalid : getRandomColor();
+  const innerContent = isLoading ? 
+    <LoadingSpinner size={2.4}/> : 
+    <styled.Abbreviation>
+      { isError ? "!" : getAbbreviation(`${props.firstName} ${props.lastName}`) }
+    </styled.Abbreviation>;
+
   return (
-    <AbbreviationContainer>
-      <Abbreviation>
-        {abbreviationText}
-      </Abbreviation>
-    </AbbreviationContainer>
+    <styled.AbbreviationContainer backgroundColor={backgroundColor}>
+      {innerContent}
+    </styled.AbbreviationContainer>
   );
 }

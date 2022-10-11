@@ -2,6 +2,9 @@
   "logIn": "Log in",
   "signup": "Sign up",
 
+  "loading": "Loading...",
+  "error": "Error",
+
   "language": "Language",
   "english": "English",
   "polish": "Polish",
@@ -37,6 +40,8 @@
   "keyword": "Keyword",
   "add": "Add",
   "allBoards": "All Boards",
+  "noOtherUsers": "No other users",
+  "plusOthers": "+ {{count}} others",
 
   "errorGeneric": "Something went wrong. Please, try again.",
   "errorGenericTitle": "Something went wrong.",

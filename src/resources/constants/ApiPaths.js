@@ -6,5 +6,8 @@ export const apiPaths = {
   },
   projects:{
     get: "/projects/get"
+  },
+  user:{
+    getCurrent: "/user/getCurrent"
   }
 };

@@ -3,4 +3,5 @@ export const reducersNames = {
   menu: "menu",
   auth: "auth",
   projects: "projects",
+  user: "user",
 };
