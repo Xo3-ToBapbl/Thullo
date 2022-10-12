@@ -18,7 +18,7 @@ export default function ErrorModal(props) {
   return (
     <ModalPortal>
       <CSSTransition 
-        in={props.isVisible} 
+        in={props.isVisible}
         unmountOnExit={true}
         timeout={300}
         classNames="errorModal">

@@ -1,7 +1,7 @@
 import "./loadingSpinner.css";
 import styled from "styled-components";
 
-const LoadingSpinnerStyled = styled.div`
+export const LoadingSpinner = styled.div`
   display: inline-block;
   width: ${(props) => props.size ?? 3}rem;
   height: ${(props) => props.size ?? 3}rem;
@@ -11,8 +11,7 @@ const LoadingSpinnerStyled = styled.div`
   animation: spin 1s ease-in-out infinite;
 `;
 
-export default function LoadingSpinner(props) {
-  return <LoadingSpinnerStyled 
-    style={props.style} 
-    size={props.size} />;
-}
+export const OnColoredLoadingSpinner = styled(LoadingSpinner)`
+  border: 3px solid ${(props) => props.theme.onColored + "30"};
+  border-top-color: ${(props) => props.theme.onColored};
+`;

@@ -1,8 +1,8 @@
 import getRandomColor from "../../../utils/randomColorUtils";
 import * as styled from "./avatarStyled";
 import { getAbbreviation } from "../../../utils/stringUtils";
-import LoadingSpinner from "../loaders/LoadingSpinner";
 import { useTheme } from "styled-components";
+import { OnColoredLoadingSpinner } from "../loaders/LoadingSpinner";
 
 export default function Avatar(props) {
   const data = props.data;
@@ -20,7 +20,7 @@ function DefaultAvatar(props) {
 
   const backgroundColor = isError ? theme.invalid : getRandomColor();
   const innerContent = isLoading ? 
-    <LoadingSpinner size={2.4}/> : 
+    <OnColoredLoadingSpinner size={2.4}/> : 
     <styled.Abbreviation>
       { isError ? "!" : getAbbreviation(`${props.firstName} ${props.lastName}`) }
     </styled.Abbreviation>;

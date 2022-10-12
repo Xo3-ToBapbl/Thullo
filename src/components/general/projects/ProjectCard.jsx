@@ -28,7 +28,7 @@ function UsersList(props) {
         isEmpty(users) ? <styled.OthersLabel>{t("noOtherUsers")}</styled.OthersLabel> :
         remainingUsersCount > 0 ? 
           <styled.OthersLabel>
-            <Trans i18nKey="plusOthers" count={remainingUsersCount}/>
+            <Trans i18nKey="plusOthers" values={{count: remainingUsersCount}}/>
           </styled.OthersLabel> : null 
       }
     </styled.Container>

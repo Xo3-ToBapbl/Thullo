@@ -1,12 +1,12 @@
 import { isEmpty } from "../utils/generalUtils";
 
-export function StateComponentFactory({idle, success, successWhenEmpty, failed, loading}) {
+export function StateToObjectFactory({idle, success, successWhenEmpty, failed, loading}) {
   
-  this.idle = idle ?? (() => <></>);
-  this.success = success ?? (() => <></>);
-  this.successWhenEmpty =  successWhenEmpty?? (() => <></>);
-  this.failed = failed ?? (() => <></>);
-  this.loading = loading ?? (() => <></>);
+  this.idle = idle ?? (() => null);
+  this.success = success ?? (() => null);
+  this.successWhenEmpty =  successWhenEmpty?? (() => null);
+  this.failed = failed ?? (() => null);
+  this.loading = loading ?? (() => null);
   
   this.getFor = function getFor(state) {
     return (

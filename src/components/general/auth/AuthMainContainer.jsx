@@ -35,7 +35,7 @@ export default function AuthMainContainer(props) {
 function FormSection(props) {
   const isMobile = media.IsMobile();
   const form = props.formFactory(props.sizes);
-  const content = isMobile ? form : <styled.FormSection sizes={props.sizes} children={form}/>
+  const content = isMobile ? form : <styled.FormSection sizes={props.sizes} children={form}/>;
 
   return content;
 }

@@ -18,4 +18,8 @@ export const UserName = styled.h2`
   font-family: notosans;
   white-space: nowrap;
   color: ${(props) => props.theme.onSecondary};
+
+  &:last-child {
+    margin-right: ${sizes.halfOffsetRem}rem;
+  }
 `;

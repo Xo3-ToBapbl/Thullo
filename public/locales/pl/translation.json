@@ -44,6 +44,7 @@
   "plusOthers": "+ {{count}} innych",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
+  "errorGenericClickToReload": "Coś poszło nie tak. Kliknij tutaj, aby ponownie załadować dane.",
   "errorGenericTitle": "Coś poszło nie tak.",
   "errorGenericDescription": "Spróbuj ponownie lub odśwież stronę.",
   "errorThatNeverHappens": "Pojawił się błąd wykonania aplikacji. To nigdy nie powinno się zdarzyć.",

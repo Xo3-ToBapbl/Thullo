@@ -1,11 +1,11 @@
 import ApplicationLogo from "../../shared/logos/ApplicationLogo";
-import LoadingSpinner from "../../shared/loaders/LoadingSpinner";
 import ErrorModal from "../../shared/errors/ErrorModal";
 import * as styled from "./authFormStyled";
 import { useTranslation } from "react-i18next";
 import { media } from "../../shared/media/MediaQueries";
 import { useDispatch } from "react-redux";
 import { resetAuthState } from "../../../slices/authSlice";
+import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 
 export default function AuthForm(props) {
   const [t] = useTranslation();
@@ -24,7 +24,7 @@ export default function AuthForm(props) {
       {props.children}
       
       <styled.ContinueButton disabled={authState.isLoading} type="submit">
-        { authState.isLoading ? <LoadingSpinner /> : t("continue")}
+        { authState.isLoading ? <OnColoredLoadingSpinner /> : t("continue")}
       </styled.ContinueButton>
       
       <ErrorModal 

@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { reducersNames } from "../resources/constants/reducersNames"
-import { themeService } from '../services/user-interface/themeService';
+import { createSlice } from "@reduxjs/toolkit";
+import { reducersNames } from "../resources/constants/reducersNames";
+import { themeService } from "../services/user-interface/themeService";
 
 export const themeListSlice = createSlice({
   name: reducersNames.theme,

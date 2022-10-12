@@ -3,24 +3,40 @@ import * as styled from "./userAvatarStyled";
 import { media } from "../../shared/media/MediaQueries.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { StateComponentFactory } from "../../../factories/stateComponentFactory";
+import { StateToObjectFactory } from "../../../factories/stateToObjectFactory";
 import { useEffect } from "react";
 import { getCurrent } from "../../../slices/currentUserSlice";
 
 export default function UserAvatar() {
+  const [ t ] = useTranslation();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
+  const titleFactory = new StateToObjectFactory({
+    loading: () => t("loading"),
+    success: () => `${userState.data.firstName} ${userState.data.lastName}`,
+    failed: () => t("errorGenericClickToReload"),
+  });
 
   useEffect(() => {
     dispatch(getCurrent());
     return () => { };
   }, [dispatch]);
 
+  function userAvatarClicked() {
+    if (userState.isFailed) {
+      dispatch(getCurrent());
+    }
+  }
+
   return (
-    <styled.UserAvatarContainer>
+    <styled.UserAvatarContainer 
+      title={titleFactory.getFor(userState)} 
+      onClick={userAvatarClicked}>
+
       <media.Desktop children={<UserAvatarDesktop userState={userState} />} />
       <media.Tablet children={<UserAvatarTablet userState={userState} />} />
       <media.Mobile children={<UserAvatarMobile userState={userState} />} />
+      
     </styled.UserAvatarContainer>
   );
 }
@@ -28,7 +44,7 @@ export default function UserAvatar() {
 function UserAvatarDesktop(props) {
   const [ t ] = useTranslation();
   const userState = props.userState;
-  const componentFactory = new StateComponentFactory({
+  const componentFactory = new StateToObjectFactory({
     loading: () => 
       <>
         <Avatar isLoading={true} />
@@ -53,7 +69,7 @@ function UserAvatarDesktop(props) {
 
 function UserAvatarTablet(props) {
   const userState = props.userState;
-  const componentFactory = new StateComponentFactory({
+  const componentFactory = new StateToObjectFactory({
     loading: () => <Avatar isLoading={true} />,
     failed: () => <Avatar isError={true} />,
     success: () => 
@@ -68,7 +84,7 @@ function UserAvatarTablet(props) {
 
 function UserAvatarMobile(props) {
   const userState = props.userState;
-  const componentFactory = new StateComponentFactory({
+  const componentFactory = new StateToObjectFactory({
     loading: () => <Avatar isLoading={true} />,
     failed: () => <Avatar isError={true} />,
     success: () => <Avatar data={userState.data} />,

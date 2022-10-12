@@ -22,7 +22,7 @@ export const reducerBuilderUtils = {
 
 };
 
-function changeStatus(state, status) {
+export function changeStatus(state, status) {
   state.status = status;
   state.isSuccess = status === thunkStatuses.success;
   state.isFailed = status === thunkStatuses.failed;

@@ -11,6 +11,7 @@ export const Card = styled.article`
   border-radius: ${2 * sizes.cornerRadiusRem}rem;
   background-color: ${props => props.theme.secondary};
   box-shadow: 0px 3px 4px ${props => props.theme.onPrimaryShadow};
+  cursor: pointer;
 `;
 
 export const Image = styled.img`

@@ -44,6 +44,7 @@
   "plusOthers": "+ {{count}} others",
 
   "errorGeneric": "Something went wrong. Please, try again.",
+  "errorGenericClickToReload": "Something went wrong. Please, click here to reload data.",
   "errorGenericTitle": "Something went wrong.",
   "errorGenericDescription": "Please, try again or refresh page.",
   "errorThatNeverHappens": "Application execution error appeared. This should never happens.",

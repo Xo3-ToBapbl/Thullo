@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { reducersNames } from "../resources/constants/reducersNames";
 import { authService } from "../services/authentication/authService";
-import { reducerBuilderUtils } from "../utils/reducerBuilderUtils";
+import { changeStatus, reducerBuilderUtils } from "../utils/reducerBuilderUtils";
 import { ReducerStateBuilder } from "../builders/reducerStateBuilder";
 import { thunkStatuses } from "../resources/constants/thunkStatuses";
 
@@ -13,7 +13,7 @@ const authSlice = createSlice({
   name: reducersNames.auth,
   initialState: initialState,
   reducers: {
-    resetAuthState: (state) => { state.status = thunkStatuses.idle; },
+    resetAuthState: (state) => { changeStatus(state, thunkStatuses.idle); },
   },
   extraReducers(builder) {
     reducerBuilderUtils.addCases(builder, [signupUser, loginUser]);

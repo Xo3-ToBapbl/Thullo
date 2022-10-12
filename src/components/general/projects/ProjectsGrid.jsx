@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
 import Error from "../../shared/errors/Error";
-import LoadingSpinner from "../../shared/loaders/LoadingSpinner";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../../../slices/projectsSlice";
 import { sizes } from "../../../resources/constants/sizes";
 import { useTranslation } from "react-i18next";
-import { StateComponentFactory } from "../../../factories/stateComponentFactory";
+import { StateToObjectFactory } from "../../../factories/stateToObjectFactory";
+import { LoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 
 const ProjectsContainer = styled.section`
   display: grid;
@@ -24,7 +24,7 @@ export default function ProjectsGrid(props) {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const projectsState = useSelector((state) => state.projects);
-  const componentFactory = new StateComponentFactory({
+  const componentFactory = new StateToObjectFactory({
     loading: () => <LoadingSpinner 
       style={{alignSelf: "center"}} 
       size={4} />,

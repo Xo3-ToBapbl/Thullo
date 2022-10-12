@@ -23,7 +23,9 @@ const themes = {
     onSuccess: "#F8F9FD",
 
     invalid: "#C91A06",
-    invalidBackground: "#FDE8E7"
+    invalidBackground: "#FDE8E7",
+
+    onColored: "#ffffff",
   },
 
   dark: {
@@ -47,7 +49,9 @@ const themes = {
     onSuccess: "#F8F9FD",
 
     invalid: "#C91A06",
-    invalidBackground: "#efcbca"
+    invalidBackground: "#efcbca",
+
+    onColored: "#ffffff",
   }
 };
 

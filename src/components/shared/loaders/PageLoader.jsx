@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ApplicationLogo from "../logos/ApplicationLogo";
-import LoadingSpinner from "./LoadingSpinner";
 import { useTranslation } from "react-i18next";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const LoaderContainer = styled.div`
   display: flex;
