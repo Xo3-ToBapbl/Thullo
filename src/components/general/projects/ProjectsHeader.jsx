@@ -25,7 +25,9 @@ export default function ProjectHeader(props) {
   return (
     <Header device={props.device}>
       <Title>{t("allBoards")}</Title>
-      <FillButton children={buttonChildren}/>
+      <FillButton 
+        children={buttonChildren} 
+        onClick={() => props.showAddProject()}/>
     </Header>
   );
 }

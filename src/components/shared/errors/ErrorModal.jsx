@@ -1,12 +1,10 @@
 import "./errorModalAnimation.css";
 import React from "react";
-import * as ReactDOM from 'react-dom';
 import * as styled from "./errorModalStyled";
 import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
 import { sizes } from "../../../resources/constants/sizes";
 import { CSSTransition } from "react-transition-group";
-
-const root = document.getElementById("root");
+import { ModalPortal } from "../portals/ModalPortal";
 
 const propsPerDevice = new PropsPerDevice(
   {offset: sizes.doubleOffsetRem, left: "none", width: "100%"},
@@ -35,12 +33,5 @@ export default function ErrorModal(props) {
         </styled.ErrorContainer>
       </CSSTransition>
     </ModalPortal>
-  );
-}
-
-function ModalPortal(props) {
-  return ReactDOM.createPortal(
-    props.children,
-    root,
   );
 }

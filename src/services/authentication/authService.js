@@ -2,7 +2,7 @@ import ApiResultBuilder from "../../builders/apiResultBuilder";
 import { errorCodes } from "../../resources/constants/errorCodes";
 import { eventNames } from "../../resources/constants/eventNames";
 import { storageKeys } from "../../resources/constants/storageKeys";
-import { authApi } from "../api/authApi";
+import { authenticationApi } from "../api/authenticationApi";
 
 const refreshError = "Refresh in impossible. There is no current user. Authentication is required.";
 const eventTarget = new EventTarget();
@@ -12,11 +12,11 @@ export const authService = {
   currentUser: getCurrentUser(),
 
   signup(newUser) { 
-    return execute(authApi.signup.bind(null,newUser), this); 
+    return execute(authenticationApi.signup.bind(null,newUser), this); 
   },
 
   login (userCredentials) {
-    return execute(authApi.login.bind(null, userCredentials), this);
+    return execute(authenticationApi.login.bind(null, userCredentials), this);
   },
 
   async refresh () {
@@ -26,7 +26,7 @@ export const authService = {
       .build();
 
     try {
-      if (this.currentUser) result = await execute(authApi.refresh.bind(null, this.currentUser), this);
+      if (this.currentUser) result = await execute(authenticationApi.refresh.bind(null, this.currentUser), this);
       if (result.success) return result;
       
       handleFailedRefreshResult(this);

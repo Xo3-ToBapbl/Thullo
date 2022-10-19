@@ -8,6 +8,8 @@ import { eventNames } from "../../resources/constants/eventNames";
 import { routeNames } from "../../resources/constants/routeNames";
 import { authService } from "../../services/authentication/authService";
 import { sizes } from "../../resources/constants/sizes";
+import { useState } from "react";
+import { AddProject } from "../../components/general/projects/AddProject";
 
 export const MainContainer = styled.main`
   display: flex;
@@ -18,6 +20,7 @@ export const MainContainer = styled.main`
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
+  const [ showAddProject, setShowAddProject ] = useState(false);
   const device = useDeviceProps()[1];
 
   useEffect(() => {
@@ -31,8 +34,10 @@ export default function ProjectsPage() {
 
   return(
     <MainContainer device={device}>
-      <ProjectHeader device={device} />
+      <ProjectHeader device={device} showAddProject={() => setShowAddProject(true)} />
       <ProjectsGrid device={device} />
+
+      { showAddProject ? <AddProject hideAddProject={() => setShowAddProject(false)}/> : null }
     </MainContainer>
   );
 }
