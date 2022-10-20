@@ -42,6 +42,7 @@
   "allBoards": "Wszystkie tablice",
   "noOtherUsers": "Brak innych użytkowników",
   "plusOthers": "+ {{count}} innych",
+  "addBoardTitle": "Dodaj tytuł tablicy",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
   "errorGenericClickToReload": "Coś poszło nie tak. Kliknij tutaj, aby ponownie załadować dane.",

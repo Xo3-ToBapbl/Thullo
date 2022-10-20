@@ -1,13 +1,11 @@
-const logRequests = true;
+export function printColored(message, ansiColor) {
+  console.log((ansiColor ?? "") + message);
+};
 
 export function printInfo(message) {
-  if (logRequests) {
-    console.log(message);
-  }
+  console.log(message);
 };
 
 export function printError(message) {
-  if (logRequests) {
-    console.error(message);
-  }
+  console.error(message);
 };

@@ -42,6 +42,7 @@
   "allBoards": "All Boards",
   "noOtherUsers": "No other users",
   "plusOthers": "+ {{count}} others",
+  "addBoardTitle": "Add board title",
 
   "errorGeneric": "Something went wrong. Please, try again.",
   "errorGenericClickToReload": "Something went wrong. Please, click here to reload data.",

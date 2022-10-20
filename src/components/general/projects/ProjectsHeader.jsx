@@ -2,6 +2,8 @@ import styled from "styled-components";
 import FillButton from "../../shared/buttons/FillButton";
 import { sizes } from "../../../resources/constants/sizes";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { StateToObjectFactory } from "../../../factories/stateToObjectFactory";
 
 const Header = styled.header`
   display: flex;
@@ -19,15 +21,30 @@ const Title = styled.h1`
 `;
 
 export default function ProjectHeader(props) {
-  const [ t ] = useTranslation();
-  const buttonChildren = `+ ${t("add")}`;
+  const projectsState = useSelector((state) => state.projects);
+  const headerContentFactory = new StateToObjectFactory({
+    success: () => <HeaderContent onClick={addProjectButtonClicked} />,
+    successWhenEmpty: () => <HeaderContent onClick={addProjectButtonClicked} />,
+  });
+
+  function addProjectButtonClicked() {
+    props.showAddProject();
+  }
 
   return (
     <Header device={props.device}>
-      <Title>{t("allBoards")}</Title>
-      <FillButton 
-        children={buttonChildren} 
-        onClick={() => props.showAddProject()}/>
+      { headerContentFactory.getFor(projectsState) }
     </Header>
   );
+}
+  
+function HeaderContent(props) {
+  const [ t ] = useTranslation();
+  const buttonChildren = `+ ${t("add")}`;
+  return <>
+    <Title>{t("allBoards")}</Title>
+    <FillButton 
+      children={buttonChildren} 
+      onClick={props.onClick} />
+  </>;
 }
