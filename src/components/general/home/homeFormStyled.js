@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FillButtonStyled } from "../../../components/shared/buttons/FillButton";
+import { AccentButtonStyled } from "../../shared/buttons/AccentButton";
 import { TextInput } from "../../../components/shared/inputs/textInputStyled";
 import { sizes } from "../../../resources/constants/sizes";
 
@@ -19,7 +19,7 @@ export const EmailInput = styled(TextInput)`
   color: ${props => props.theme.onSecondary};
 `;
 
-export const EmailButton = styled(FillButtonStyled)`
+export const EmailButton = styled(AccentButtonStyled)`
   flex: 1 0 0rem;
   min-width: 20rem;
   border-radius: ${0.7 * sizes.cornerRadiusRem}rem;

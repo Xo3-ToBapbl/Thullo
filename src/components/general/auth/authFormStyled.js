@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
-import { FillButtonStyled } from "../../shared/buttons/FillButton";
+import { AccentButtonStyled } from "../../shared/buttons/AccentButton";
 
 export const applicationLogoStyle = {
   alignSelf: "center",
@@ -23,7 +23,7 @@ export const FormHeader = styled.h2`
   color: ${(props) => props.theme.onSecondary};
 `;
 
-export const ContinueButton = styled(FillButtonStyled)`
+export const ContinueButton = styled(AccentButtonStyled)`
   display: flex;
   justify-content: center;
   align-items: center;

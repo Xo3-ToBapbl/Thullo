@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
-import { FillButtonStyled } from "../../shared/buttons/FillButton";
+import { AccentButtonStyled } from "../../shared/buttons/AccentButton";
 import { TextInput } from "../../shared/inputs/textInputStyled";
 
 export const Form = styled.form`
@@ -20,7 +20,7 @@ export const SearchInput = styled(TextInput)`
   color: ${props => props.theme.onPrimary};
 `;
 
-export const SearchButton = styled(FillButtonStyled)`
+export const SearchButton = styled(AccentButtonStyled)`
   height: 100%;
   min-width: ${(props) => props.propsLocal.buttonMinWidthRem}rem;
   padding: 0;

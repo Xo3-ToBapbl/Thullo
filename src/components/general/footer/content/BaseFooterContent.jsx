@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Text = styled.p`
   text-align: center;
-  color: ${props => props.theme.neutral};
+  color: ${props => props.theme.neutralAccent};
 `;
 
 export default function BaseFooterContent(props) {

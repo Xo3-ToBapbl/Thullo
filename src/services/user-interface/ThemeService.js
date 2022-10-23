@@ -16,7 +16,9 @@ const themes = {
     accent: "#2F80ED",
     onAccent: "#f6f6f6",
   
-    neutral: "#82848D",
+    neutral: "#e9e9e9",
+    onNeutral: "#82848D",
+    neutralAccent: "#82848D",
     divider: "#dfe1e6",
 
     success: "#219653",
@@ -42,7 +44,9 @@ const themes = {
     accent: "#2F80ED",
     onAccent: "#f6f6f6",
   
-    neutral: "#82848D",
+    neutral: "#27292e",
+    onNeutral: "#82848D",
+    neutralAccent: "#82848D",
     divider: "#383d3f",
 
     success: "#187841",

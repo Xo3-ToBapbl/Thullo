@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FillButton from "../../shared/buttons/FillButton";
+import FillButton from "../../shared/buttons/AccentButton";
 import { sizes } from "../../../resources/constants/sizes";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";

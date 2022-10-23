@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PlainButtonStyled = styled.button`
+const IconButtonStyled = styled.button`
   background-color: transparent;
   color: ${props => props.theme.onSecondary};
   border: none;
@@ -19,13 +19,13 @@ const PlainButtonStyled = styled.button`
 
 export default function IconButton(props) {
   return (
-    <PlainButtonStyled 
+    <IconButtonStyled 
       type="button"
       iconSize={props.iconSize} 
       className="material-icons" 
       onClick={props.onClick}>
 
       {props.icon}
-    </PlainButtonStyled>
+    </IconButtonStyled>
   );
 }

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { sizes } from "../../../resources/constants/sizes";
-import { FillButtonStyled } from "../../shared/buttons/FillButton";
+import { AccentButtonStyled } from "../../shared/buttons/AccentButton";
+import { TextInput } from "../../shared/inputs/textInputStyled";
 
 export const Container = styled.div`
   position: absolute;
@@ -15,10 +16,9 @@ export const Container = styled.div`
   background-color: #00000080;
 `;
 
-export const AddProjectCard = styled.article`
+export const AddProjectCard = styled.form`
   position: absolute;
-  height: 30rem;
-  width: 40rem;
+  width: 45rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,7 +28,7 @@ export const AddProjectCard = styled.article`
   background-color: ${(props) => props.theme.secondary};
 `;
 
-export const CloseButton = styled(FillButtonStyled)`
+export const CloseButton = styled(AccentButtonStyled)`
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -47,4 +47,25 @@ export const Image = styled.img`
   aspect-ratio: auto 219 / 130;
   border-radius: ${sizes.cornerRadiusRem}rem;
   object-fit: cover;
+`;
+
+export const ProjectTitleInput = styled(TextInput)`
+  width: 100%;
+  font-size: 1.5rem;
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.onPrimary};
+  border-radius: ${sizes.cornerRadiusRem}rem;
+  box-shadow: 0px 2px 4px ${props => props.theme.onSecondaryShadow};
+`;
+
+export const OptionButtonsContainer = styled.div`
+  display: flex;
+  gap: ${sizes.contentOffsetRem}rem;
+`;
+
+export const CompleteButtonsContainer = styled.div`
+  display: flex;
+  gap: ${sizes.contentOffsetRem}rem;
+  justify-content: end;
+  margin-top: ${sizes.contentOffsetRem}rem;
 `;
