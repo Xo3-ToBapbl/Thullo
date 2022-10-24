@@ -1,0 +1,14 @@
+.addProject-enter {
+  opacity: 0;
+}
+.addProject-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.addProject-exit {
+  opacity: 1;
+}
+.addProject-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}

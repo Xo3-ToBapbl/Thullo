@@ -16,7 +16,11 @@ export const NeutralButtonStyled = styled(BaseButtonStyled)`
 
 export default function NeutralButton(props) {
   return (
-    <NeutralButtonStyled style={props.style} onClick={props.onClick}>
+    <NeutralButtonStyled 
+      disabled={props.disabled}
+      style={props.style} 
+      onClick={props.onClick}>
+      
       {props.children}
     </NeutralButtonStyled>
   );

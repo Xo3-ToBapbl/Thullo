@@ -1,5 +1,5 @@
-import useDeviceProps, { PropsPerDevice } from "../../../../hooks/useDeviceProps";
 import BaseFooterContent from "./BaseFooterContent";
+import useDeviceProps, { PropsPerDevice } from "../../../../hooks/useDeviceProps";
 import { sizes } from "../../../../resources/constants/sizes";
 
 const propsPerDevice = new PropsPerDevice(
@@ -8,7 +8,7 @@ const propsPerDevice = new PropsPerDevice(
   sizes.mobile.mainContentMaxWidthPx,
 );
 
-export default function MainFooterContent(props) {
+export default function MainFooterContent() {
   const [ maxWidthPx ] = useDeviceProps(propsPerDevice);
   return (
     <BaseFooterContent maxWidthPx={maxWidthPx}/>

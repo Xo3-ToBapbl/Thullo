@@ -37,4 +37,4 @@ export const media = {
     const isMobile = useMediaQuery({ maxWidth: mobileMaxWidth });
     return isMobile ? children : null;
   },
-}
+};

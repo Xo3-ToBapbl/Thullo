@@ -5,13 +5,14 @@ import LoginButton from "../login/LoginButton";
 import SignupButton from "../signup/SignupButton";
 import LanguageList from "../language/LanguageList";
 import ExpandableButton from "../../shared/buttons/expandable/ExpandableButton";
-import * as styled from "./menuStyled"
+import * as styled from "./menuStyled";
 import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { setIsMenuVisible } from "../../../slices/menuSlice";
 import { CSSTransition } from "react-transition-group";
 import { media } from "../../shared/media/MediaQueries";
 import { useDispatch } from "react-redux";
+import { preventMainContentScrolling } from "../../../utils/domUtils";
 
 export default function Menu(props) {
   const isTabletAndBelow = media.IsTabletAndBelow();
@@ -34,11 +35,6 @@ export default function Menu(props) {
 function MenuContainer() {
   const [ t ] = useTranslation();
   useEffect(preventMainContentScrolling, []);
-  
-  function preventMainContentScrolling() {
-    document.body.style.overflowY = "hidden";
-    return () => document.body.style.overflowY = "auto";
-  }
 
   return (
     <styled.MenuStyled>

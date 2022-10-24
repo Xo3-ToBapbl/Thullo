@@ -16,15 +16,16 @@ export const Container = styled.div`
   background-color: #00000080;
 `;
 
-export const AddProjectCard = styled.form`
+export const AddProjectForm = styled.form`
   position: absolute;
-  width: 45rem;
+  height: ${(props) => props.sizes.height};
+  width: ${(props) => props.sizes.width};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: ${sizes.contentOffsetRem}rem;
-  padding: ${sizes.doubleOffsetRem}rem;
-  border-radius: ${sizes.cornerRadiusRem}rem;
+  padding: ${(props) => props.sizes.padding}rem;
+  border-radius: ${(props) => props.sizes.cornerRadius};
   background-color: ${(props) => props.theme.secondary};
 `;
 
@@ -68,4 +69,10 @@ export const CompleteButtonsContainer = styled.div`
   gap: ${sizes.contentOffsetRem}rem;
   justify-content: end;
   margin-top: ${sizes.contentOffsetRem}rem;
+`;
+
+export const Title = styled.h1`
+  font-size: 1.8rem;
+  text-align: center;
+  color: ${(props) => props.theme.onPrimary};
 `;

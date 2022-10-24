@@ -34,10 +34,16 @@ export default function ProjectsPage() {
 
   return(
     <MainContainer device={device}>
-      <ProjectHeader device={device} showAddProject={() => setShowAddProject(true)} />
-      <ProjectsGrid device={device} />
+      <ProjectHeader 
+        device={device} 
+        showAddProject={() => setShowAddProject(true)} />
 
-      { showAddProject ? <AddProject hideAddProject={() => setShowAddProject(false)}/> : null }
+      <ProjectsGrid 
+        device={device} />
+
+      <AddProject 
+        isVisible={showAddProject} 
+        hideAddProject={() => setShowAddProject(false)}/>
     </MainContainer>
   );
 }
