@@ -1,4 +1,5 @@
 import ApiRequestBuilder from "../../builders/apiRequestBuilder";
+import { apiMethods } from "../../resources/constants/apiMethod";
 import { apiPaths } from "../../resources/constants/apiPaths";
 import { requestExecutor } from "./request/requestExecutor";
 
@@ -9,4 +10,13 @@ export const projectsApi = {
       .withAuth()
       .build(apiPaths.projects.get));
   },
+
+  add(newProject) {
+    return requestExecutor.execute(new ApiRequestBuilder()
+      .withMethod(apiMethods.post)
+      .withModel(newProject)
+      .withAuth()
+      .withMockCode(400)
+      .build(apiPaths.projects.add));
+  }
 };

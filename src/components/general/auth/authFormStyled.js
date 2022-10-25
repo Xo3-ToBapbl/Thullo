@@ -24,9 +24,6 @@ export const FormHeader = styled.h2`
 `;
 
 export const ContinueButton = styled(AccentButtonStyled)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: ${sizes.contentOffsetRem}rem;
   background-color: ${(props) => props.theme.success};
 `;

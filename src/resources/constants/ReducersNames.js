@@ -2,6 +2,7 @@ export const reducersNames = {
   theme: "theme",
   menu: "menu",
   auth: "auth",
-  projects: "projects",
+  getProjects: "getProjects",
+  addProject: "addProject",
   user: "user",
 };

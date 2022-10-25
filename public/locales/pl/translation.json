@@ -43,6 +43,11 @@
   "noOtherUsers": "Brak innych użytkowników",
   "plusOthers": "+ {{count}} innych",
   "addBoardTitle": "Dodaj tytuł tablicy",
+  "addBoard": "Dodaj tablicę",
+  "cover": "Okładka",
+  "private": "Prywatny",
+  "cancel": "Anuluj",
+  "create": "Utwórz",
 
   "errorGeneric": "Coś poszło nie tak. Proszę spróbuj ponownie.",
   "errorGenericClickToReload": "Coś poszło nie tak. Kliknij tutaj, aby ponownie załadować dane.",

@@ -76,3 +76,7 @@ export const Title = styled.h1`
   text-align: center;
   color: ${(props) => props.theme.onPrimary};
 `;
+
+export const CompleteButtonStyle = {
+  minWidth: "120px",
+};

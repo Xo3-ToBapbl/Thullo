@@ -23,7 +23,7 @@ const ProjectsContainer = styled.section`
 export default function ProjectsGrid(props) {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
-  const projectsState = useSelector((state) => state.projects);
+  const projectsState = useSelector((state) => state.getProjects);
   const componentFactory = new StateToObjectFactory({
     loading: () => <LoadingSpinner 
       style={{alignSelf: "center"}} 

@@ -6,6 +6,7 @@ export const ErrorContainer = styled.aside`
   z-index: 999;
   position: absolute;
   display: flex;
+  justify-content: space-between;
   gap: ${sizes.halfOffsetRem}rem;
   left: ${(props) => props.sizes.left};
   right: ${(props) => props.sizes.offset}rem;

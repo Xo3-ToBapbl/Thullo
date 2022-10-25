@@ -2,6 +2,9 @@ import BaseButtonStyled from "./baseButtonStyled";
 import styled from 'styled-components';
 
 export const AccentButtonStyled = styled(BaseButtonStyled)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${props => props.theme.onAccent};
   background-color: ${props => props.theme.accent};
 `;

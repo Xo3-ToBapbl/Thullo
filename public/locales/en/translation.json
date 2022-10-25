@@ -43,6 +43,11 @@
   "noOtherUsers": "No other users",
   "plusOthers": "+ {{count}} others",
   "addBoardTitle": "Add board title",
+  "addBoard": "Add Board",
+  "cover": "Cover",
+  "private": "Private",
+  "cancel": "Cancel",
+  "create": "Create",
 
   "errorGeneric": "Something went wrong. Please, try again.",
   "errorGenericClickToReload": "Something went wrong. Please, click here to reload data.",

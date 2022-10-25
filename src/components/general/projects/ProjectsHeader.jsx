@@ -21,7 +21,7 @@ const Title = styled.h1`
 `;
 
 export default function ProjectHeader(props) {
-  const projectsState = useSelector((state) => state.projects);
+  const projectsState = useSelector((state) => state.getProjects);
   const headerContentFactory = new StateToObjectFactory({
     success: () => <HeaderContent onClick={addProjectButtonClicked} />,
     successWhenEmpty: () => <HeaderContent onClick={addProjectButtonClicked} />,

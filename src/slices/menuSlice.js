@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { reducersNames } from "../resources/constants/reducersNames"
+import { createSlice } from "@reduxjs/toolkit";
+import { reducersNames } from "../resources/constants/reducersNames";
 
 export const menuSlice = createSlice({
   name: reducersNames.menu,

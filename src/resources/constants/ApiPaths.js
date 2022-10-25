@@ -5,7 +5,8 @@ export const apiPaths = {
     refresh: "/auth/refresh",
   },
   projects:{
-    get: "/projects/get"
+    get: "/projects/get",
+    add: "/projects/add",
   },
   user:{
     getCurrent: "/user/getCurrent"

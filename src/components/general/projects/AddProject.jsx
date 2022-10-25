@@ -4,7 +4,9 @@ import NeutralButton from "../../shared/buttons/NeutralButton";
 import AccentButton from "../../shared/buttons/AccentButton";
 import OutlineButton from "../../shared/buttons/OutlineButton";
 import * as styled from "./addProjectStyled";
-import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
+import ErrorModal from "../../shared/errors/ErrorModal";
+import useDeviceProps, { mobile, PropsPerDevice } from "../../../hooks/useDeviceProps";
+import { addProject, resetAddProjectState } from "../../../slices/projectsSlice";
 import { ModalPortal } from "../../shared/portals/ModalPortal";
 import { useTranslation } from "react-i18next";
 import { TextedIcon } from "../../shared/icons/TextedIcon";
@@ -14,6 +16,9 @@ import { sizes } from "../../../resources/constants/sizes";
 import { useEffect } from "react";
 import { preventMainContentScrolling } from "../../../utils/domUtils";
 import { media } from "../../shared/media/MediaQueries";
+import { useDispatch, useSelector } from "react-redux";
+import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
+import { useState } from "react";
 
 export function AddProject(props) {
   return (
@@ -40,52 +45,83 @@ const formSizesPerDevice = new PropsPerDevice(
 );
 
 function AddProjectCard(props) {
+  const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const [ formSizes ] = useDeviceProps(formSizesPerDevice);
+  const [title, _] = useState("");
+  const addProjectState = useSelector((state) => state.addProject);
   
   useEffect(preventMainContentScrolling, []);
 
   function submitProject(e) {
     e.preventDefault();
+    dispatch(addProject({
+      id: "1",
+      title: title,
+    }));
+  }
+
+  function close(e) {
+    e.preventDefault();  
+    props.hideAddProject();
   }
 
   return (
     <styled.AddProjectForm sizes={formSizes} onSubmit={submitProject}>
       <media.Mobile>
-        <styled.Title>Add board</styled.Title>
+        <styled.Title>{t("addBoard")}</styled.Title>
       </media.Mobile>
     
       <styled.ImageContainer>
-        <media.Desktop>
-          <styled.CloseButton 
-            onClick={() => props.hideAddProject()} 
-            children={"✖"} />
-        </media.Desktop>
-        <media.Tablet>
-          <styled.CloseButton 
-            onClick={() => props.hideAddProject()} 
-            children={"✖"} />
-        </media.Tablet>
-
-        <styled.Image 
-          src={projectImage} />
+        <CloseButton addProjectState={addProjectState} onClick={close} />
+        <styled.Image src={projectImage} />
       </styled.ImageContainer>
 
-      <styled.ProjectTitleInput placeholder={t("addBoardTitle")}/>
+      <styled.ProjectTitleInput 
+        required={true}
+        placeholder={t("addBoardTitle")}/>
 
       <styled.OptionButtonsContainer>
-        <OptionButton iconName="image" text="Cover" />
-        <OptionButton iconName="lock" text="Private" />
+        <OptionButton iconName="image" text={t("cover")} />
+        <OptionButton iconName="lock" text={t("private")} />
       </styled.OptionButtonsContainer>
 
       <styled.CompleteButtonsContainer>
         <OutlineButton 
-          children={<TextedIcon iconName="close" text="Cancel" />} 
-          onClick={() => props.hideAddProject()} />
-        <AccentButton children={<TextedIcon iconName="add" text="Create" />} />
+          style={styled.CompleteButtonStyle}
+          children={<TextedIcon iconName="close" text={t("cancel")} />} 
+          onClick={close} />
+        <CreateButton addProjectState={addProjectState}/>
       </styled.CompleteButtonsContainer>
+
+      <ErrorModal 
+        isVisible={addProjectState.isFailed} 
+        message="Generic error message"
+        onCloseClicked={() => dispatch(resetAddProjectState())} />
     </styled.AddProjectForm>
   );
+}
+
+function CloseButton(props) {
+  const device = useDeviceProps()[1];
+
+  return device === mobile ? null : 
+    <styled.CloseButton 
+      disabled={props.addProjectState.isLoading}
+      onClick={props.onClick} 
+      children={"✖"} />;
+}
+
+function CreateButton(props) {
+  const [ t ] = useTranslation();
+  const isLoading =  props.addProjectState.isLoading;
+
+  return <AccentButton 
+    style={styled.CompleteButtonStyle}
+    disabled={isLoading}
+    children={ isLoading ? 
+      <OnColoredLoadingSpinner /> : 
+      <TextedIcon iconName="add" text={t("create")} />} />;
 }
 
 function OptionButton(props) {

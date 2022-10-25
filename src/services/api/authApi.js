@@ -3,7 +3,7 @@ import { apiMethods } from "../../resources/constants/apiMethod";
 import { apiPaths } from "../../resources/constants/apiPaths";
 import { requestExecutor } from "./request/requestExecutor";
 
-export const authenticationApi = {
+export const authApi = {
   signup(newUser) {
     return requestExecutor.execute(new ApiRequestBuilder()
       .withMethod(apiMethods.post)
