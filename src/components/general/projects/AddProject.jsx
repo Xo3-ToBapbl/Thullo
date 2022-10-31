@@ -21,6 +21,7 @@ import { useState } from "react";
 import { reducersNames } from "../../../resources/constants/reducersNames";
 import { useSelectorBy } from "../../../hooks/useSelector";
 import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
+import { useErrorMessageBy } from "../../../hooks/useErrorMessage";
 
 export function AddProject() {
   const showAddProjectForm = useSelectorBy(reducersNames.addProjectVisibility);
@@ -60,7 +61,7 @@ function AddProjectForm() {
   const [ addProjectPromise, setAddProjectPromise ] = useState(null);
   const addProjectState = useSelectorBy(reducersNames.addProject);
   const isSuccess = addProjectState.isSuccess;
-  const errorMessage = addProjectState.errorCode ? t(addProjectState.errorCode) : t("errorGeneric");
+  const errorMessage = useErrorMessageBy(addProjectState.errorCode);
   
   useEffect(preventMainContentScrolling, []);
   useEffect(() => {

@@ -14,7 +14,7 @@ const LinkStyled = styled.a`
   color: ${(props) => props.theme.accent};
 `;
 
-export default function About(props) {
+export default function About() {
   const [ t ] = useTranslation();
   return (
     <React.Fragment>

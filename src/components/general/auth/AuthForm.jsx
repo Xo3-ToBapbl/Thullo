@@ -6,12 +6,13 @@ import { media } from "../../shared/media/MediaQueries";
 import { useDispatch } from "react-redux";
 import { resetAuthStateAction } from "../../../slices/authSlice";
 import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
+import { useErrorMessageBy } from "../../../hooks/useErrorMessage";
 
 export default function AuthForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const authState = props.authState;
-  const errorMessage = authState.errorCode ? t(authState.errorCode) : t("errorGeneric");
+  const errorMessage = useErrorMessageBy(authState.errorCode);
 
   return (
     <styled.Form sizes={props.sizes} onSubmit={props.submit}>
