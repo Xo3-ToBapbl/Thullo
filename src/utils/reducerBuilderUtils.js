@@ -14,12 +14,12 @@ export const reducerBuilderUtils = {
           state.data = action.payload.data;
         })
         .addCase(actionCreator.rejected, (state, action) => {
-          changeStatus(state, thunkStatuses.failed);
-          state.errorCode = action.error.code;
+          action?.meta.aborted ? 
+            handleAbortError(state) : 
+            handleGenericError(state, action);
         });
     });
   },
-
 };
 
 export function changeStatus(state, status) {
@@ -28,4 +28,13 @@ export function changeStatus(state, status) {
   state.isFailed = status === thunkStatuses.failed;
   state.isLoading = status === thunkStatuses.loading;
   state.isIdle = status === thunkStatuses.idle;
+}
+
+function handleAbortError(state) {
+  changeStatus(state, thunkStatuses.idle);
+}
+
+function handleGenericError(state, action) {
+  changeStatus(state, thunkStatuses.failed);
+  state.errorCode = action.error.code;
 }

@@ -1,7 +1,7 @@
 import ApiHeaderBuilder from "../../../builders/apiHeadersBuilder";
 import { requestHandler } from "./requestHandler";
 import { authService } from "../../authentication/authService";
-import { httpStatusCodes } from "../../../resources/constants/httpStatusCodes";
+import { statusCodes } from "../../../resources/constants/httpStatusCodes";
 
 export const requestExecutor = {
   async execute(request, retry=true) {
@@ -10,6 +10,9 @@ export const requestExecutor = {
 
     if (result.success){
       return result;
+    }
+    if (isAborted(result)) {
+      return new Promise((_, reject) => reject(result.error));
     }
     if (retry && request.authorize && isUnauthorized(result)) {
       const result = await authService.refresh();
@@ -30,6 +33,7 @@ function getRequestInitFrom(request) {
     params: request.params,
     body: request.model && JSON.stringify(request.model, null, 2),
     headers: getHeaders(request),
+    signal: request.signal,
   };
 };
 
@@ -49,5 +53,9 @@ function getHeaders(request) {
 }
 
 function isUnauthorized(result) {
-  return result.error?.status === httpStatusCodes.UNAUTHORIZED;
+  return result.error?.status === statusCodes.http.UNAUTHORIZED;
+}
+
+function isAborted(result) {
+  return result.error?.status === statusCodes.default.ABORTED;
 }

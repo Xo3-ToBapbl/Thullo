@@ -1,10 +1,10 @@
 import ApiResultBuilder from "../../../builders/apiResultBuilder";
 import { errorCodes } from "../../../resources/constants/errorCodes";
+import { statusCodes } from "../../../resources/constants/httpStatusCodes";
 import { requestLogger } from "./requestLogger";
 
-const apiInvalidStatus = 0;
-const unexpectedErrorStatus = -1;
 const host = process.env.REACT_APP_HOST;
+const abortError = "AbortError";
 
 export const requestHandler = {
   async handle(requestInit) {
@@ -34,7 +34,7 @@ async function getSuccessResponseResult(responseModel, requestInit) {
 }
 
 function getErrorResponseResult(errorResponseModel, status, requestInit) {
-  const statusCode = status ?? apiInvalidStatus;
+  const statusCode = status ?? statusCodes.default.API_INVALID;
   const errorCode = errorResponseModel.error?.code ?? errorCodes.errorGeneric;
   const message = errorResponseModel.error?.message;
 
@@ -45,8 +45,15 @@ function getErrorResponseResult(errorResponseModel, status, requestInit) {
 }
   
 function getErrorResult(error, requestInit) {
+  if (error.name === abortError) {
+    requestLogger.logWarning(error, requestInit);
+    return new ApiResultBuilder()
+      .withError(errorCodes.errorAborted, error.toString(), statusCodes.default.ABORTED)
+      .build();
+  }
+
   requestLogger.logError(error, requestInit);
   return new ApiResultBuilder()
-    .withError(errorCodes.errorThatNeverHappens, error.toString(), unexpectedErrorStatus)
+    .withError(errorCodes.errorThatNeverHappens, error.toString(), statusCodes.default.UNEXPECTED_ERROR)
     .build();
 }

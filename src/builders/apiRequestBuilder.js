@@ -27,6 +27,11 @@ export default function ApiRequestBuilder() {
       return this;
     },
 
+    withCancellation: function(signal) {
+      this.signal = signal;
+      return this;
+    },
+
     withMockCode: function(code) {
       this.mockCode = code;
       return this;
@@ -40,6 +45,7 @@ export default function ApiRequestBuilder() {
         headers: this.headers,
         authorize: this.authorize ?? false,
         method: this.method ?? apiMethods.get,
+        signal: this.signal,
         mockCode: this.mockCode,
       };
     }

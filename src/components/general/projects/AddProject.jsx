@@ -6,7 +6,7 @@ import OutlineButton from "../../shared/buttons/OutlineButton";
 import * as styled from "./addProjectStyled";
 import ErrorModal from "../../shared/errors/ErrorModal";
 import useDeviceProps, { mobile, PropsPerDevice } from "../../../hooks/useDeviceProps";
-import { addProject, resetAddProjectState } from "../../../slices/projectsSlice";
+import { addProject, addProjectAction, resetAddProjectState } from "../../../slices/projectsSlice";
 import { ModalPortal } from "../../shared/portals/ModalPortal";
 import { useTranslation } from "react-i18next";
 import { TextedIcon } from "../../shared/icons/TextedIcon";
@@ -30,7 +30,7 @@ export function AddProject(props) {
         classNames="addProject">
 
         <styled.Container>
-          <AddProjectCard hideAddProject={props.hideAddProject}/>
+          <AddProjectForm hideAddProject={props.hideAddProject}/>
         </styled.Container>
 
       </CSSTransition>
@@ -44,26 +44,47 @@ const formSizesPerDevice = new PropsPerDevice(
   { width: "100%", height: "100%", padding: sizes.contentOffsetRem, cornerRadius: 0 },
 );
 
-function AddProjectCard(props) {
+function InitialNewProject() {
+  this.id = crypto.randomUUID();
+  this.title = "";
+}
+
+function AddProjectForm(props) {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const [ formSizes ] = useDeviceProps(formSizesPerDevice);
-  const [title, _] = useState("");
+  const [ newProject, setNewProject ] = useState(new InitialNewProject());
+  const [ addProjectPromise, setAddProjectPromise ] = useState(null);
   const addProjectState = useSelector((state) => state.addProject);
+  const isSuccess = addProjectState.isSuccess;
+  const hideThisForm = props.hideAddProject;
+  const errorMessage = addProjectState.errorCode ? t(addProjectState.errorCode) : t("errorGeneric");
   
   useEffect(preventMainContentScrolling, []);
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(addProjectAction(newProject));
+      dispatch(resetAddProjectState());
+      hideThisForm();
+    }
+    return () => { };
+  }, [ isSuccess, hideThisForm, dispatch, newProject ]);
 
   function submitProject(e) {
     e.preventDefault();
-    dispatch(addProject({
-      id: "1",
-      title: title,
-    }));
+    const promiseToCancel = dispatch(addProject(newProject));
+    setAddProjectPromise(promiseToCancel);
   }
 
   function close(e) {
-    e.preventDefault();  
-    props.hideAddProject();
+    e?.preventDefault();
+    addProjectPromise?.abort();
+    hideThisForm();
+  }
+
+  function titleChanged(e) {
+    const { value } = e.target;
+    setNewProject({...newProject, title: value});
   }
 
   return (
@@ -79,6 +100,9 @@ function AddProjectCard(props) {
 
       <styled.ProjectTitleInput 
         required={true}
+        value={newProject.title}
+        onChange={titleChanged} 
+        disabled={addProjectState.isLoading}
         placeholder={t("addBoardTitle")}/>
 
       <styled.OptionButtonsContainer>
@@ -96,7 +120,7 @@ function AddProjectCard(props) {
 
       <ErrorModal 
         isVisible={addProjectState.isFailed} 
-        message="Generic error message"
+        message={errorMessage}
         onCloseClicked={() => dispatch(resetAddProjectState())} />
     </styled.AddProjectForm>
   );
@@ -107,7 +131,6 @@ function CloseButton(props) {
 
   return device === mobile ? null : 
     <styled.CloseButton 
-      disabled={props.addProjectState.isLoading}
       onClick={props.onClick} 
       children={"✖"} />;
 }

@@ -1,9 +1,15 @@
+import { ansiColors } from "./ansiColors";
+
 export function printColored(message, ansiColor) {
   console.log((ansiColor ?? "") + message);
 };
 
 export function printInfo(message) {
   console.log(message);
+};
+
+export function printWarning(message) {
+  printColored(message, ansiColors.yellow);
 };
 
 export function printError(message) {

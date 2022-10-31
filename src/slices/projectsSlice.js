@@ -6,15 +6,15 @@ import { projectsApi } from "../services/api/projectsApi";
 import { changeStatus, reducerBuilderUtils } from "../utils/reducerBuilderUtils";
 
 export const getProjects = createAsyncThunk(`${reducersNames.getProjects}/getProjects`, projectsApi.get);
-export const addProject = createAsyncThunk(`${reducersNames.getProjects}/addProject`, projectsApi.add);
+export const addProject = createAsyncThunk(`${reducersNames.addProject}/addProject`, projectsApi.add);
 
 const getProjectSlice = createSlice({
   name: reducersNames.getProjects,
   initialState: new ReducerStateBuilder().initial().build(),
   reducers: {
-    addProject: (state, action) => { 
+    addProjectAction: (state, action) => { 
       changeStatus(state, thunkStatuses.success);
-      state.data = state.data?.concat(action.data) ?? [ action.data ];
+      state.data = state.data?.concat(action.payload) ?? [ action.payload ];
     },
   },
   extraReducers(builder) {
@@ -26,13 +26,18 @@ const addProjectSlice = createSlice({
   name: reducersNames.addProject,
   initialState: new ReducerStateBuilder().initial().build(),
   reducers: {
-    resetAddProjectState: (state) => { changeStatus(state, thunkStatuses.idle); },
+    resetAddProjectState: (state) => { 
+      changeStatus(state, thunkStatuses.idle);
+      state.data = null;
+    },
   },
   extraReducers(builder) {
     reducerBuilderUtils.addCases(builder, [addProject]);
   }
 });
 
-export const { resetAddProjectState } = addProjectSlice.actions;
+export const { addProjectAction } = getProjectSlice.actions;
 export const getProjectReducer = getProjectSlice.reducer;
+
+export const { resetAddProjectState } = addProjectSlice.actions;
 export const addProjectReducer = addProjectSlice.reducer;

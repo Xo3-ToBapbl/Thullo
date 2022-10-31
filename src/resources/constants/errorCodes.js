@@ -3,5 +3,6 @@ export const errorCodes = {
   errorInvalidPassword: "errorInvalidPassword",
   errorPasswordDontMatch: "errorPasswordDontMatch",
   errorGeneric: "errorGeneric",
-  errorThatNeverHappens: "errorThatNeverHappens"
+  errorThatNeverHappens: "errorThatNeverHappens",
+  errorAborted: "errorRequestAborted",
 };

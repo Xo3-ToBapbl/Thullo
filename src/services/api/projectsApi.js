@@ -11,11 +11,12 @@ export const projectsApi = {
       .build(apiPaths.projects.get));
   },
 
-  add(newProject) {
+  add(newProject, { signal }) {
     return requestExecutor.execute(new ApiRequestBuilder()
       .withMethod(apiMethods.post)
       .withModel(newProject)
       .withAuth()
+      .withCancellation(signal)
       .withMockCode(400)
       .build(apiPaths.projects.add));
   }

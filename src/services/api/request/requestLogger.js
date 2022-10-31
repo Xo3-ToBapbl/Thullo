@@ -1,7 +1,7 @@
 import { errorCodes } from "../../../resources/constants/errorCodes";
 import { ansiColors } from "../../../utils/ansiColors";
 import { debug } from "../../../utils/debugUtils";
-import { printError, printColored } from "../../../utils/printUtils";
+import { printError, printColored, printWarning } from "../../../utils/printUtils";
 
 const fullLog = false;
 const multitude = "...";
@@ -39,11 +39,18 @@ export const requestLogger = {
       printColored(wholeErrorMessage, ansiColors.red);
     });
   },
+
+  logWarning(error, requestInit) {
+    debug(() => {
+      const warningMessage = `${requestInit.method} "${requestInit.path}" request is not completed: "${error.toString()}"`;
+      printWarning(warningMessage);
+    });
+  },
   
   logError(error, requestInit) {
     debug(() => {
-      const wholeErrorMessage = `${requestInit.method} "${requestInit.path}" request failed with unexpected error: "${error.toString()}"`;
-      printError(wholeErrorMessage);
+      const errorMessage = `${requestInit.method} "${requestInit.path}" request failed with unexpected error: "${error.toString()}"`;
+      printError(errorMessage);
     });
   }
 };
