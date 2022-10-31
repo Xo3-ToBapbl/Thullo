@@ -20,7 +20,6 @@ export const MainContainer = styled.main`
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
-  const [ showAddProject, setShowAddProject ] = useState(false);
   const device = useDeviceProps()[1];
 
   useEffect(() => {
@@ -34,16 +33,9 @@ export default function ProjectsPage() {
 
   return(
     <MainContainer device={device}>
-      <ProjectHeader 
-        device={device} 
-        showAddProject={() => setShowAddProject(true)} />
-
-      <ProjectsGrid 
-        device={device} />
-
-      <AddProject 
-        isVisible={showAddProject} 
-        hideAddProject={() => setShowAddProject(false)}/>
+      <ProjectHeader device={device} />
+      <ProjectsGrid device={device} />
+      <AddProject />
     </MainContainer>
   );
 }

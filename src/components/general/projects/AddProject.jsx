@@ -6,7 +6,7 @@ import OutlineButton from "../../shared/buttons/OutlineButton";
 import * as styled from "./addProjectStyled";
 import ErrorModal from "../../shared/errors/ErrorModal";
 import useDeviceProps, { mobile, PropsPerDevice } from "../../../hooks/useDeviceProps";
-import { addProject, addProjectAction, resetAddProjectState } from "../../../slices/projectsSlice";
+import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibility, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
 import { ModalPortal } from "../../shared/portals/ModalPortal";
 import { useTranslation } from "react-i18next";
 import { TextedIcon } from "../../shared/icons/TextedIcon";
@@ -20,17 +20,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 import { useState } from "react";
 
-export function AddProject(props) {
+export function AddProject() {
+  const showAddProjectForm = useSelector((state) => state.showAddProject);
   return (
     <ModalPortal>
       <CSSTransition
-        in={props.isVisible}
+        in={showAddProjectForm}
         unmountOnExit={true}
         timeout={300}
         classNames="addProject">
 
         <styled.Container>
-          <AddProjectForm hideAddProject={props.hideAddProject}/>
+          <AddProjectForm />
         </styled.Container>
 
       </CSSTransition>
@@ -49,7 +50,7 @@ function InitialNewProject() {
   this.title = "";
 }
 
-function AddProjectForm(props) {
+function AddProjectForm() {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const [ formSizes ] = useDeviceProps(formSizesPerDevice);
@@ -57,7 +58,6 @@ function AddProjectForm(props) {
   const [ addProjectPromise, setAddProjectPromise ] = useState(null);
   const addProjectState = useSelector((state) => state.addProject);
   const isSuccess = addProjectState.isSuccess;
-  const hideThisForm = props.hideAddProject;
   const errorMessage = addProjectState.errorCode ? t(addProjectState.errorCode) : t("errorGeneric");
   
   useEffect(preventMainContentScrolling, []);
@@ -65,10 +65,10 @@ function AddProjectForm(props) {
     if (isSuccess) {
       dispatch(addProjectAction(newProject));
       dispatch(resetAddProjectState());
-      hideThisForm();
+      dispatch(setAddProjectVisibilityAction(false));
     }
     return () => { };
-  }, [ isSuccess, hideThisForm, dispatch, newProject ]);
+  }, [dispatch, isSuccess, newProject]);
 
   function submitProject(e) {
     e.preventDefault();
@@ -79,7 +79,7 @@ function AddProjectForm(props) {
   function close(e) {
     e?.preventDefault();
     addProjectPromise?.abort();
-    hideThisForm();
+    dispatch(setAddProjectVisibilityAction(false));
   }
 
   function titleChanged(e) {

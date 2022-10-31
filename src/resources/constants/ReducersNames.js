@@ -4,5 +4,6 @@ export const reducersNames = {
   auth: "auth",
   getProjects: "getProjects",
   addProject: "addProject",
+  showAddProject: "showAddProject",
   user: "user",
 };

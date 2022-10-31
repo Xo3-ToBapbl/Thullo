@@ -36,8 +36,24 @@ const addProjectSlice = createSlice({
   }
 });
 
+const showAddProjectSlice = createSlice({
+  name: reducersNames.showAddProject,
+  initialState: false,
+  reducers: {
+    setAddProjectVisibilityAction: (state, action) => {
+      if (state !== action.payload) {
+        state = action.payload;
+      }
+      return state;
+    }
+  }
+});
+
 export const { addProjectAction } = getProjectSlice.actions;
 export const getProjectReducer = getProjectSlice.reducer;
 
 export const { resetAddProjectState } = addProjectSlice.actions;
 export const addProjectReducer = addProjectSlice.reducer;
+
+export const { setAddProjectVisibilityAction } = showAddProjectSlice.actions;
+export const setAddProjectVisibilityReducer = showAddProjectSlice.reducer;

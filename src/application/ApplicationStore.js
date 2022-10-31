@@ -3,7 +3,7 @@ import menuReducer from "../slices/menuSlice";
 import authReducer from "../slices/authSlice";
 import currentUserSlice from "../slices/currentUserSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import { getProjectReducer, addProjectReducer } from "../slices/projectsSlice";
+import { getProjectReducer, addProjectReducer, setAddProjectVisibilityReducer } from "../slices/projectsSlice";
 
 export default configureStore({
   reducer: {
@@ -12,6 +12,7 @@ export default configureStore({
     auth: authReducer,
     getProjects: getProjectReducer,
     addProject: addProjectReducer,
+    showAddProject: setAddProjectVisibilityReducer,
     user: currentUserSlice,
   },
 });

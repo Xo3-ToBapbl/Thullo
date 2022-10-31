@@ -2,8 +2,9 @@ import styled from "styled-components";
 import FillButton from "../../shared/buttons/AccentButton";
 import { sizes } from "../../../resources/constants/sizes";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StateToObjectFactory } from "../../../factories/stateToObjectFactory";
+import { setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
 
 const Header = styled.header`
   display: flex;
@@ -21,6 +22,7 @@ const Title = styled.h1`
 `;
 
 export default function ProjectHeader(props) {
+  const dispatch = useDispatch();
   const projectsState = useSelector((state) => state.getProjects);
   const headerContentFactory = new StateToObjectFactory({
     success: () => <HeaderContent onClick={addProjectButtonClicked} />,
@@ -28,7 +30,7 @@ export default function ProjectHeader(props) {
   });
 
   function addProjectButtonClicked() {
-    props.showAddProject();
+    dispatch(setAddProjectVisibilityAction(true));
   }
 
   return (
