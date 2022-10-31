@@ -1,9 +1,10 @@
 import ApplicationRoutes from './ApplicationRoutes';
 import { ThemeProvider } from 'styled-components'; 
-import { useSelector } from "react-redux";
+import { useSelectorBy } from '../hooks/useSelector';
+import { reducersNames } from '../resources/constants/reducersNames';
 
 export default function Application() {
-  const theme = useSelector(state => state.theme.value);
+  const theme = useSelectorBy(reducersNames.theme).value;
   
   return (
     <ThemeProvider theme={theme}>

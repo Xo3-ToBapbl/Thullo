@@ -13,12 +13,12 @@ const authSlice = createSlice({
   name: reducersNames.auth,
   initialState: initialState,
   reducers: {
-    resetAuthState: (state) => { changeStatus(state, thunkStatuses.idle); },
+    resetAuthStateAction: (state) => { changeStatus(state, thunkStatuses.idle); },
   },
   extraReducers(builder) {
     reducerBuilderUtils.addCases(builder, [signupUser, loginUser]);
   },
 });
 
-export const { resetAuthState } = authSlice.actions;
+export const { resetAuthStateAction } = authSlice.actions;
 export default authSlice.reducer;

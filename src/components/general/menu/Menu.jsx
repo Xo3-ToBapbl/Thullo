@@ -8,7 +8,7 @@ import ExpandableButton from "../../shared/buttons/expandable/ExpandableButton";
 import * as styled from "./menuStyled";
 import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { setIsMenuVisible } from "../../../slices/menuSlice";
+import { setIsMenuVisibleAction } from "../../../slices/menuSlice";
 import { CSSTransition } from "react-transition-group";
 import { media } from "../../shared/media/MediaQueries";
 import { useDispatch } from "react-redux";
@@ -53,7 +53,7 @@ function ButtonContainer() {
   const style = {flex: "1 1 0rem", height: "5rem"};
 
   function hideMenu() {
-    dispatch(setIsMenuVisible(false));
+    dispatch(setIsMenuVisibleAction(false));
   }
 
   return(

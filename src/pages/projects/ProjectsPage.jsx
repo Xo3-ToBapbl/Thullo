@@ -8,7 +8,6 @@ import { eventNames } from "../../resources/constants/eventNames";
 import { routeNames } from "../../resources/constants/routeNames";
 import { authService } from "../../services/authentication/authService";
 import { sizes } from "../../resources/constants/sizes";
-import { useState } from "react";
 import { AddProject } from "../../components/general/projects/AddProject";
 
 export const MainContainer = styled.main`

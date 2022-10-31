@@ -1,16 +1,18 @@
 import Avatar from "../../shared/avatars/Avatar";
 import * as styled from "./userAvatarStyled";
 import { media } from "../../shared/media/MediaQueries.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { StateToObjectFactory } from "../../../factories/stateToObjectFactory";
 import { useEffect } from "react";
 import { getCurrent } from "../../../slices/currentUserSlice";
+import { useSelectorBy } from "../../../hooks/useSelector";
+import { reducersNames } from "../../../resources/constants/reducersNames";
 
 export default function UserAvatar() {
   const [ t ] = useTranslation();
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user);
+  const userState = useSelectorBy(reducersNames.user);
   const titleFactory = new StateToObjectFactory({
     loading: () => t("loading"),
     success: () => `${userState.data.firstName} ${userState.data.lastName}`,

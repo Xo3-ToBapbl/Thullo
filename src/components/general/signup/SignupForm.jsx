@@ -3,11 +3,13 @@ import PasswordInput from "../../shared/inputs/PasswordInput";
 import React, { useRef, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { resetAuthState, signupUser } from "../../../slices/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { resetAuthStateAction, signupUser } from "../../../slices/authSlice";
+import { useDispatch } from "react-redux";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { FormInput } from "../../shared/inputs/formInputStyled";
 import { routeNames } from "../../../resources/constants/routeNames";
+import { reducersNames } from "../../../resources/constants/reducersNames";
+import { useSelectorBy } from "../../../hooks/useSelector";
 
 function InitialFormState(email) {
   this.email = email ?? "";
@@ -20,10 +22,10 @@ function InitialFormState(email) {
 export default function SignupForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
+  const authState = useSelectorBy(reducersNames.auth);
   const [formState, setFormState] = useState(new InitialFormState(props.initialEmail));
 
-  useEffect(() => () => dispatch(resetAuthState()), [dispatch]);
+  useEffect(() => () => dispatch(resetAuthStateAction()), [dispatch]);
 
   if (authState.status === thunkStatuses.success) {
     return <Navigate to={routeNames.projects}/>;

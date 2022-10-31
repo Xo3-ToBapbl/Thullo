@@ -9,7 +9,7 @@ export const themeListSlice = createSlice({
     value: themeService.theme,
   },
   reducers: {
-    setTheme: (state, action) => {
+    setThemeAction: (state, action) => {
       if (state.name !== action.payload) {
         themeService.setCurrent(action.payload);
 
@@ -20,5 +20,5 @@ export const themeListSlice = createSlice({
   }
 });
 
-export const { setTheme } = themeListSlice.actions;
+export const { setThemeAction } = themeListSlice.actions;
 export default themeListSlice.reducer;

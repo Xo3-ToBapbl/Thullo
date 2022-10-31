@@ -3,17 +3,17 @@ import { reducersNames } from "../resources/constants/reducersNames";
 
 export const menuSlice = createSlice({
   name: reducersNames.menu,
-  initialState: {
-    isMenuVisible: false,
-  },
+  initialState: false,
   reducers: {
-    setIsMenuVisible: (state, action) => {
-      if (state.isMenuVisible !== action.payload) {
-        state.isMenuVisible = action.payload;
+    setIsMenuVisibleAction: (state, action) => {
+      if (state !== action.payload) {
+        state = action.payload;
       }
+
+      return state;
     }
   }
 });
 
-export const { setIsMenuVisible } = menuSlice.actions;
+export const { setIsMenuVisibleAction } = menuSlice.actions;
 export default menuSlice.reducer;

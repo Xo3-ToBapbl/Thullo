@@ -4,7 +4,7 @@ import * as styled from "./authFormStyled";
 import { useTranslation } from "react-i18next";
 import { media } from "../../shared/media/MediaQueries";
 import { useDispatch } from "react-redux";
-import { resetAuthState } from "../../../slices/authSlice";
+import { resetAuthStateAction } from "../../../slices/authSlice";
 import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 
 export default function AuthForm(props) {
@@ -30,7 +30,7 @@ export default function AuthForm(props) {
       <ErrorModal 
         isVisible={authState.isFailed} 
         message={errorMessage}
-        onCloseClicked={() => dispatch(resetAuthState())}/>
+        onCloseClicked={() => dispatch(resetAuthStateAction())}/>
     </styled.Form>
   );
 }

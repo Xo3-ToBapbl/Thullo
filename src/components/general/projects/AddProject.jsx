@@ -6,7 +6,6 @@ import OutlineButton from "../../shared/buttons/OutlineButton";
 import * as styled from "./addProjectStyled";
 import ErrorModal from "../../shared/errors/ErrorModal";
 import useDeviceProps, { mobile, PropsPerDevice } from "../../../hooks/useDeviceProps";
-import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibility, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
 import { ModalPortal } from "../../shared/portals/ModalPortal";
 import { useTranslation } from "react-i18next";
 import { TextedIcon } from "../../shared/icons/TextedIcon";
@@ -16,12 +15,15 @@ import { sizes } from "../../../resources/constants/sizes";
 import { useEffect } from "react";
 import { preventMainContentScrolling } from "../../../utils/domUtils";
 import { media } from "../../shared/media/MediaQueries";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 import { useState } from "react";
+import { reducersNames } from "../../../resources/constants/reducersNames";
+import { useSelectorBy } from "../../../hooks/useSelector";
+import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
 
 export function AddProject() {
-  const showAddProjectForm = useSelector((state) => state.showAddProject);
+  const showAddProjectForm = useSelectorBy(reducersNames.addProjectVisibility);
   return (
     <ModalPortal>
       <CSSTransition
@@ -56,7 +58,7 @@ function AddProjectForm() {
   const [ formSizes ] = useDeviceProps(formSizesPerDevice);
   const [ newProject, setNewProject ] = useState(new InitialNewProject());
   const [ addProjectPromise, setAddProjectPromise ] = useState(null);
-  const addProjectState = useSelector((state) => state.addProject);
+  const addProjectState = useSelectorBy(reducersNames.addProject);
   const isSuccess = addProjectState.isSuccess;
   const errorMessage = addProjectState.errorCode ? t(addProjectState.errorCode) : t("errorGeneric");
   

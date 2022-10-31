@@ -10,9 +10,11 @@ import styled from "styled-components";
 import * as styledComponents from "./navigationBarStyled";
 import { media } from "../../../../components/shared/media/MediaQueries";
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsMenuVisible } from "../../../../slices/menuSlice";
 import { sizes } from "../../../../resources/constants/sizes";
+import { useDispatch } from "react-redux";
+import { reducersNames } from "../../../../resources/constants/reducersNames";
+import { useSelectorBy } from "../../../../hooks/useSelector";
+import { setIsMenuVisibleAction } from "../../../../slices/menuSlice";
 
 export const DropdownsContainer = styled.div`
   display: flex;
@@ -22,10 +24,10 @@ export const DropdownsContainer = styled.div`
   gap: ${sizes.contentOffsetRem}rem;
 `;
 
-export default function HomeNavigationBar(props) {
+export default function HomeNavigationBar() {
   const [ t ] = useTranslation();
   const dispatch = useDispatch();
-  const isMenuVisible = useSelector(state => state.menu.isMenuVisible);
+  const isMenuVisible = useSelectorBy(reducersNames.menu);
   const makeVisible = !isMenuVisible;
 
   return (
@@ -45,13 +47,13 @@ export default function HomeNavigationBar(props) {
       <media.TabletAndBellow>
         <IconButton 
           icon={isMenuVisible ? "close" : "menu"}
-          onClick={() => dispatch(setIsMenuVisible(makeVisible))}/>
+          onClick={() => dispatch(setIsMenuVisibleAction(makeVisible))}/>
       </media.TabletAndBellow>
     </styledComponents.NavigationBar>
   );
 }
 
-function ButtonsContainer(props) {
+function ButtonsContainer() {
   return(
     <styledComponents.UtilityContainer>
       <LoginButton />
