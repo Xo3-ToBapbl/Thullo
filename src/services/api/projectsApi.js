@@ -17,7 +17,6 @@ export const projectsApi = {
       .withModel(newProject)
       .withAuth()
       .withCancellation(signal)
-      .withMockCode(400)
       .build(apiPaths.projects.add));
   }
 };

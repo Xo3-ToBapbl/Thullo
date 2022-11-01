@@ -13,12 +13,12 @@ export const PasswordInputContainer = styled.div`
 const passwordInvisibleState = {
   type: "password",
   icon: "visibility"
-}
+};
 
 const passwordVisibleState = {
   type: "text",
   icon: "visibility_off"
-}
+};
 
 export default function PasswordInput(props) {
   const [state, setType] = useState(passwordInvisibleState);

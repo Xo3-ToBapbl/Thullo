@@ -3,25 +3,31 @@ import projectImage from "../../../resources/images/project.jpg";
 import NeutralButton from "../../shared/buttons/NeutralButton";
 import AccentButton from "../../shared/buttons/AccentButton";
 import OutlineButton from "../../shared/buttons/OutlineButton";
-import * as styled from "./addProjectStyled";
 import ErrorModal from "../../shared/errors/ErrorModal";
+import * as styled from "./addProjectStyled";
 import useDeviceProps, { mobile, PropsPerDevice } from "../../../hooks/useDeviceProps";
-import { ModalPortal } from "../../shared/portals/ModalPortal";
-import { useTranslation } from "react-i18next";
-import { TextedIcon } from "../../shared/icons/TextedIcon";
-import { CSSTransition } from "react-transition-group";
-import { mobileMaxWidth } from "../../shared/media/MediaQueries";
 import { sizes } from "../../../resources/constants/sizes";
-import { useEffect } from "react";
-import { preventMainContentScrolling } from "../../../utils/domUtils";
 import { media } from "../../shared/media/MediaQueries";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { TextedIcon } from "../../shared/icons/TextedIcon";
 import { useDispatch } from "react-redux";
-import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
-import { useState } from "react";
+import { ModalPortal } from "../../shared/portals/ModalPortal";
 import { reducersNames } from "../../../resources/constants/reducersNames";
 import { useSelectorBy } from "../../../hooks/useSelector";
-import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
+import { CSSTransition } from "react-transition-group";
+import { useTranslation } from "react-i18next";
+import { mobileMaxWidth } from "../../shared/media/MediaQueries";
 import { useErrorMessageBy } from "../../../hooks/useErrorMessage";
+import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
+import { preventMainContentScrolling } from "../../../utils/domUtils";
+import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
+
+const formSizesPerDevice = new PropsPerDevice(
+  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
+  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
+  { width: "100%", height: "100%", padding: sizes.contentOffsetRem, cornerRadius: 0 },
+);
 
 export function AddProject() {
   const showAddProjectForm = useSelectorBy(reducersNames.addProjectVisibility);
@@ -42,52 +48,38 @@ export function AddProject() {
   );
 }
 
-const formSizesPerDevice = new PropsPerDevice(
-  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
-  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
-  { width: "100%", height: "100%", padding: sizes.contentOffsetRem, cornerRadius: 0 },
-);
-
-function InitialNewProject() {
-  this.id = crypto.randomUUID();
-  this.title = "";
-}
-
 function AddProjectForm() {
   const dispatch = useDispatch();
   const [ t ] = useTranslation();
   const [ formSizes ] = useDeviceProps(formSizesPerDevice);
-  const [ newProject, setNewProject ] = useState(new InitialNewProject());
-  const [ addProjectPromise, setAddProjectPromise ] = useState(null);
   const addProjectState = useSelectorBy(reducersNames.addProject);
-  const isSuccess = addProjectState.isSuccess;
   const errorMessage = useErrorMessageBy(addProjectState.errorCode);
+  const titleRef = useRef();
+  const addProjectPromiseRef = useRef(null);
   
   useEffect(preventMainContentScrolling, []);
   useEffect(() => {
-    if (isSuccess) {
-      dispatch(addProjectAction(newProject));
+    if (addProjectState.isSuccess) {
+      dispatch(addProjectAction(addProjectState.data));
       dispatch(resetAddProjectState());
       dispatch(setAddProjectVisibilityAction(false));
     }
     return () => { };
-  }, [dispatch, isSuccess, newProject]);
+  }, [ dispatch, addProjectState ]);
 
   function submitProject(e) {
     e.preventDefault();
+
+    const newProject = { id: crypto.randomUUID(), title: titleRef.current.value };
     const promiseToCancel = dispatch(addProject(newProject));
-    setAddProjectPromise(promiseToCancel);
+    addProjectPromiseRef.current = promiseToCancel;
   }
 
   function close(e) {
     e?.preventDefault();
-    addProjectPromise?.abort();
-    dispatch(setAddProjectVisibilityAction(false));
-  }
 
-  function titleChanged(e) {
-    const { value } = e.target;
-    setNewProject({...newProject, title: value});
+    addProjectPromiseRef.current?.abort();
+    dispatch(setAddProjectVisibilityAction(false));
   }
 
   return (
@@ -102,9 +94,8 @@ function AddProjectForm() {
       </styled.ImageContainer>
 
       <styled.ProjectTitleInput 
+        ref={titleRef}
         required={true}
-        value={newProject.title}
-        onChange={titleChanged} 
         disabled={addProjectState.isLoading}
         placeholder={t("addBoardTitle")}/>
 

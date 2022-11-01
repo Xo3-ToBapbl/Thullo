@@ -1,9 +1,9 @@
-import React from "react";
 import AuthForm from "../auth/AuthForm";
 import PasswordInput from "../../shared/inputs/PasswordInput";
+import React, { useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { thunkStatuses } from "../../../resources/constants/thunkStatuses";
 import { loginUser } from "../../../slices/authSlice";
@@ -13,16 +13,14 @@ import { resetAuthStateAction } from "../../../slices/authSlice";
 import { reducersNames } from "../../../resources/constants/reducersNames";
 import { useSelectorBy } from "../../../hooks/useSelector";
 
-function InitialFormState(email) {
-  this.email = email ?? "";
-  this.password = "";
-}
-
 export default function LoginForm(props) {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const authState = useSelectorBy(reducersNames.auth);
-  const [formState, setFormState] = useState(new InitialFormState(props.email));
+  const inputRefs = {
+    emailRef: useRef(),
+    passwordRef: useRef()
+  };
 
   useEffect(() => () =>  dispatch(resetAuthStateAction()), [dispatch]);
 
@@ -30,14 +28,13 @@ export default function LoginForm(props) {
     return <Navigate to={routeNames.projects}/>;
   }
 
-  function formInputChanged(e) {
-    const { name, value } = e.target;
-    setFormState({...formState, [name]: value});
-  }
-
   function submit(e) {
     e.preventDefault();
-    dispatch(loginUser(formState));
+
+    dispatch(loginUser({
+      email: inputRefs.emailRef.current.value,
+      password: inputRefs.passwordRef.current.value,
+    }));
   }
 
   return <AuthForm 
@@ -47,9 +44,7 @@ export default function LoginForm(props) {
     headerText={t("loginFormHeader")}
     children={<FormInputs 
       isLoading={authState.isLoading}
-      formState={formState}
-      formInputChanged={formInputChanged} />}
-    />;
+      inputRefs={inputRefs} />} />;
 }
 
 function FormInputs(props) {
@@ -58,22 +53,20 @@ function FormInputs(props) {
   return(
     <>
       <FormInput
+        ref={props.inputRefs.emailRef}
         required={true}
-        value={props.formState.email} 
         type="email" 
         placeholder={t("email")}
         name="email"
         autoComplete="off"
-        disabled={props.isLoading}
-        onChange={props.formInputChanged} />
+        disabled={props.isLoading} />
 
       <PasswordInput 
+        passwordRef={props.inputRefs.passwordRef}
         required={true}
-        value={props.formState.password}
         placeholder={t("password")}
         name="password"
-        disabled={props.isLoading}
-        onChange={props.formInputChanged} />
+        disabled={props.isLoading} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import homeImage from "../../../resources/images/home.webp";
 import React from "react";
-import HomeForm from "./HomeForm";
+import HomeEmailForm from "./HomeEmailForm";
 import * as styled from "./homeSectionStyled";
 import useDeviceProps, { PropsPerDevice } from "../../../hooks/useDeviceProps";
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ export default function HomeSection() {
     <styled.SectionContainer sizes={sizes}>
       <styled.Introduction sizes={sizes}>
         <DescriptionInner sizes={sizes} />
-        <HomeForm />
+        <HomeEmailForm />
       </styled.Introduction>
 
       <styled.Image 
