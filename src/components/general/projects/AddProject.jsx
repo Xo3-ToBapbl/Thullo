@@ -23,11 +23,10 @@ import { OnColoredLoadingSpinner } from "../../shared/loaders/LoadingSpinner";
 import { preventMainContentScrolling } from "../../../utils/domUtils";
 import { addProject, addProjectAction, resetAddProjectState, setAddProjectVisibilityAction } from "../../../slices/projectsSlice";
 
-const formSizesPerDevice = new PropsPerDevice(
-  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
-  { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
-  { width: "100%", height: "100%", padding: sizes.contentOffsetRem, cornerRadius: 0 },
-);
+const formSizesPerDevice = new PropsPerDevice({
+  defaultDevice: { width: `${mobileMaxWidth}px`, height: "none", padding: sizes.doubleOffsetRem, cornerRadius: `${sizes.cornerRadiusRem}rem`},
+  mobile: { width: "100%", height: "100%", padding: sizes.contentOffsetRem, cornerRadius: 0 },
+});
 
 export function AddProject() {
   const showAddProjectForm = useSelectorBy(reducersNames.addProjectVisibility);

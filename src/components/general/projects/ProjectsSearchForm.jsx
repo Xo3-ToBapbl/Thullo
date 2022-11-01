@@ -10,10 +10,10 @@ const propsLocal = {
   buttonFontFamily: "poppins",
 };
 
-const propsPerDevice = new PropsPerDevice(
-  {...propsLocal},
-  {...propsLocal, searchMinWidthRem: 0},
-  {
+const propsPerDevice = new PropsPerDevice({
+  desktop: {...propsLocal},
+  tablet: {...propsLocal, searchMinWidthRem: 0},
+  mobile: {
     ...propsLocal, 
     searchMinWidthRem: 0, 
     className: "material-icons", 
@@ -22,7 +22,7 @@ const propsPerDevice = new PropsPerDevice(
     buttonMinWidthRem: 3,
     isMobile: true,
   },
-);
+});
 
 export default function ProjectsSearchForm() {
   const [ propsLocal ] = useDeviceProps(propsPerDevice);

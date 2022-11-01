@@ -6,10 +6,10 @@ import { sizes } from "../../../resources/constants/sizes";
 import { CSSTransition } from "react-transition-group";
 import { ModalPortal } from "../portals/ModalPortal";
 
-const propsPerDevice = new PropsPerDevice(
-  {offset: sizes.doubleOffsetRem, left: "none", width: "100%"},
-  {offset: sizes.doubleOffsetRem, left: "none", width: "100%"}, 
-  {offset: sizes.contentOffsetRem, left: `${sizes.contentOffsetRem}rem`, width: "none" });
+const propsPerDevice = new PropsPerDevice({
+  defaultDevice: {offset: sizes.doubleOffsetRem, left: "none", width: "100%"},
+  mobile: {offset: sizes.contentOffsetRem, left: `${sizes.contentOffsetRem}rem`, width: "none" }
+});
 
 export default function ErrorModal(props) {
   const [ sizes ] = useDeviceProps(propsPerDevice);

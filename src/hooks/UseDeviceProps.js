@@ -5,7 +5,7 @@ export const tablet = "tablet";
 export const mobile = "mobile";
 export const defaultDevice = "defaultDevice";
 
-export function PropsPerDevice(desktop, tablet, mobile, defaultDevice) {
+export function PropsPerDevice({desktop, tablet, mobile, defaultDevice}) {
   this.desktop = desktop;
   this.tablet = tablet;
   this.mobile = mobile;
@@ -19,8 +19,9 @@ export default function useDeviceProps(propsPerDevice) {
 
   device = device === defaultDevice ? previousDevice : device;
   previousDevice = device;
-
-  return [ propsPerDevice && propsPerDevice[device], device ]; 
+  
+  const props = (propsPerDevice && propsPerDevice[device]) ?? propsPerDevice?.defaultDevice;
+  return [ props, device ]; 
 }
 
 export function useDeviceName() {

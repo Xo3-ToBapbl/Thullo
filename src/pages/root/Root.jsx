@@ -6,10 +6,10 @@ import { sizes } from "../../resources/constants/sizes";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { routeNames } from "../../resources/constants/routeNames";
 
-const propsPerDevice = new PropsPerDevice(
-  sizes.doubleOffsetRem, 
-  sizes.doubleOffsetRem, 
-  sizes.contentOffsetRem);
+const propsPerDevice = new PropsPerDevice({
+  defaultDevice: sizes.doubleOffsetRem, 
+  mobile: sizes.contentOffsetRem
+});
 
 const RootContainer = styled.div`
   display: flex;

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { media } from "../../../shared/media/MediaQueries";
 import { sizes } from "../../../../resources/constants/sizes";
 
-export default function ProjectsNavigationBar(props) {
+export default function ProjectsNavigationBar() {
   const [ t ] = useTranslation();
   const isDesktop = media.IsDesktop();
   const title = isDesktop ? t("thullo") : "";
@@ -29,11 +29,10 @@ export const UtilityContainerStyled = styled.div`
   gap: ${sizes.contentOffsetRem}rem;
 `;
 
-const propsPerDevice = new PropsPerDevice(
-  {width: "none"},
-  {width: "100%"},
-  {width: "100%"},
-);
+const propsPerDevice = new PropsPerDevice({
+  desktop: {width: "none"},
+  defaultDevice: {width: "100%"},
+});
 
 function UtilityContainer() {
   const [ sizes ] = useDeviceProps(propsPerDevice);

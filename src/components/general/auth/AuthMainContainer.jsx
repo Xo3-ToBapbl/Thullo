@@ -13,11 +13,11 @@ const sizesLocal = {
   containerTopOffset: 0,
 };
 
-const propsPerDevice = new PropsPerDevice(
-  sizesLocal,
-  {...sizesLocal, containerTopOffset: 0,},
-  {...sizesLocal, containerTopOffset: -sizes.navBarHeightRem,},
-);
+const propsPerDevice = new PropsPerDevice({
+  desktop: sizesLocal,
+  tablet: {...sizesLocal, containerTopOffset: 0,},
+  mobile: {...sizesLocal, containerTopOffset: -sizes.navBarHeightRem,}
+});
 
 export default function AuthMainContainer(props) {
   const [ sizes ] = useDeviceProps(propsPerDevice);
